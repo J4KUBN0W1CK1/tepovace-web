@@ -9,6 +9,10 @@
 <meta name="description" content="Profesionální hloubkové čištění sedaček, koberců, matrací a čalounění aut. Půjčovna Kärcher Puzzi 10/1. Jablunkov, Třinec a okolí do 25 km. Volejte +420 792 374 388.">
 <meta name="keywords" content="čištění sedaček Jablunkov, čištění koberců Třinec, tepování čalounění, půjčovna tepovače Jablunkov, Kärcher půjčení, čištění matrací">
 <link rel="canonical" href="https://www.tepovacejablunkov.cz/">
+<link rel="alternate" hreflang="cs" href="https://www.tepovacejablunkov.cz/">
+<link rel="alternate" hreflang="pl" href="https://www.tepovacejablunkov.cz/pl/">
+<link rel="alternate" hreflang="en" href="https://www.tepovacejablunkov.cz/en/">
+<link rel="alternate" hreflang="sk" href="https://www.tepovacejablunkov.cz/sk/">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -155,9 +159,8 @@
   .cenik-header { background: var(--border); padding: 1.2rem 1.8rem; display: flex; align-items: center; gap: 0.7rem; }
   .cenik-header h3 { font-family: var(--font-display); font-size: 1.1rem; margin: 0; letter-spacing: 0.06em; }
   .cenik-body { padding: 0.5rem 0; }
-  .price-row { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.8rem; border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  .price-row { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.8rem; border-bottom: 1px solid var(--border); }
   .price-row:last-child { border-bottom: none; }
-  .price-row:hover { background: rgba(255,255,255,0.03); }
   .price-name { font-size: 0.9rem; color: var(--text); }
   .price-name small { display: block; font-size: 0.78rem; color: var(--muted); }
   .price-val { font-family: var(--font-display); font-size: 1.15rem; color: var(--yellow); white-space: nowrap; margin-left: 1rem; }
@@ -246,9 +249,11 @@
     <li><a href="#cenik">Ceník</a></li>
     <li><a href="#pujcovna">Půjčovna</a></li>
     <li><a href="#recenze">Recenze</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#kontakt" class="nav-cta">Poptávka</a></li>
     <li><a href="/pl/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇵🇱 PL</a></li>
     <li><a href="/en/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇬🇧 EN</a></li>
+    <li><a href="/sk/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇸🇰 SK</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleNav()">
     <span></span><span></span><span></span>
@@ -260,7 +265,7 @@
   <div class="hero-bg"></div>
   <div style="position:relative;z-index:1;max-width:800px;">
     <div class="hero-tag">Jablunkov · Třinec · okolí 25 km</div>
-    <div style="display:flex;align-items:center;gap:1.2rem;margin-bottom:1.5rem;animation:fadeUp 0.6s 0.05s ease both;">
+    <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1.5rem;animation:fadeUp 0.6s 0.05s ease both;">
       <img src="icon_vacuum.png" alt="Tepovače Jablunkov" style="height:72px;width:auto;display:block;flex-shrink:0;">
       <div style="line-height:1.1;">
         <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--yellow);letter-spacing:0.06em;">TEPOVAČE</div>
@@ -299,10 +304,10 @@
 <div class="divider"></div>
 
 <!-- GALERIE -->
-<section id="galerie">
+<section id="galerie" style="text-align:center;">
   <div class="section-label">Výsledky naší práce</div>
   <h2>PŘED A PO</h2>
-  <p class="gallery-intro">Každý případ je jiný – sedačky, koberce, čalounění aut. Výsledky mluví za sebe.</p>
+  <p class="gallery-intro" style="margin-left:auto;margin-right:auto;">Každý případ je jiný – sedačky, koberce, čalounění aut. Výsledky mluví za sebe.</p>
 
   <div class="gallery-grid">
     <div class="gallery-item" onclick="openLightbox(0)">
@@ -419,8 +424,9 @@
         <li>Ideální pro alergiky a domácnosti se zvířaty</li>
         <li>Platba převodem nebo hotově</li>
       </ul>
-      <details style="margin-top:2rem;">
-        <summary style="cursor:pointer;font-size:0.85rem;color:var(--muted);user-select:none;">▸ Technická specifikace Kärcher Puzzi 10/1</summary>
+      <details style="display:none;"><!-- hidden --></details>
+      <div style="margin-top:2rem;">
+        <div style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--yellow);margin-bottom:0.8rem;">Technická specifikace Kärcher Puzzi 10/1</div>
         <table class="spec-table">
           <tr><td>Max. plošný výkon</td><td>20–25 m²/h</td></tr>
           <tr><td>Průtok vzduchu</td><td>74 l/s</td></tr>
@@ -429,7 +435,7 @@
           <tr><td>Výkon turbíny</td><td>1 250 W</td></tr>
           <tr><td>Hmotnost</td><td>10,5 kg</td></tr>
         </table>
-      </details>
+      </div>
     </div>
   </div>
 </section>
@@ -464,11 +470,11 @@
 <div class="divider"></div>
 
 <!-- VIDEO NAVOD -->
-<section id="video" style="background:var(--dark);">
+<section id="video" style="background:var(--dark);text-align:center;">
   <div class="section-label">Jak to funguje</div>
   <h2>VIDEONÁVOD<br>K TEPOVAČI</h2>
-  <p style="color:var(--muted);max-width:560px;margin-bottom:2rem;">Nikdy jste tepovač nepoužívali? Žádný strach – podívejte se na praktický návod jak stroj správně použít.</p>
-  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;max-width:800px;">
+  <p style="color:var(--muted);max-width:560px;margin:0 auto 2rem;">Nikdy jste tepovač nepoužívali? Žádný strach – podívejte se na praktický návod jak stroj správně použít.</p>
+  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;max-width:800px;margin:0 auto;">
     <iframe src="https://www.youtube.com/embed/Xz3n7xGHmRM" title="Návod k použití tepovače Kärcher" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px;"></iframe>
   </div>
 </section>
@@ -477,13 +483,13 @@
 
 <!-- REZERVACE + MAPA -->
 <section id="rezervace">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" class="rezervace-grid">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:stretch;" class="rezervace-grid">
     <div>
       <div class="section-label">Přehled rezervací</div>
       <h2>KDY JSEM<br>VOLNÝ</h2>
       <p style="color:var(--muted);font-size:0.92rem;margin-bottom:1.5rem;">Aktuální přehled obsazených termínů. Pro rezervaci použijte formulář níže nebo volejte přímo.</p>
       <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);">
-        <iframe src="https://calendar.google.com/calendar/embed?src=591510e6e3377f0a6db27db7f27a16ba01d727583519ac27be271afb64cefd65%40group.calendar.google.com&ctz=Europe%2FPrague&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&bgcolor=%231A1A1A&color=%23F5C800" style="border:0;width:100%;height:380px;display:block;" frameborder="0" scrolling="no"></iframe>
+        <iframe src="https://calendar.google.com/calendar/embed?src=591510e6e3377f0a6db27db7f27a16ba01d727583519ac27be271afb64cefd65%40group.calendar.google.com&ctz=Europe%2FPrague&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&bgcolor=%231A1A1A&color=%23F5C800" style="border:0;width:100%;height:420px;display:block;" frameborder="0" scrolling="no"></iframe>
       </div>
     </div>
     <div>
@@ -495,9 +501,50 @@
         <span style="font-size:0.95rem;color:var(--text);font-weight:500;">Návsí 447, 739 92 Návsí</span>
       </div>
       <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.8!2d18.757!3d49.596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sN%C3%A1vs%C3%AD+447%2C+739+92!5e0!3m2!1scs!2scz!4v1234567890" style="border:0;width:100%;height:380px;display:block;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.8!2d18.757!3d49.596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sN%C3%A1vs%C3%AD+447%2C+739+92!5e0!3m2!1scs!2scz!4v1234567890" style="border:0;width:100%;height:420px;display:block;" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--dark);">
+  <div class="section-label">Časté otázky</div>
+  <h2>MÁTE OTÁZKY?<br>MÁME ODPOVĚDI.</h2>
+  <div style="max-width:720px;display:flex;flex-direction:column;gap:1rem;margin-top:2rem;">
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">⏱ Jak dlouho schne čalounění po čištění?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Obvykle 12–24 hodin při pokojové teplotě. V létě nebo při větrání i méně. Doporučujeme otevřít okna a sedačku nevyužívat do úplného vyschnutí.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🧹 Musím sedačku nebo koberec před čištěním vysát?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Ano, důkladné vysátí je základ. Pokud není čalounění předem vysáté, nelze dosáhnout optimálního výsledku. U čištění na místě to zvládneme společně.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🗺️ Jedete i do mé obce?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Působíme v okruhu cca 25 km od Návsí – Jablunkov, Třinec, Mosty u Jablunkova, Hrádek, Bystřice a okolí. Doprava ke klientovi je zdarma do 15 km, nad 15 km účtujeme 15 Kč/km.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">⚠️ Co když skvrna nejde úplně pryč?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">U starých nebo chemicky fixovaných skvrn nelze garantovat 100% odstranění. Vždy dopředu upozorníme na reálný výsledek. Čím čerstvější skvrna, tím lepší výsledek.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">💳 Jak mohu zaplatit?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Přijímáme platbu v hotovosti nebo převodem na účet (QR kód). Platba probíhá po dokončení služby nebo při předání tepovače.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🔄 Jak rychle dostanu termín?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Obvykle se ozveme do 24 hodin a termín domluvíme na nejbližší volný den. Pracujeme i večer po 17. hodině a o víkendech po předchozí domluvě.</p>
+    </div>
+
   </div>
 </section>
 
@@ -526,11 +573,18 @@
         <div><small>Adresa</small><span>Návsí 447, 739 92 Návsí</span></div>
       </div>
       <div style="margin-top:0.5rem;font-size:0.85rem;color:var(--muted);line-height:1.7;">
-        Jakub Nowicki · IČO: 09089977<br>Návsí 447, 739 92
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+          <img src="jakub.png" alt="Jakub Nowicki – Tepovače Jablunkov" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid rgba(245,200,0,0.4);flex-shrink:0;">
+          <div>
+            <div style="font-size:1rem;font-weight:600;color:var(--text);">Jakub Nowicki</div>
+            <div style="font-size:0.8rem;color:var(--muted);">IČO: 09089977 · Návsí 447, 739 92</div>
+          </div>
+        </div>
       </div>
       <div style="display:flex;gap:0.8rem;margin-top:0.5rem;flex-wrap:wrap;">
         <a href="https://www.instagram.com/tepovace_jablunkov/" target="_blank" class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.85rem;">Instagram</a>
         <a href="https://www.facebook.com/people/Tepova%C4%8De-Jablunkov/61565961033038/" target="_blank" class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.85rem;">Facebook</a>
+        <a href="https://wa.me/420792374388" target="_blank" class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.85rem;border-color:rgba(37,211,102,0.4);color:#25D366;">💬 WhatsApp</a>
       </div>
     </div>
 
@@ -635,6 +689,9 @@
   });
 
 </script>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/420792374388" target="_blank" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;background:#25D366;color:white;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</a>
 
 </body>
 </html>
