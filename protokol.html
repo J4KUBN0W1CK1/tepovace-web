@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interní systém – Tepovače Jablunkov</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#111;--card:#1c1c1c;--border:#2e2e2e;
+  --yellow:#f5c400;--yd:#c9a000;--white:#f0f0f0;
+  --muted:#777;--ok:#4caf50;--err:#e05050;--r:8px;
+}
+body{background:var(--bg);color:var(--white);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
+
+/* PIN */
+#pin-overlay{position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px}
+#pin-overlay.hidden{display:none}
+.pin-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--yellow);letter-spacing:2px}
+.pin-sub{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.pin-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:26px 22px;width:100%;max-width:300px;display:flex;flex-direction:column;gap:12px}
+.pin-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+#pin-input{width:100%;background:#111;border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:'IBM Plex Sans',sans-serif;font-size:22px;padding:11px;outline:none;letter-spacing:6px;text-align:center;-webkit-appearance:none}
+#pin-input:focus{border-color:var(--yellow)}
+#pin-input.err{border-color:var(--err);animation:shake .3s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.pin-err{color:var(--err);font-size:13px;min-height:16px}
+.pin-btn{background:var(--yellow);color:#000;border:none;border-radius:6px;font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:700;padding:12px;cursor:pointer}
+.pin-btn:hover{background:var(--yd)}
+
+/* HEADER */
+.hdr{background:#000;border-bottom:3px solid var(--yellow);padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hdr-logo{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--yellow);letter-spacing:1px;line-height:1}
+.hdr-sub{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.hdr-sep{width:1px;height:32px;background:#333}
+.hdr-title{font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--white);letter-spacing:1px}
+
+.wrap{max-width:700px;margin:0 auto;padding:16px 12px 50px}
+
+/* TABS */
+.tabs{display:flex;gap:2px;border-bottom:2px solid var(--border);margin-bottom:16px}
+.t-btn{background:none;border:none;color:var(--muted);font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:9px 14px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color .15s}
+.t-btn.on{color:var(--yellow);border-bottom-color:var(--yellow)}
+.t-btn:hover:not(.on){color:var(--white)}
+.t-panel{display:none}
+.t-panel.on{display:block}
+
+/* SECTIONS */
+.sec{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:var(--yellow);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* INFO GRID */
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.il-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:1px}
+.il-val{font-weight:500;font-size:13px}
+
+/* FORM */
+.fg{margin-bottom:12px}
+.fg:last-child{margin-bottom:0}
+label.lbl{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px}
+input[type=text],input[type=tel],input[type=email],input[type=datetime-local],
+input[type=number],textarea,select{
+  width:100%;background:#111;border:1px solid var(--border);border-radius:6px;
+  color:var(--white);font-family:'IBM Plex Sans',sans-serif;font-size:14px;
+  padding:9px 11px;outline:none;transition:border-color .15s;-webkit-appearance:none
+}
+input:focus,textarea:focus,select:focus{border-color:var(--yellow)}
+textarea{resize:vertical;min-height:64px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+
+/* CHECKBOXES */
+.chk-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.chk-item{display:flex;align-items:flex-start;gap:9px;cursor:pointer}
+.chk-item input[type=checkbox]{width:17px;height:17px;flex-shrink:0;margin-top:2px;accent-color:var(--yellow);cursor:pointer}
+.chk-item span{font-size:13px;line-height:1.4}
+
+/* PRICE BOX */
+.pbox{background:#0d0d0d;border:1px solid var(--border);border-radius:6px;padding:12px;margin-top:10px}
+.pr{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:13px}
+.pr.tot{border-top:1px solid var(--border);margin-top:6px;padding-top:8px;font-size:15px;font-weight:600;color:var(--yellow)}
+.pr-lbl{color:var(--muted)}
+.badge{background:var(--yellow);color:#000;font-weight:700;font-size:11px;padding:2px 7px;border-radius:4px}
+
+/* ANO / NE */
+.yn{display:flex;gap:8px}
+.yn-b{flex:1;padding:9px;border:2px solid var(--border);border-radius:6px;background:none;color:var(--muted);font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.yn-b.y{border-color:var(--ok);color:var(--ok);background:rgba(76,175,80,.1)}
+.yn-b.n{border-color:var(--err);color:var(--err);background:rgba(224,80,80,.1)}
+
+/* PROHLÁŠENÍ */
+.prol{font-size:12px;line-height:1.65;color:#ccc}
+.prol ol{padding-left:16px}
+.prol li{margin-bottom:2px}
+.prol a{color:var(--yellow)}
+.souhlas{margin-top:12px;display:flex;align-items:flex-start;gap:9px;cursor:pointer}
+.souhlas input{width:17px;height:17px;flex-shrink:0;margin-top:2px;accent-color:var(--yellow)}
+.souhlas span{font-size:12px}
+.souhlas a{color:var(--yellow)}
+
+/* ACTIONS */
+.acts{display:flex;gap:10px;margin-top:8px}
+.btn-p{flex:1;background:var(--yellow);color:#000;border:none;border-radius:var(--r);font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:700;padding:12px 18px;cursor:pointer;transition:background .15s}
+.btn-p:hover{background:var(--yd)}
+.btn-s{background:var(--card);color:var(--white);border:1px solid var(--border);border-radius:var(--r);font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;padding:12px 16px;cursor:pointer;transition:border-color .15s}
+.btn-s:hover{border-color:#555}
+
+/* NOTICE */
+.notice{background:rgba(245,196,0,.07);border:1px solid rgba(245,196,0,.2);border-radius:6px;padding:9px 13px;font-size:12px;color:#ccc;margin-bottom:12px}
+.notice strong{color:var(--yellow)}
+
+/* SUCCESS */
+.ok-msg{display:none;background:rgba(76,175,80,.1);border:1px solid var(--ok);border-radius:var(--r);padding:16px;text-align:center;color:var(--ok);font-weight:600;margin-top:12px;font-size:14px}
+
+/* CLEANING TABLE */
+.clean-table{width:100%;border-collapse:collapse;font-size:13px}
+.clean-table th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);padding:4px 6px 8px;border-bottom:1px solid var(--border)}
+.clean-table td{padding:4px 4px}
+.clean-table td input,.clean-table td select{font-size:13px;padding:7px 8px}
+.clean-table .td-del{width:32px;text-align:center}
+.del-row{background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:4px 6px;border-radius:4px}
+.del-row:hover{color:var(--err)}
+.add-row-btn{background:none;border:1px dashed var(--border);border-radius:6px;color:var(--muted);font-family:'IBM Plex Sans',sans-serif;font-size:12px;padding:8px 14px;cursor:pointer;margin-top:8px;transition:border-color .15s,color .15s;width:100%}
+.add-row-btn:hover{border-color:var(--yellow);color:var(--yellow)}
+
+/* PRINT SIGNATURES */
+.print-sigs{display:none}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  .fr{grid-template-columns:1fr}
+  .fr3{grid-template-columns:1fr}
+  .ig{grid-template-columns:1fr}
+  .acts{flex-direction:column}
+}
+
+/* ═══ PRINT ═══ */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #pin-overlay{display:none!important}
+  body{background:#fff!important;color:#111!important;font-size:9.5pt;font-family:'IBM Plex Sans',Arial,sans-serif}
+  .hdr{background:#fff!important;border-bottom:2px solid #111!important;padding:6px 0 8px!important}
+  .hdr-logo{color:#111!important;font-size:17pt}
+  .hdr-title{color:#111!important;font-size:13pt}
+  .hdr-sub{color:#555!important}
+  .hdr-sep{background:#bbb!important}
+  .wrap{padding:4px 0!important;max-width:100%!important}
+  .tabs{display:none!important}
+
+  /* Tisk – každá záložka jen sama sebe */
+  .t-panel{display:none!important}
+  body.print-p  #tab-prevzeti{display:block!important}
+  body.print-v  #tab-vraceni{display:block!important}
+  body.print-c  #tab-cisteni{display:block!important}
+
+  .sec{background:#fff!important;border:1px solid #ccc!important;border-radius:3px!important;padding:6px 9px!important;margin-bottom:5px!important;break-inside:avoid}
+  .sec-title{color:#111!important;font-size:10pt!important;margin-bottom:7px!important}
+  .sec-title::after{background:#bbb!important}
+  .il-lbl,label.lbl{color:#666!important;font-size:8.5pt!important}
+  .il-val{font-size:9.5pt!important}
+  .ig{gap:5px!important}
+  .fg{margin-bottom:7px!important}
+  .fr,.fr3{gap:7px!important}
+  input,textarea,select{background:#fff!important;border:1px solid #ccc!important;color:#111!important;font-size:9pt!important;padding:4px 7px!important}
+  textarea{min-height:32px!important}
+  .pbox{background:#f5f5f5!important;border-color:#ccc!important;padding:7px 9px!important}
+  .pr{font-size:9pt!important;padding:2px 0!important}
+  .pr-lbl{color:#555!important}
+  .badge{background:#f5c400!important;color:#000!important;font-size:8pt!important}
+  .pr.tot{font-size:10.5pt!important;color:#111!important}
+  .prol{color:#333!important;font-size:8.5pt!important;line-height:1.45!important}
+  .prol a,.souhlas a{color:#111!important;text-decoration:underline}
+  .souhlas span{color:#111!important;font-size:8.5pt!important}
+  .yn-b{border-color:#bbb!important;color:#333!important;background:#fff!important;font-size:9pt!important;padding:5px!important}
+  .yn-b.y{border-color:#4caf50!important;background:#f0faf0!important;color:#2a7a2a!important}
+  .yn-b.n{border-color:#e05050!important;background:#fff5f5!important;color:#a02020!important}
+  .notice{background:#f9f9f9!important;border-color:#ccc!important;color:#555!important;font-size:8.5pt!important;padding:5px 9px!important}
+  .chk-list{gap:4px!important}
+  .chk-item span{font-size:9pt!important}
+  #dysko-box,#dysko-box-c,.acts,.ok-msg,.del-row,.add-row-btn{display:none!important}
+  .clean-table th{font-size:8pt!important;padding:3px 5px 5px!important}
+  .clean-table td{padding:2px 3px!important}
+  .clean-table td input,.clean-table td select{font-size:8.5pt!important;padding:4px 6px!important}
+  .print-sigs{display:grid!important;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;padding-top:10px;border-top:1px solid #bbb}
+  .sig-b{display:block!important}
+  .sig-line{border-bottom:1px solid #111;height:32px;margin-bottom:4px}
+  .sig-lbl{font-size:8.5pt;color:#555}
+
+  /* Čištění – ultra kompaktní pro 1 A4 */
+  body.print-c .sec{padding:4px 7px!important;margin-bottom:3px!important}
+  body.print-c .sec-title{font-size:8.5pt!important;margin-bottom:5px!important}
+  body.print-c .fg{margin-bottom:4px!important}
+  body.print-c .fr{gap:5px!important}
+  body.print-c input,body.print-c select,body.print-c textarea{font-size:8pt!important;padding:3px 5px!important}
+  body.print-c textarea{min-height:22px!important}
+  body.print-c label.lbl{font-size:7.5pt!important}
+  body.print-c .notice{padding:3px 7px!important;font-size:7.5pt!important}
+  body.print-c .clean-table th{font-size:7.5pt!important;padding:2px 4px 3px!important}
+  body.print-c .clean-table td{padding:1px 2px!important}
+  body.print-c .clean-table td input,body.print-c .clean-table td select{font-size:7.5pt!important;padding:2px 4px!important}
+  body.print-c .pbox{padding:5px 7px!important}
+  body.print-c .pr{font-size:8pt!important;padding:1px 0!important}
+  body.print-c .pr.tot{font-size:9.5pt!important}
+  body.print-c #faktura-box .fg{margin-bottom:3px!important}
+  body.print-c .chk-item span{font-size:8pt!important}
+}
+</style>
+</head>
+<body>
+
+<!-- PIN -->
+<div id="pin-overlay">
+  <div class="pin-logo">Tepovače Jablunkov</div>
+  <div class="pin-sub">Interní systém · Protokol &amp; Zakázky</div>
+  <div class="pin-box">
+    <div class="pin-lbl">Zadejte PIN</div>
+    <input type="password" id="pin-input" inputmode="numeric" maxlength="4" placeholder="••••" autocomplete="off" autofocus oninput="autoPin()" onkeydown="if(event.key==='Enter')checkPin()">
+    <div class="pin-err" id="pin-err"></div>
+    <button class="pin-btn" onclick="checkPin()">Vstoupit</button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div>
+    <div class="hdr-logo">Tepovače Jablunkov</div>
+    <div class="hdr-sub">Čištění čalounění · Půjčovna tepovačů</div>
+  </div>
+  <div class="hdr-sep"></div>
+  <div class="hdr-title">Interní systém</div>
+</header>
+
+<div class="wrap">
+  <div class="tabs">
+    <button class="t-btn on" onclick="tab('prevzeti',this)">Půjčovna – Převzetí</button>
+    <button class="t-btn" onclick="tab('vraceni',this)">Půjčovna – Vrácení</button>
+    <button class="t-btn" onclick="tab('cisteni',this)">Čištění – Zakázka</button>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 1 – PŘEVZETÍ
+  ══════════════════════════════════════ -->
+  <div id="tab-prevzeti" class="t-panel on">
+
+    <div class="sec">
+      <div class="sec-title">Pronajímatel</div>
+      <div class="ig">
+        <div><div class="il-lbl">Jméno</div><div class="il-val">Jakub Nowicki</div></div>
+        <div><div class="il-lbl">IČO</div><div class="il-val">09089977</div></div>
+        <div><div class="il-lbl">Telefon</div><div class="il-val">+420 792 374 388</div></div>
+        <div><div class="il-lbl">Web</div><div class="il-val">tepovacejablunkov.cz</div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Nájemce</div>
+      <div class="fg">
+        <label class="lbl">Jméno a příjmení *</label>
+        <input type="text" id="jmeno" placeholder="Jana Nováková" required>
+      </div>
+      <div class="fr">
+        <div class="fg">
+          <label class="lbl">Telefon *</label>
+          <input type="tel" id="tel" placeholder="+420 xxx xxx xxx" required>
+        </div>
+        <div class="fg">
+          <label class="lbl">E-mail klienta (pro odpověď)</label>
+          <input type="email" id="email" placeholder="jana@email.cz">
+        </div>
+      </div>
+      <div class="fg">
+        <label class="lbl">Adresa (nepovinné)</label>
+        <input type="text" id="adresa" placeholder="Ulice 1, Město">
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Předmět pronájmu</div>
+      <div class="ig">
+        <div style="grid-column:1/-1"><div class="il-lbl">Přístroj</div><div class="il-val">Tepovač Kärcher Puzzi 10/1</div></div>
+        <div style="grid-column:1/-1"><div class="il-lbl">Sériové číslo</div><div class="il-val" style="font-size:12px">9011001300332363</div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Příslušenství – zkontrolujte</div>
+      <ul class="chk-list">
+        <li><label class="chk-item"><input type="checkbox" id="acc1" checked><span>Nástřiková hadice s integrovaným přívodem vody (2,5 m)</span></label></li>
+        <li><label class="chk-item"><input type="checkbox" id="acc2" checked><span>Podlahová hubice s trubicí a rukojetí</span></label></li>
+        <li><label class="chk-item"><input type="checkbox" id="acc3" checked><span>Hubice na čalounění s rukojetí</span></label></li>
+      </ul>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Termín a platba</div>
+      <div class="fr">
+        <div class="fg">
+          <label class="lbl">Od</label>
+          <input type="datetime-local" id="datum-od" oninput="calcPrice()">
+        </div>
+        <div class="fg">
+          <label class="lbl">Do</label>
+          <input type="datetime-local" id="datum-do" oninput="calcPrice()">
+        </div>
+      </div>
+      <div class="pbox">
+        <div class="pr"><span class="pr-lbl">Délka pronájmu</span><span id="p-dur">–</span></div>
+        <div class="pr"><span class="pr-lbl">Orientační tarif</span><span id="p-tar" class="badge">–</span></div>
+        <div class="pr" style="font-size:11px;color:var(--muted)"><span>Nájem + chemie se platí při vrácení</span></div>
+        <div class="pr tot"><span>Kauce při převzetí</span><span>2 000 Kč (hotovost)</span></div>
+        <div class="pr" style="margin-top:8px">
+          <span class="pr-lbl">Kauce přijata?</span>
+          <div class="yn" style="width:180px">
+            <button class="yn-b" onclick="yn(this,'kauce-p','ano')">✓ ANO</button>
+            <button class="yn-b" onclick="yn(this,'kauce-p','ne')">✗ NE</button>
+          </div>
+        </div>
+        <input type="hidden" id="kauce-p" value="">
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Prohlášení nájemce</div>
+      <div class="prol">
+        <ol>
+          <li>Stroj přebírám čistý, funkční a bez viditelného poškození.</li>
+          <li>Byl/a jsem poučen/a o správné obsluze.</li>
+          <li>Zavazuji se stroj vrátit vyčištěný a vypláchnutý dle pokynů v návodu.</li>
+          <li>V opačném případě může být účtován poplatek za vyčištění.</li>
+          <li>Odpovídám za škody způsobené nešetrným zacházením. Běžné opotřebení se neřeší.</li>
+          <li>Beru na vědomí, že nelze garantovat 100% odstranění všech skvrn.</li>
+          <li>Souhlasím s <a href="/vop" target="_blank">VOP na tepovacejablunkov.cz/vop</a>.</li>
+          <li>Souhlasím se zpracováním osobních údajů pro účely této zápůjčky.</li>
+          <li>Při prodlení s vrácením se hradí nájemné za každých započatých 24 hodin dle ceníku.</li>
+        </ol>
+      </div>
+      <label class="souhlas">
+        <input type="checkbox" id="souhlas">
+        <span>Souhlasím s výše uvedenými podmínkami a <a href="/vop" target="_blank">VOP</a>.</span>
+      </label>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Poznámky</div>
+      <textarea id="pozn-p" placeholder="Viditelné poškození, zvláštní ujednání..."></textarea>
+    </div>
+
+    <div class="print-sigs">
+      <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Pronajímatel: Jakub Nowicki</div></div>
+      <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Nájemce: podpis</div></div>
+    </div>
+
+    <div class="acts">
+      <button class="btn-p" onclick="submitForm('p')">✓ Odeslat protokol</button>
+      <button class="btn-s" onclick="printTab('p')">Tisk / PDF</button>
+    </div>
+    <div id="ok-p" class="ok-msg">✓ Protokol odeslán. Kopie přijde na e-mail.</div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 2 – VRÁCENÍ
+  ══════════════════════════════════════ -->
+  <div id="tab-vraceni" class="t-panel">
+
+    <div class="notice"><strong>Vrácení stroje</strong> – vyplňte při předání zpět pronajímateli.</div>
+
+    <div class="sec">
+      <div class="sec-title">Nájemce</div>
+      <div class="fr">
+        <div class="fg">
+          <label class="lbl">Jméno a příjmení</label>
+          <input type="text" id="vr-jmeno" placeholder="Jana Nováková">
+        </div>
+        <div class="fg">
+          <label class="lbl">Datum vrácení</label>
+          <input type="datetime-local" id="vr-datum">
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Stav při vrácení</div>
+      <div class="fg">
+        <label class="lbl">Stroj v pořádku?</label>
+        <div class="yn">
+          <button class="yn-b" onclick="yn(this,'stav','ano')">✓ ANO</button>
+          <button class="yn-b" onclick="yn(this,'stav','ne')">✗ NE</button>
+        </div>
+        <input type="hidden" id="stav" value="">
+      </div>
+      <div class="fg">
+        <label class="lbl">Vyčištěn a vypláchnut?</label>
+        <div class="yn">
+          <button class="yn-b" onclick="yn(this,'vycist','ano')">✓ ANO</button>
+          <button class="yn-b" onclick="yn(this,'vycist','ne')">✗ NE</button>
+        </div>
+        <input type="hidden" id="vycist" value="">
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Vyúčtování</div>
+
+      <div class="fg">
+        <label class="lbl">Cena nájmu</label>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <select id="vr-najem-sel" onchange="selNajem()" style="flex:1;min-width:130px">
+            <option value="">– vybrat –</option>
+            <option value="0">0 Kč (zdarma)</option>
+            <option value="100">100 Kč</option>
+            <option value="350">350 Kč (24 h)</option>
+            <option value="500">500 Kč (48 h)</option>
+            <option value="700">700 Kč (72 h)</option>
+            <option value="custom">Jiná částka…</option>
+          </select>
+          <input type="number" id="vr-najem" min="0" placeholder="Kč" oninput="calcReturn()" style="width:90px;display:none">
+        </div>
+      </div>
+
+      <div class="fg">
+        <label class="lbl">Celkový počet dávek chemie (1. v ceně)</label>
+        <select id="vr-chem-sel" onchange="calcReturn()">
+          <option value="0">0 dávek</option>
+          <option value="1" selected>1 dávka (v ceně)</option>
+          <option value="2">2 dávky</option><option value="3">3 dávky</option>
+          <option value="4">4 dávky</option><option value="5">5 dávek</option>
+          <option value="6">6 dávek</option><option value="7">7 dávek</option>
+          <option value="8">8 dávek</option><option value="9">9 dávek</option>
+          <option value="10">10 dávek</option>
+        </select>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">1. dávka v ceně · každá další 30 Kč</div>
+      </div>
+
+      <div class="fg">
+        <label class="lbl">Sleva</label>
+        <select id="vr-sleva" onchange="calcReturn()" style="max-width:180px">
+          <option value="0">Bez slevy</option>
+          <option value="5">5 %</option><option value="10">10 %</option>
+          <option value="15">15 %</option><option value="20">20 %</option>
+          <option value="25">25 %</option><option value="30">30 %</option>
+          <option value="35">35 %</option><option value="40">40 %</option>
+          <option value="45">45 %</option><option value="50">50 %</option>
+        </select>
+      </div>
+
+      <div class="pbox">
+        <div class="pr"><span class="pr-lbl">Nájem</span><span id="vr-p-najem">–</span></div>
+        <div class="pr"><span class="pr-lbl">Chemie navíc</span><span id="vr-p-chem">0 Kč</span></div>
+        <div class="pr" id="vr-sleva-row" style="display:none"><span class="pr-lbl" id="vr-sleva-lbl">Sleva</span><span id="vr-p-sleva" style="color:var(--ok)">–</span></div>
+        <div class="pr tot"><span>Celkem k úhradě <span style="font-size:10px;font-weight:400;color:var(--muted)">bez DPH</span></span><span id="vr-p-tot">–</span></div>
+      </div>
+
+      <div class="fg" style="margin-top:12px">
+        <label class="lbl">Přijatá částka od klienta (Kč)</label>
+        <input type="number" id="vr-prijato" min="0" placeholder="kolik jsem dostal" oninput="calcReturn()">
+      </div>
+      <div id="dysko-box" class="pbox" style="display:none;margin-top:6px">
+        <div class="pr"><span class="pr-lbl">K úhradě</span><span id="dy-celkem">–</span></div>
+        <div class="pr"><span class="pr-lbl">Přijato</span><span id="dy-prijato">–</span></div>
+        <div class="pr tot"><span>🎉 Dýško</span><span id="dy-dysko">–</span></div>
+      </div>
+
+      <div class="fg" style="margin-top:12px">
+        <label class="lbl">Kauce vrácena?</label>
+        <div class="yn">
+          <button class="yn-b" onclick="yn(this,'kauce','ano')">✓ ANO</button>
+          <button class="yn-b" onclick="yn(this,'kauce','ne')">✗ NE</button>
+        </div>
+        <input type="hidden" id="kauce" value="">
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Poznámky</div>
+      <textarea id="pozn-v" placeholder="Poškození, znečištění, jiné odchylky..."></textarea>
+    </div>
+
+    <div class="print-sigs">
+      <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Pronajímatel: Jakub Nowicki</div></div>
+      <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Nájemce: podpis při vrácení</div></div>
+    </div>
+
+    <div class="acts">
+      <button class="btn-p" onclick="submitForm('v')">✓ Odeslat protokol vrácení</button>
+      <button class="btn-s" onclick="printTab('v')">Tisk / PDF</button>
+    </div>
+    <div id="ok-v" class="ok-msg">✓ Protokol vrácení odeslán.</div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TAB 3 – ČIŠTĚNÍ / ZAKÁZKA
+  ══════════════════════════════════════ -->
+  <div id="tab-cisteni" class="t-panel">
+
+    <div class="sec">
+      <div class="sec-title">Zákazník</div>
+      <div class="fg">
+        <label class="lbl">Jméno a příjmení</label>
+        <input type="text" id="c-jmeno" placeholder="Jana Nováková">
+      </div>
+      <div class="fr">
+        <div class="fg">
+          <label class="lbl">Telefon</label>
+          <input type="tel" id="c-tel" placeholder="+420 xxx xxx xxx">
+        </div>
+        <div class="fg">
+          <label class="lbl">E-mail</label>
+          <input type="email" id="c-email" placeholder="jana@email.cz">
+        </div>
+      </div>
+      <div class="fr">
+        <div class="fg">
+          <label class="lbl">Datum zakázky</label>
+          <input type="datetime-local" id="c-datum">
+        </div>
+        <div class="fg">
+          <label class="lbl">Adresa čištění</label>
+          <input type="text" id="c-adresa" placeholder="Ulice 1, Město">
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Položky zakázky</div>
+      <table class="clean-table" id="clean-tbl">
+        <thead>
+          <tr>
+            <th style="width:38%">Položka</th>
+            <th style="width:15%">Množství / m²</th>
+            <th style="width:18%">Cena / j.</th>
+            <th style="width:18%">Celkem</th>
+            <th class="td-del"></th>
+          </tr>
+        </thead>
+        <tbody id="clean-rows"></tbody>
+      </table>
+      <button class="add-row-btn" onclick="addRow()">+ Přidat položku</button>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Vyúčtování</div>
+
+      <div class="fg">
+        <label class="lbl">Sleva</label>
+        <select id="c-sleva" onchange="calcClean()" style="max-width:180px">
+          <option value="0">Bez slevy</option>
+          <option value="5">5 %</option><option value="10">10 %</option>
+          <option value="15">15 %</option><option value="20">20 %</option>
+          <option value="25">25 %</option><option value="30">30 %</option>
+          <option value="35">35 %</option><option value="40">40 %</option>
+          <option value="45">45 %</option><option value="50">50 %</option>
+        </select>
+      </div>
+
+      <div class="pbox">
+        <div class="pr"><span class="pr-lbl">Mezisoučet</span><span id="c-subtot">0 Kč</span></div>
+        <div class="pr" id="c-sleva-row" style="display:none"><span class="pr-lbl" id="c-sleva-lbl">Sleva</span><span id="c-p-sleva" style="color:var(--ok)">–</span></div>
+        <div class="pr tot"><span>Celkem k úhradě <span style="font-size:10px;font-weight:400;color:var(--muted)">bez DPH</span></span><span id="c-celkem">0 Kč</span></div>
+      </div>
+
+      <div class="fg" style="margin-top:12px">
+        <label class="lbl">Přijatá částka od klienta (Kč)</label>
+        <input type="number" id="c-prijato" min="0" placeholder="kolik jsem dostal" oninput="calcClean()">
+      </div>
+      <div id="dysko-box-c" class="pbox" style="display:none;margin-top:6px">
+        <div class="pr"><span class="pr-lbl">K úhradě</span><span id="dc-celkem">–</span></div>
+        <div class="pr"><span class="pr-lbl">Přijato</span><span id="dc-prijato">–</span></div>
+        <div class="pr tot"><span>🎉 Dýško</span><span id="dc-dysko">–</span></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Faktura</div>
+      <label class="chk-item" style="margin-bottom:10px">
+        <input type="checkbox" id="c-faktura" onchange="toggleFaktura()">
+        <span>Zákazník požaduje fakturu</span>
+      </label>
+      <div id="faktura-box" style="display:none">
+        <div class="notice" style="margin-bottom:10px"><strong>Upozornění:</strong> Nejsem plátce DPH. Ceny jsou uváděny bez DPH.</div>
+        <div class="fr">
+          <div class="fg">
+            <label class="lbl">Jméno / firma</label>
+            <input type="text" id="f-firma" placeholder="Jan Novák / Firma s.r.o.">
+          </div>
+          <div class="fg">
+            <label class="lbl">IČO</label>
+            <input type="text" id="f-ico" placeholder="12345678">
+          </div>
+        </div>
+        <div class="fg">
+          <label class="lbl">Fakturační adresa</label>
+          <input type="text" id="f-adresa" placeholder="Ulice 1, PSČ Město">
+        </div>
+        <div class="fg">
+          <label class="lbl">E-mail pro zaslání faktury</label>
+          <input type="email" id="f-email" placeholder="faktura@email.cz">
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-title">Poznámky</div>
+      <textarea id="c-pozn" placeholder="Stav čalounění, speciální skvrny, poznámky k zakázce..."></textarea>
+    </div>
+
+    <div class="print-sigs">
+      <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Provozovatel: Jakub Nowicki</div></div>
+      <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Zákazník: podpis</div></div>
+    </div>
+
+    <div class="acts">
+      <button class="btn-p" onclick="submitForm('c')">✓ Odeslat zakázku</button>
+      <button class="btn-s" onclick="printTab('c')">Tisk / PDF</button>
+    </div>
+    <div id="ok-c" class="ok-msg">✓ Zakázka odeslána.</div>
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+// ═══ KONFIGURACE ═══
+const PIN   = '2402';
+const FS    = 'https://api.web3forms.com/submit';
+const W3KEY = '318459f3-ebd2-4195-b959-23a85fc42729';
+
+// Ceník čištění (auto-fill)
+const CENIK = {
+  'Sedačka přímá':       700,
+  'Sedačka rohová L':   1000,
+  'Sedačka rohová U':   1400,
+  'Fotel / ušák':        300,
+  'Křeslo':              150,
+  'Matrace jednolůžko':  350,
+  'Matrace dvoulůžko':   500,
+  'Koberec (m²)':         90,
+  'Auto – sedadla (5 míst)': 700,
+  'Auto – komplet textil':  1100,
+  'Jiné':                  0,
+};
+
+// ── PIN ──
+if(sessionStorage.getItem('tj_auth')==='1') showApp();
+function autoPin(){
+  if(document.getElementById('pin-input').value.length===PIN.length) checkPin();
+}
+
+  if(document.getElementById('pin-input').value===PIN){ sessionStorage.setItem('tj_auth','1'); showApp(); }
+  else{
+    const inp=document.getElementById('pin-input');
+    inp.classList.add('err');
+    document.getElementById('pin-err').textContent='Nesprávný PIN.';
+    setTimeout(()=>inp.classList.remove('err'),400);
+    inp.value='';
+  }
+}
+function showApp(){
+  document.getElementById('pin-overlay').classList.add('hidden');
+  initDates();
+  addRow(); addRow(); // 2 řádky předvyplněny
+}
+
+// ── TABS ──
+function tab(name,btn){
+  document.querySelectorAll('.t-panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.t-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('tab-'+name).classList.add('on');
+  btn.classList.add('on');
+}
+
+// ── PRINT – tisk jen aktivní záložky ──
+function printTab(t){
+  document.body.className='print-'+t;
+  window.print();
+  document.body.className='';
+}
+
+// ── CENÍK PŮJČOVNY ──
+function tarif(h){
+  const b=Math.ceil(h/24);
+  if(b<=0)return null;
+  if(b===1)return{lbl:'24 h – 350 Kč'};
+  if(b===2)return{lbl:'48 h – 500 Kč'};
+  if(b===3)return{lbl:'72 h – 700 Kč'};
+  return{lbl:b+'× 24 h'};
+}
+function calcPrice(){
+  const od=document.getElementById('datum-od').value;
+  const doo=document.getElementById('datum-do').value;
+  if(!od||!doo)return;
+  const ms=new Date(doo)-new Date(od);
+  if(ms<=0){document.getElementById('p-dur').textContent='⚠ Neplatný termín';return;}
+  const h=ms/36e5, t=tarif(h);
+  if(!t)return;
+  const hh=Math.floor(h),mm=Math.round((h-hh)*60);
+  document.getElementById('p-dur').textContent=hh+' h'+(mm?' '+mm+' min':'');
+  document.getElementById('p-tar').textContent=t.lbl;
+}
+
+// ── VYÚČTOVÁNÍ VRÁCENÍ ──
+function selNajem(){
+  const sel=document.getElementById('vr-najem-sel').value;
+  const inp=document.getElementById('vr-najem');
+  if(sel==='custom'){inp.style.display='block';inp.focus();}
+  else{inp.style.display='none';inp.value=sel;}
+  calcReturn();
+}
+function calcReturn(){
+  const sel=document.getElementById('vr-najem-sel').value;
+  const najem=sel==='custom'?(parseInt(document.getElementById('vr-najem').value)||0):(parseInt(sel)||0);
+  const chemC=parseInt(document.getElementById('vr-chem-sel').value)||0;
+  const chemExtra=Math.max(0,chemC-1), chemKc=chemExtra*30;
+  const slevaP=parseInt(document.getElementById('vr-sleva').value)||0;
+  const zaklad=najem+chemKc;
+  const slevaKc=Math.round(zaklad*slevaP/100);
+  const celkem=zaklad-slevaKc;
+
+  document.getElementById('vr-p-najem').textContent=najem>0?najem+' Kč':'–';
+  document.getElementById('vr-p-chem').textContent=chemKc>0?chemKc+' Kč ('+chemExtra+'× 30 Kč)':'0 Kč';
+
+  const sr=document.getElementById('vr-sleva-row');
+  if(slevaP>0&&zaklad>0){
+    sr.style.display='';
+    document.getElementById('vr-sleva-lbl').textContent='Sleva '+slevaP+' %';
+    document.getElementById('vr-p-sleva').textContent='−'+slevaKc+' Kč';
+  }else sr.style.display='none';
+
+  document.getElementById('vr-p-tot').textContent=zaklad>0?celkem+' Kč':'–';
+
+  const prijato=parseInt(document.getElementById('vr-prijato').value);
+  const db=document.getElementById('dysko-box');
+  if(!isNaN(prijato)&&prijato>0&&zaklad>0){
+    const dy=prijato-celkem;
+    db.style.display='';
+    document.getElementById('dy-celkem').textContent=celkem+' Kč';
+    document.getElementById('dy-prijato').textContent=prijato+' Kč';
+    document.getElementById('dy-dysko').textContent=(dy>=0?'+':'')+dy+' Kč';
+    document.getElementById('dy-dysko').style.color=dy>=0?'var(--yellow)':'var(--err)';
+  }else db.style.display='none';
+}
+
+// ── ČIŠTĚNÍ – ŘÁDKY ──
+let rowId=0;
+function addRow(){
+  rowId++;
+  const id=rowId;
+  const opts=Object.keys(CENIK).map(k=>`<option value="${k}">${k}</option>`).join('');
+  const tr=document.createElement('tr');
+  tr.id='row-'+id;
+  tr.innerHTML=`
+    <td><select onchange="rowType(${id})" id="rt-${id}" style="width:100%"><option value="">– vybrat –</option>${opts}</select></td>
+    <td><input type="number" id="rq-${id}" min="0" step="0.1" value="1" oninput="calcRow(${id})" style="width:100%"></td>
+    <td><input type="number" id="rp-${id}" min="0" value="0" oninput="calcRow(${id})" style="width:100%"></td>
+    <td><input type="number" id="rc-${id}" readonly style="width:100%;background:#0a0a0a;border-color:#222;color:var(--yellow)"></td>
+    <td class="td-del"><button class="del-row" onclick="delRow(${id})" title="Smazat">✕</button></td>`;
+  document.getElementById('clean-rows').appendChild(tr);
+}
+function rowType(id){
+  const typ=document.getElementById('rt-'+id).value;
+  document.getElementById('rp-'+id).value=CENIK[typ]||0;
+  calcRow(id);
+}
+function calcRow(id){
+  const q=parseFloat(document.getElementById('rq-'+id).value)||0;
+  const p=parseFloat(document.getElementById('rp-'+id).value)||0;
+  document.getElementById('rc-'+id).value=Math.round(q*p);
+  calcClean();
+}
+function delRow(id){
+  document.getElementById('row-'+id).remove();
+  calcClean();
+}
+function calcClean(){
+  let sub=0;
+  document.querySelectorAll('[id^="rc-"]').forEach(el=>{sub+=parseFloat(el.value)||0;});
+  const slevaP=parseInt(document.getElementById('c-sleva').value)||0;
+  const slevaKc=Math.round(sub*slevaP/100);
+  const celkem=sub-slevaKc;
+
+  document.getElementById('c-subtot').textContent=sub+' Kč';
+  const sr=document.getElementById('c-sleva-row');
+  if(slevaP>0&&sub>0){
+    sr.style.display='';
+    document.getElementById('c-sleva-lbl').textContent='Sleva '+slevaP+' %';
+    document.getElementById('c-p-sleva').textContent='−'+slevaKc+' Kč';
+  }else sr.style.display='none';
+  document.getElementById('c-celkem').textContent=celkem+' Kč';
+
+  const prijato=parseInt(document.getElementById('c-prijato').value);
+  const db=document.getElementById('dysko-box-c');
+  if(!isNaN(prijato)&&prijato>0&&sub>0){
+    const dy=prijato-celkem;
+    db.style.display='';
+    document.getElementById('dc-celkem').textContent=celkem+' Kč';
+    document.getElementById('dc-prijato').textContent=prijato+' Kč';
+    document.getElementById('dc-dysko').textContent=(dy>=0?'+':'')+dy+' Kč';
+    document.getElementById('dc-dysko').style.color=dy>=0?'var(--yellow)':'var(--err)';
+  }else db.style.display='none';
+}
+
+// ── ANO / NE ──
+function yn(btn,id,val){
+  btn.parentElement.querySelectorAll('.yn-b').forEach(b=>b.classList.remove('y','n'));
+  btn.classList.add(val==='ano'?'y':'n');
+  document.getElementById(id).value=val;
+}
+
+// ── ODESLÁNÍ ──
+async function submitForm(typ){
+  let data;
+  if(typ==='p'){
+    if(!document.getElementById('souhlas').checked){alert('Potvrďte souhlas s podmínkami.');return;}
+    const jm=document.getElementById('jmeno').value.trim();
+    const tl=document.getElementById('tel').value.trim();
+    if(!jm||!tl){alert('Vyplňte jméno a telefon nájemce.');return;}
+    const em=document.getElementById('email').value.trim();
+    data={
+      access_key:W3KEY, subject:'Protokol PŘEVZETÍ – '+jm, from_name:'Tepovače Jablunkov',
+      replyto:em||'kubas5.nowicki@gmail.com', typ:'PŘEVZETÍ',
+      najemce:jm, telefon:tl, email:em||'–', adresa:document.getElementById('adresa').value||'–',
+      od:document.getElementById('datum-od').value, do:document.getElementById('datum-do').value,
+      tarif:document.getElementById('p-tar').textContent,
+      kauce_prijata:document.getElementById('kauce-p').value||'–',
+      prislusenstvi:[
+        document.getElementById('acc1').checked?'✓ Hadice':'✗ Hadice',
+        document.getElementById('acc2').checked?'✓ Podlahová hubice':'✗ Podlahová hubice',
+        document.getElementById('acc3').checked?'✓ Hubice čalounění':'✗ Hubice čalounění',
+      ].join(' | '),
+      souhlas:'ANO – odsouhlaseno odesláním formuláře',
+      poznamky:document.getElementById('pozn-p').value||'–',
+    };
+  } else if(typ==='v'){
+    const sel=document.getElementById('vr-najem-sel').value;
+    data={
+      access_key:W3KEY, subject:'Protokol VRÁCENÍ – '+(document.getElementById('vr-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
+      typ:'VRÁCENÍ', najemce:document.getElementById('vr-jmeno').value||'–',
+      datum_vraceni:document.getElementById('vr-datum').value,
+      stav_stroje:document.getElementById('stav').value||'–',
+      vycisten:document.getElementById('vycist').value||'–',
+      najem:document.getElementById('vr-p-najem').textContent,
+      chemie:document.getElementById('vr-chem-sel').value+' dávek → '+document.getElementById('vr-p-chem').textContent,
+      sleva:document.getElementById('vr-sleva').value+' %',
+      celkem:document.getElementById('vr-p-tot').textContent,
+      prijato:(document.getElementById('vr-prijato').value||'–')+' Kč',
+      dysko:document.getElementById('dy-dysko').textContent||'–',
+      kauce_vracena:document.getElementById('kauce').value||'–',
+      poznamky:document.getElementById('pozn-v').value||'–',
+    };
+  } else {
+    // čištění
+    const rows=[];
+    document.querySelectorAll('#clean-rows tr').forEach(tr=>{
+      const id=tr.id.replace('row-','');
+      const typ2=document.getElementById('rt-'+id)?.value||'';
+      const q=document.getElementById('rq-'+id)?.value||'';
+      const p=document.getElementById('rp-'+id)?.value||'';
+      const c=document.getElementById('rc-'+id)?.value||'';
+      if(typ2) rows.push(typ2+' × '+q+' = '+c+' Kč ('+p+' Kč/j.)');
+    });
+    data={
+      access_key:W3KEY, subject:'Zakázka ČIŠTĚNÍ – '+(document.getElementById('c-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
+      typ:'ČIŠTĚNÍ', zakaznik:document.getElementById('c-jmeno').value||'–',
+      telefon:document.getElementById('c-tel').value||'–',
+      email:document.getElementById('c-email').value||'–',
+      datum:document.getElementById('c-datum').value,
+      adresa:document.getElementById('c-adresa').value||'–',
+      polozky:rows.join(' | '),
+      sleva:document.getElementById('c-sleva').value+' %',
+      celkem:document.getElementById('c-celkem').textContent,
+      prijato:(document.getElementById('c-prijato').value||'–')+' Kč',
+      dysko:document.getElementById('dc-dysko').textContent||'–',
+      faktura: document.getElementById('c-faktura').checked ? 'ANO' : 'NE',
+      faktura_firma: document.getElementById('c-faktura').checked ? (document.getElementById('f-firma').value||'–') : '–',
+      faktura_ico: document.getElementById('c-faktura').checked ? (document.getElementById('f-ico').value||'–') : '–',
+      faktura_adresa: document.getElementById('c-faktura').checked ? (document.getElementById('f-adresa').value||'–') : '–',
+      faktura_email: document.getElementById('c-faktura').checked ? (document.getElementById('f-email').value||'–') : '–',
+      poznamky:document.getElementById('c-pozn').value||'–',
+    };
+  }
+
+  try{
+    const r=await fetch(FS,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
+    if(r.ok){
+      const okId=typ==='p'?'ok-p':typ==='v'?'ok-v':'ok-c';
+      document.getElementById(okId).style.display='block';
+      window.scrollTo({top:9999,behavior:'smooth'});
+    }else alert('Chyba při odesílání. Zkus to znovu nebo vytiskni.');
+  }catch{alert('Chyba připojení. Vytiskni protokol nebo zavolej: +420 792 374 388');}
+}
+
+// ── FAKTURA ──
+function toggleFaktura(){
+  document.getElementById('faktura-box').style.display=
+    document.getElementById('c-faktura').checked?'block':'none';
+}
+
+
+function initDates(){
+  const now=new Date(), p=n=>String(n).padStart(2,'0');
+  const fmt=d=>`${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
+  document.getElementById('datum-od').value=fmt(now);
+  document.getElementById('datum-do').value=fmt(new Date(now.getTime()+864e5));
+  document.getElementById('vr-datum').value=fmt(now);
+  document.getElementById('c-datum').value=fmt(now);
+  calcPrice();
+}
+</script>
+</body>
+</html>
