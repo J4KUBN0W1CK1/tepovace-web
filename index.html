@@ -121,13 +121,13 @@
   .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
 
   /* SECTIONS */
-  section { padding: 80px 5%; }
-  .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.8rem; }
+  section { padding: 80px 5%; text-align: center; }
+  .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.8rem; display: block; }
   h2 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.5rem); letter-spacing: 0.03em; line-height: 1.05; color: var(--text); margin-bottom: 1rem; }
 
   /* WHY */
   #proc { background: var(--dark); }
-  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5px; margin-top: 3rem; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .why-grid { text-align: left; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5px; margin-top: 3rem; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
   .why-card { background: var(--card); padding: 2rem; }
   .why-icon { font-size: 1.8rem; margin-bottom: 1rem; }
   .why-card h3 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
@@ -155,7 +155,7 @@
 
   /* CENIK */
   #cenik { background: var(--dark); }
-  .cenik-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 3rem; }
+  .cenik-grid { text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 3rem; }
   @media(max-width:700px){ .cenik-grid { grid-template-columns: 1fr; } }
   .cenik-card { background: var(--card); border-radius: 8px; overflow: hidden; }
   .cenik-header { background: var(--border); padding: 1.2rem 1.8rem; display: flex; align-items: center; gap: 0.7rem; }
@@ -170,7 +170,7 @@
 
   /* PUJCOVNA */
   #pujcovna { }
-  .pujc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+  .pujc-grid { text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
   @media(max-width:768px){ .pujc-grid { grid-template-columns: 1fr; } }
   .pujc-prices { display: flex; flex-direction: column; gap: 2px; }
   .pujc-row { background: var(--card); padding: 1.2rem 1.6rem; display: flex; justify-content: space-between; align-items: center; border-radius: 4px; transition: background 0.2s; }
@@ -191,7 +191,7 @@
 
   /* RECENZE */
   #recenze { background: var(--dark); }
-  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-top: 3rem; }
+  .reviews-grid { text-align: left; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-top: 3rem; }
   .review-card { background: var(--card); border-radius: 8px; padding: 1.5rem; border: 1px solid var(--border); transition: border-color 0.2s, transform 0.2s; }
   .review-card:hover { border-color: rgba(245,200,0,0.3); transform: translateY(-2px); }
   .review-stars { color: var(--yellow); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
@@ -200,7 +200,7 @@
 
   /* KONTAKT */
   #kontakt { }
-  .kontakt-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .kontakt-inner { text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
   .poptavka-form { height: 100%; }
   @media(max-width:768px){ .kontakt-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
   .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -489,25 +489,25 @@
 
 <!-- REZERVACE + MAPA -->
 <section id="rezervace">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:stretch;" class="rezervace-grid">
-    <div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;" class="rezervace-grid">
+    <div style="display:flex;flex-direction:column;text-align:left;">
       <div class="section-label">Přehled rezervací</div>
-      <h2>KDY JSEM<br>VOLNÝ</h2>
+      <h2 style="text-align:left;">KDY JSEM<br>VOLNÝ</h2>
       <p style="color:var(--muted);font-size:0.92rem;margin-bottom:1.5rem;">Aktuální přehled obsazených termínů. Pro rezervaci použijte formulář níže nebo volejte přímo.</p>
-      <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);">
-        <iframe src="https://calendar.google.com/calendar/embed?src=591510e6e3377f0a6db27db7f27a16ba01d727583519ac27be271afb64cefd65%40group.calendar.google.com&ctz=Europe%2FPrague&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&bgcolor=%231A1A1A&color=%23F5C800" style="border:0;width:100%;height:420px;display:block;" frameborder="0" scrolling="no"></iframe>
+      <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);flex:1;">
+        <iframe src="https://calendar.google.com/calendar/embed?src=591510e6e3377f0a6db27db7f27a16ba01d727583519ac27be271afb64cefd65%40group.calendar.google.com&ctz=Europe%2FPrague&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&bgcolor=%231A1A1A&color=%23F5C800" style="border:0;width:100%;height:100%;min-height:420px;display:block;" frameborder="0" scrolling="no"></iframe>
       </div>
     </div>
-    <div>
+    <div style="display:flex;flex-direction:column;text-align:left;">
       <div class="section-label">Kde nás najdete</div>
-      <h2>NAŠE<br>LOKALITA</h2>
-      <p style="color:var(--muted);font-size:0.92rem;margin-bottom:1.5rem;">Sídlíme v Návsí, obsloužíme celý Jablunkov, Třinec a okolí do 25 km.</p>
+      <h2 style="text-align:left;">NAŠE<br>LOKALITA</h2>
+      <p style="color:var(--muted);font-size:0.92rem;margin-bottom:1rem;">Sídlíme v Návsí, obsloužíme celý Jablunkov, Třinec a okolí do 25 km.</p>
       <div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:1rem;">
         <span style="font-size:1.2rem;">📍</span>
         <span style="font-size:0.95rem;color:var(--text);font-weight:500;">Návsí 447, 739 92 Návsí</span>
       </div>
-      <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.8!2d18.757!3d49.596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sN%C3%A1vs%C3%AD+447%2C+739+92!5e0!3m2!1scs!2scz!4v1234567890" style="border:0;width:100%;height:420px;display:block;" allowfullscreen loading="lazy"></iframe>
+      <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);flex:1;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.8!2d18.757!3d49.596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sN%C3%A1vs%C3%AD+447%2C+739+92!5e0!3m2!1scs!2scz!4v1234567890" style="border:0;width:100%;height:100%;min-height:420px;display:block;" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
   </div>
@@ -519,7 +519,7 @@
 <section id="faq" style="background:var(--dark);">
   <div class="section-label">Časté otázky</div>
   <h2>MÁTE OTÁZKY?<br>MÁME ODPOVĚDI.</h2>
-  <div style="max-width:720px;display:flex;flex-direction:column;gap:1rem;margin-top:2rem;">
+  <div style="max-width:720px;display:flex;flex-direction:column;gap:1rem;margin-top:2rem;text-align:left;margin-left:auto;margin-right:auto;">
 
     <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
       <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">⏱ Jak dlouho schne čalounění po čištění?</div>
