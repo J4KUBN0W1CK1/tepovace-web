@@ -82,9 +82,9 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: var(--black); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; cursor: url('kurzor.png') 1 1, auto; }
-  * { cursor: url('kurzor.png') 1 1, auto !important; }
-  select, select * { cursor: url('kurzor.png') 1 1, auto !important; }
+  body { background: var(--black); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23111' stroke='%23111' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23f5c400' stroke='none'/%3E%3C/svg%3E") 6 2, auto; }
+  * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23111' stroke='%23111' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23f5c400' stroke='none'/%3E%3C/svg%3E") 6 2, auto !important; }
+  select, select * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23111' stroke='%23111' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23f5c400' stroke='none'/%3E%3C/svg%3E") 6 2, auto !important; }
 
   /* Ripple efekt */
   .ripple { position: fixed; border-radius: 50%; background: rgba(245,200,0,0.35); transform: scale(0); animation: rippleAnim 0.5s ease-out forwards; pointer-events: none; z-index: 9999; }
