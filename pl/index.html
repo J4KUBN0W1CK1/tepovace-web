@@ -64,7 +64,7 @@ section{padding:80px 5%;}
 h2{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.5rem);letter-spacing:0.03em;line-height:1.05;color:var(--text);margin-bottom:1rem;}
 #why{background:var(--dark);}
 .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5px;margin-top:3rem;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;}
-.why-card{background:var(--card);padding:2rem;}
+.why-card{background:var(--card);padding:2rem;text-align:left;}
 .why-icon{font-size:1.8rem;margin-bottom:1rem;}
 .why-card h3{font-size:1rem;font-family:var(--font-body);font-weight:600;color:var(--text);margin-bottom:0.4rem;}
 .why-card p{font-size:0.88rem;color:var(--muted);line-height:1.6;}
@@ -82,8 +82,8 @@ h2{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.5rem);letter-spa
 #lightbox-prev,#lightbox-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(245,200,0,0.15);border:1px solid rgba(245,200,0,0.3);color:var(--yellow);border-radius:6px;padding:0.6rem 1rem;font-size:1.2rem;}
 #lightbox-prev{left:1rem;}#lightbox-next{right:1rem;}
 #pricing{background:var(--dark);}
-.cenik-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:3rem;}
-@media(max-width:700px){.cenik-grid{grid-template-columns:1fr;}}
+.cenik-grid{text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:3rem;}
+@media(max-width:700px){.cenik-grid{text-align:left;grid-template-columns:1fr;}}
 .cenik-card{background:var(--card);border-radius:8px;overflow:hidden;}
 .cenik-header{background:var(--border);padding:1.2rem 1.8rem;display:flex;align-items:center;gap:0.7rem;}
 .cenik-header h3{font-family:var(--font-display);font-size:1.1rem;margin:0;letter-spacing:0.06em;}
@@ -94,8 +94,8 @@ h2{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.5rem);letter-spa
 .price-name small{display:block;font-size:0.78rem;color:var(--muted);}
 .price-val{font-family:var(--font-display);font-size:1.15rem;color:var(--yellow);white-space:nowrap;margin-left:1rem;}
 .cenik-note{margin-top:1.5rem;background:rgba(245,200,0,0.06);border-left:3px solid var(--yellow);padding:1rem 1.4rem;border-radius:0 6px 6px 0;font-size:0.87rem;color:var(--muted);}
-.pujc-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:start;}
-@media(max-width:768px){.pujc-grid{grid-template-columns:1fr;}}
+.pujc-grid{text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:start;}
+@media(max-width:768px){.pujc-grid{text-align:left;grid-template-columns:1fr;}}
 .pujc-prices{display:flex;flex-direction:column;gap:2px;}
 .pujc-row{background:var(--card);padding:1.2rem 1.6rem;display:flex;justify-content:space-between;align-items:center;border-radius:4px;}
 .pujc-row.highlight{background:rgba(245,200,0,0.1);border:1px solid rgba(245,200,0,0.2);}
@@ -112,14 +112,14 @@ h2{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.5rem);letter-spa
 .spec-table td:first-child{color:var(--text);font-weight:500;width:55%;}
 .spec-table tr:last-child td{border-bottom:none;}
 #reviews{background:var(--dark);}
-.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:3rem;}
+.reviews-grid{text-align:left;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:3rem;}
 .review-card{background:var(--card);border-radius:8px;padding:1.5rem;border:1px solid var(--border);transition:border-color 0.2s,transform 0.2s;}
 .review-card:hover{border-color:rgba(245,200,0,0.3);transform:translateY(-2px);}
 .review-stars{color:var(--yellow);font-size:0.85rem;letter-spacing:0.1em;margin-bottom:0.8rem;}
 .review-text{font-size:0.9rem;line-height:1.65;color:var(--text);margin-bottom:1.2rem;font-style:italic;}
 .review-author{font-size:0.8rem;color:var(--muted);font-weight:600;}
-.kontakt-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
-@media(max-width:768px){.kontakt-inner{grid-template-columns:1fr;gap:2.5rem;}}
+.kontakt-inner{text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+@media(max-width:768px){.kontakt-inner{text-align:left;grid-template-columns:1fr;gap:2.5rem;}}
 .contact-info{display:flex;flex-direction:column;gap:1.5rem;}
 .contact-item{display:flex;gap:1rem;align-items:flex-start;}
 .contact-icon{width:42px;height:42px;background:rgba(245,200,0,0.1);border:1px solid rgba(245,200,0,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
@@ -370,7 +370,7 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
       <h2>KIEDY JESTEM<br>DOSTĘPNY</h2>
       <p style="color:var(--muted);font-size:0.92rem;margin-bottom:1.5rem;">Aktualny przegląd zajętych terminów. Aby zarezerwować, prosimy skorzystać z formularza poniżej lub zadzwonić.</p>
       <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);flex:1;">
-        <iframe src="https://calendar.google.com/calendar/embed?src=591510e6e3377f0a6db27db7f27a16ba01d727583519ac27be271afb64cefd65%40group.calendar.google.com&ctz=Europe%2FPrague&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&bgcolor=%231A1A1A&color=%23F5C800" style="border:0;width:100%;height:420px;display:block;" frameborder="0" scrolling="no"></iframe>
+        <iframe src="https://calendar.google.com/calendar/embed?src=591510e6e3377f0a6db27db7f27a16ba01d727583519ac27be271afb64cefd65%40group.calendar.google.com&ctz=Europe%2FPrague&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&bgcolor=%231A1A1A&color=%23F5C800" style="border:0;width:100%;height:100%;min-height:420px;display:block;" frameborder="0" scrolling="no"></iframe>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;">
@@ -382,7 +382,7 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
         <span style="font-size:0.95rem;color:var(--text);font-weight:500;">Návsí 447, 739 92 Návsí (CZ)</span>
       </div>
       <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);flex:1;">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.8!2d18.757!3d49.596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sN%C3%A1vs%C3%AD+447%2C+739+92!5e0!3m2!1spl!2scz!4v1234567890" style="border:0;width:100%;height:420px;display:block;" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.8!2d18.757!3d49.596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sN%C3%A1vs%C3%AD+447%2C+739+92!5e0!3m2!1spl!2scz!4v1234567890" style="border:0;width:100%;height:100%;min-height:420px;display:block;" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
   </div>
@@ -393,7 +393,7 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
 <section id="faq" style="background:var(--dark);">
   <div class="section-label">Często zadawane pytania</div>
   <h2>MAJĄ PAŃSTWO<br>PYTANIA?</h2>
-  <div style="max-width:720px;display:flex;flex-direction:column;gap:1rem;margin-top:2rem;">
+  <div style="max-width:720px;display:flex;flex-direction:column;gap:1rem;margin-top:2rem;text-align:left;margin-left:auto;margin-right:auto;">
     <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;"><div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">⏱ Jak długo schnie tapicerka po czyszczeniu?</div><p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Zwykle 12–24 godziny w temperaturze pokojowej. Latem lub przy wietrzeniu krócej. Zalecamy otworzyć okna i nie korzystać z kanapy do całkowitego wyschnięcia.</p></div>
 <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;"><div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🧹 Czy muszę najpierw odkurzyć kanapę lub dywan?</div><p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Tak, dokładne odkurzenie to podstawa. Jeśli tapicerka nie jest wcześniej odkurzona, nie można osiągnąć optymalnego efektu. Przy czyszczeniu na miejscu zrobimy to wspólnie.</p></div>
 <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;"><div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🗺️ Czy dojeżdżacie do mojej miejscowości?</div><p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Działamy w promieniu ok. 25 km od Návsí – Jabłonków, Trzyniec, Mosty u Jabłonkowa, Hrádek, Bystřice i okolice. Dojazd do klienta jest bezpłatny do 15 km, powyżej 15 km naliczamy 15 Kč/km.</p></div>
