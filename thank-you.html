@@ -13,7 +13,8 @@
   :root{--yellow:#F5C800;--black:#0D0D0D;--dark:#141414;--card:#1A1A1A;--border:#2A2A2A;--text:#E8E8E8;--muted:#888;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;}
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--black);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 5%;text-align:center;}
+  body{background:var(--black);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 5%;text-align:center;cursor:url('kurzor.png') 1 1,auto;}
+  *{cursor:url('kurzor.png') 1 1,auto !important;}
   .check{width:80px;height:80px;background:rgba(245,200,0,0.1);border:2px solid var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin:0 auto 2rem;animation:popIn 0.5s ease both;}
   @keyframes popIn{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
   h1{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4rem);letter-spacing:0.03em;color:var(--text);line-height:1;margin-bottom:1rem;}
