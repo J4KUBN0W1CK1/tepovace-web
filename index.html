@@ -753,18 +753,23 @@
     });
   }
 
-  // Ripple efekt při kliknutí
-  document.addEventListener('click', function(e) {
+  // Ripple efekt při kliknutí (myš i dotyk)
+  function spawnRipple(x, y) {
     const ripple = document.createElement('div');
     ripple.className = 'ripple';
     const size = 40;
     ripple.style.width = size + 'px';
     ripple.style.height = size + 'px';
-    ripple.style.left = (e.clientX - size / 2) + 'px';
-    ripple.style.top = (e.clientY - size / 2) + 'px';
+    ripple.style.left = (x - size / 2) + 'px';
+    ripple.style.top = (y - size / 2) + 'px';
     document.body.appendChild(ripple);
     setTimeout(() => ripple.remove(), 500);
-  });
+  }
+  document.addEventListener('click', e => spawnRipple(e.clientX, e.clientY));
+  document.addEventListener('touchstart', e => {
+    const t = e.touches[0];
+    spawnRipple(t.clientX, t.clientY);
+  }, { passive: true });
 
 </script>
 
