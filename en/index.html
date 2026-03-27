@@ -24,137 +24,158 @@
 <meta property="og:image:width" content="1080">
 <meta property="og:image:height" content="1080">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"LocalBusiness","name":"Tepovače Jablunkov","description":"Professional upholstery cleaning and Kärcher extractor rental. Sofas, carpets, mattresses and car interiors.","url":"https://www.tepovacejablunkov.cz/en/","telephone":"+420792374388","email":"kubas5.nowicki@gmail.com","address":{"@type":"PostalAddress","streetAddress":"Návsí 447","addressLocality":"Návsí","postalCode":"739 92","addressCountry":"CZ"},"geo":{"@type":"GeoCoordinates","latitude":49.5958,"longitude":18.7573},"areaServed":["Jablunkov","Trinec","Navsi"],"priceRange":"350–1500 Kč","sameAs":["https://www.facebook.com/people/Tepova%C4%8De-Jablunkov/61565961033038/","https://www.instagram.com/tepovace_jablunkov/"]}
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Tepovače Jablunkov","description":"Professional upholstery cleaning and Kärcher extractor rental.","url":"https://www.tepovacejablunkov.cz/en/","telephone":"+420792374388","email":"kubas5.nowicki@gmail.com","address":{"@type":"PostalAddress","streetAddress":"Návsí 447","addressLocality":"Návsí","postalCode":"739 92","addressCountry":"CZ"},"geo":{"@type":"GeoCoordinates","latitude":49.5958,"longitude":18.7573},"areaServed":["Jablunkov","Trinec","Navsi"],"priceRange":"350–1500 Kč","sameAs":["https://www.facebook.com/people/Tepova%C4%8De-Jablunkov/61565961033038/","https://www.instagram.com/tepovace_jablunkov/"]}
 </script>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600&display=swap" as="style">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-
-:root{--yellow:#F5C800;--black:#0D0D0D;--dark:#141414;--card:#1A1A1A;--border:#2A2A2A;--text:#E8E8E8;--muted:#888;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-.ripple{position:fixed;border-radius:50%;background:rgba(245,200,0,0.35);transform:scale(0);animation:rippleAnim 0.5s ease-out forwards;pointer-events:none;z-index:9999;}
-@keyframes rippleAnim{to{transform:scale(4);opacity:0;}}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;background:rgba(13,13,13,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
-.nav-logo{font-family:var(--font-display);font-size:1.4rem;letter-spacing:0.05em;color:var(--yellow);text-decoration:none;}
-.nav-logo span{color:var(--text);}
-.nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s;}
-.nav-links a:hover{color:var(--yellow);}
-.nav-cta{background:var(--yellow);color:var(--black) !important;padding:0.45rem 1.2rem;border-radius:4px;font-weight:600 !important;}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
-.hamburger span{width:24px;height:2px;background:var(--text);border-radius:2px;}
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:100px 5% 60px;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 50%,rgba(245,200,0,0.07) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 20% 80%,rgba(245,200,0,0.04) 0%,transparent 60%);}
-.hero-tag{display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--yellow);background:rgba(245,200,0,0.1);border:1px solid rgba(245,200,0,0.25);padding:0.35rem 0.9rem;border-radius:100px;margin-bottom:1.5rem;width:fit-content;animation:fadeUp 0.6s ease both;}
-h1{font-family:var(--font-display);font-size:clamp(3.5rem,9vw,7rem);line-height:0.95;letter-spacing:0.02em;color:var(--text);animation:fadeUp 0.6s 0.1s ease both;text-align:left;}
-h1 em{color:var(--yellow);font-style:normal;}
-.hero-sub{max-width:520px;margin-top:1.5rem;font-size:1.05rem;color:var(--muted);line-height:1.7;animation:fadeUp 0.6s 0.2s ease both;text-align:left;}
-.hero-actions{display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap;animation:fadeUp 0.6s 0.3s ease both;text-align:left;}
-.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.8rem;border-radius:6px;font-weight:600;font-size:0.95rem;transition:all 0.2s;text-decoration:none;border:none;font-family:var(--font-body);}
-.btn-primary{background:var(--yellow);color:var(--black);}
-.btn-primary:hover{opacity:0.9;transform:translateY(-1px);}
-.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
-.btn-outline:hover{border-color:var(--yellow);color:var(--yellow);}
-.hero-stats{display:flex;gap:3rem;margin-top:4rem;animation:fadeUp 0.6s 0.4s ease both;flex-wrap:wrap;text-align:left;}
-.stat-num{font-family:var(--font-display);font-size:2.8rem;color:var(--yellow);line-height:1;}
-.stat-label{font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.2rem;}
-section{padding:80px 5%;}
-.section-label{font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--yellow);margin-bottom:0.8rem;}
-h2{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.5rem);letter-spacing:0.03em;line-height:1.05;color:var(--text);margin-bottom:1rem;}
-#why{background:var(--dark);}
-.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5px;margin-top:3rem;border:1.5px solid var(--border);border-radius:8px;overflow:hidden;}
-.why-card{background:var(--card);padding:2rem;text-align:left;}
-.why-icon{font-size:1.8rem;margin-bottom:1rem;}
-.why-card h3{font-size:1rem;font-family:var(--font-body);font-weight:600;color:var(--text);margin-bottom:0.4rem;}
-.why-card p{font-size:0.88rem;color:var(--muted);line-height:1.6;}
-.gallery-grid{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:1.5rem;}
-.gallery-item{flex:0 1 calc(33.333% - 0.7rem);min-width:280px;position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1/1;background:var(--card);}
-
-.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s ease;}
-.gallery-item:hover img{transform:scale(1.04);}
-.gallery-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.5) 0%,transparent 50%);opacity:0;transition:opacity 0.3s;display:flex;align-items:flex-end;padding:1rem;}
-.gallery-item:hover .overlay{opacity:1;}
-.gallery-item .overlay span{font-size:0.8rem;font-weight:600;color:var(--yellow);letter-spacing:0.08em;text-transform:uppercase;}
-#lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:999;justify-content:center;align-items:center;padding:2rem;}
-#lightbox.open{display:flex;}
-#lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;}
-#lightbox-close{position:absolute;top:1.5rem;right:1.5rem;background:var(--yellow);color:var(--black);border:none;border-radius:50%;width:40px;height:40px;font-size:1.2rem;font-weight:700;}
-#lightbox-prev,#lightbox-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(245,200,0,0.15);border:1px solid rgba(245,200,0,0.3);color:var(--yellow);border-radius:6px;padding:0.6rem 1rem;font-size:1.2rem;}
-#lightbox-prev{left:1rem;}#lightbox-next{right:1rem;}
-#pricing{background:var(--dark);}
-.cenik-grid{text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:3rem;}
-@media(max-width:700px){.cenik-grid{text-align:left;grid-template-columns:1fr;}}
-.cenik-card{background:var(--card);border-radius:8px;overflow:hidden;}
-.cenik-header{background:var(--border);padding:1.2rem 1.8rem;display:flex;align-items:center;gap:0.7rem;}
-.cenik-header h3{font-family:var(--font-display);font-size:1.1rem;margin:0;letter-spacing:0.06em;}
-.cenik-body{padding:0.5rem 0;}
-.price-row{display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1.8rem;border-bottom:1px solid var(--border);}
-.price-row:last-child{border-bottom:none;}
-.price-name{font-size:0.9rem;color:var(--text);}
-.price-name small{display:block;font-size:0.78rem;color:var(--muted);}
-.price-val{font-family:var(--font-display);font-size:1.15rem;color:var(--yellow);white-space:nowrap;margin-left:1rem;}
-.cenik-note{margin-top:1.5rem;background:rgba(245,200,0,0.06);border-left:3px solid var(--yellow);padding:1rem 1.4rem;border-radius:0 6px 6px 0;font-size:0.87rem;color:var(--muted);text-align:left;}
-.pujc-grid{text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:start;}
-@media(max-width:768px){.pujc-grid{text-align:left;grid-template-columns:1fr;}}
-.pujc-prices{display:flex;flex-direction:column;gap:2px;}
-.pujc-row{background:var(--card);padding:1.2rem 1.6rem;display:flex;justify-content:space-between;align-items:center;border-radius:4px;}
-.pujc-row.highlight{background:rgba(245,200,0,0.1);border:1px solid rgba(245,200,0,0.2);}
-.pujc-label{font-size:0.95rem;font-weight:500;}
-.pujc-price{font-family:var(--font-display);font-size:1.4rem;color:var(--yellow);}
-.pujc-price.free{color:#4ADE80;}
-.pujc-features{list-style:none;display:flex;flex-direction:column;gap:1rem;}
-.pujc-features li{display:flex;gap:0.8rem;font-size:0.92rem;color:var(--muted);}
-.pujc-features li::before{content:'✓';color:var(--yellow);font-weight:700;flex-shrink:0;}
-.kauce-note{margin-top:1rem;padding:1rem 1.4rem;background:var(--card);border-radius:6px;border:1px solid var(--border);font-size:0.87rem;color:var(--muted);}
-.kauce-note strong{color:var(--text);}
-.spec-table{margin-top:1rem;width:100%;border-collapse:collapse;font-size:0.86rem;}
-.spec-table td{padding:0.6rem 1rem;border-bottom:1px solid var(--border);color:var(--muted);}
-.spec-table td:first-child{color:var(--text);font-weight:500;width:55%;}
-.spec-table tr:last-child td{border-bottom:none;}
-#reviews{background:var(--dark);}
-.reviews-grid{text-align:left;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:3rem;}
-.review-card{background:var(--card);border-radius:8px;padding:1.5rem;border:1px solid var(--border);transition:border-color 0.2s,transform 0.2s;}
-.review-card:hover{border-color:rgba(245,200,0,0.3);transform:translateY(-2px);}
-.review-stars{color:var(--yellow);font-size:0.85rem;letter-spacing:0.1em;margin-bottom:0.8rem;}
-.review-text{font-size:0.9rem;line-height:1.65;color:var(--text);margin-bottom:1.2rem;font-style:italic;}
-.review-author{font-size:0.8rem;color:var(--muted);font-weight:600;}
-.kontakt-inner{text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
-@media(max-width:768px){.kontakt-inner{text-align:left;grid-template-columns:1fr;gap:2.5rem;}}
-.contact-info{display:flex;flex-direction:column;gap:1.5rem;}
-.contact-item{display:flex;gap:1rem;align-items:flex-start;}
-.contact-icon{width:42px;height:42px;background:rgba(245,200,0,0.1);border:1px solid rgba(245,200,0,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
-.contact-item a{color:var(--text);text-decoration:none;font-weight:500;}
-.contact-item a:hover{color:var(--yellow);}
-.contact-item small{display:block;font-size:0.78rem;color:var(--muted);margin-bottom:0.2rem;}
-.poptavka-form{display:flex;flex-direction:column;gap:1rem;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-@media(max-width:500px){.form-row{grid-template-columns:1fr;}}
-.form-group{display:flex;flex-direction:column;gap:0.4rem;}
-label{font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);}
-input,select,textarea{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:0.75rem 1rem;color:var(--text);font-family:var(--font-body);font-size:0.95rem;transition:border-color 0.2s;outline:none;width:100%;}
-input:focus,select:focus,textarea:focus{border-color:var(--yellow);}
-select option{background:var(--card);}
-textarea{resize:vertical;min-height:110px;}
-.form-submit{background:var(--yellow);color:var(--black);border:none;padding:0.9rem 2rem;border-radius:6px;font-weight:700;font-size:0.95rem;font-family:var(--font-body);transition:opacity 0.2s,transform 0.2s;letter-spacing:0.04em;}
-.form-submit:hover{opacity:0.9;transform:translateY(-1px);}
-footer{border-top:1px solid var(--border);padding:2rem 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:0.82rem;color:var(--muted);}
-footer a{color:var(--muted);text-decoration:none;}
-footer a:hover{color:var(--yellow);}
-.divider{height:1px;background:var(--border);margin:0 5%;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-@media(max-width:768px){.nav-links{display:none;}.hamburger{display:flex;}.nav-links.open{display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:var(--dark);padding:1.5rem 5%;border-bottom:1px solid var(--border);gap:1.2rem;}.nav-links.open a{font-size:1rem;}}
-@media(max-width:600px){section{padding:60px 5%;}h2{font-size:2rem;}.hero-stats{gap:2rem;}}
-@media(max-width:640px){.gallery-item{flex:0 1 100%;min-width:0;}}
-@media(max-width:768px){.rezervace-grid{grid-template-columns:1fr !important;}}
-
-body{background:var(--black);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;overflow-x:hidden;cursor:url('../kurzor.png') 1 1,auto;}
-*{cursor:url('../kurzor.png') 1 1,auto !important;}
+  :root {
+    --yellow: #F5C800;
+    --black: #0D0D0D;
+    --dark: #141414;
+    --card: #1A1A1A;
+    --border: #2A2A2A;
+    --text: #E8E8E8;
+    --muted: #888;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  .ripple { position: fixed; border-radius: 50%; background: rgba(245,200,0,0.35); transform: scale(0); animation: rippleAnim 0.5s ease-out forwards; pointer-events: none; z-index: 9999; }
+  @keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
+  .hero-logo { filter: drop-shadow(0 0 18px rgba(245,200,0,0.5)) drop-shadow(0 0 40px rgba(245,200,0,0.2)); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 64px; background: rgba(13,13,13,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 0.05em; color: var(--yellow); text-decoration: none; }
+  .nav-logo span { color: var(--text); }
+  .nav-links { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--yellow); }
+  .nav-cta { background: var(--yellow); color: var(--black) !important; padding: 0.45rem 1.2rem; border-radius: 4px; font-weight: 600 !important; }
+  .nav-cta:hover { opacity: 0.85; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 5% 60px; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(245,200,0,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 20% 80%, rgba(245,200,0,0.04) 0%, transparent 60%); }
+  .hero-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--yellow); background: rgba(245,200,0,0.1); border: 1px solid rgba(245,200,0,0.25); padding: 0.35rem 0.9rem; border-radius: 100px; margin-bottom: 1.5rem; width: fit-content; animation: fadeUp 0.6s ease both; align-self: flex-start; }
+  h1 { font-family: var(--font-display); font-size: clamp(3.5rem, 9vw, 7rem); line-height: 0.95; letter-spacing: 0.02em; color: var(--text); animation: fadeUp 0.6s 0.1s ease both; text-align: left; }
+  h1 em { color: var(--yellow); font-style: normal; }
+  .hero-sub { max-width: 520px; margin-top: 1.5rem; font-size: 1.05rem; color: var(--muted); line-height: 1.7; animation: fadeUp 0.6s 0.2s ease both; text-align: left; }
+  .hero-actions { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; text-align: left; }
+  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.8rem; border-radius: 6px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.2s; text-decoration: none; border: none; font-family: var(--font-body); }
+  .btn-primary { background: var(--yellow); color: var(--black); padding: 1rem 2.4rem; font-size: 1.02rem; letter-spacing: 0.03em; }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,200,0,0.3); }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); }
+  .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; animation: fadeUp 0.6s 0.4s ease both; flex-wrap: wrap; text-align: left; }
+  .stat-num { font-family: var(--font-display); font-size: 2.8rem; color: var(--yellow); line-height: 1; }
+  .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+  section { padding: 100px 5%; text-align: center; }
+  .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.8rem; display: block; }
+  h2 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.5rem); letter-spacing: 0.03em; line-height: 1.05; color: var(--text); margin-bottom: 1rem; }
+  #why { background: var(--dark); }
+  .why-grid { text-align: left; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5px; margin-top: 3rem; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .why-card { flex: 1 1 220px; max-width: calc(50% - 0.75px); }
+  @media(max-width:500px){ .why-card { max-width: 100%; } }
+  .why-card { background: var(--card); padding: 2rem; }
+  .why-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .why-card h3 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+  .why-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+  .gallery-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  .gallery-item { flex: 0 1 calc(33.333% - 0.7rem); min-width: 280px; position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 1/1; background: var(--card); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .gallery-item:hover img { transform: scale(1.04); }
+  .gallery-item .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 1rem; }
+  .gallery-item:hover .overlay { opacity: 1; }
+  .gallery-item .overlay span { font-size: 0.8rem; font-weight: 600; color: var(--yellow); letter-spacing: 0.08em; text-transform: uppercase; }
+  #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 999; justify-content: center; align-items: center; padding: 2rem; }
+  #lightbox.open { display: flex; }
+  #lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+  #lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: var(--yellow); color: var(--black); border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.2rem; cursor: pointer; font-weight: 700; }
+  #lightbox-prev, #lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(245,200,0,0.15); border: 1px solid rgba(245,200,0,0.3); color: var(--yellow); border-radius: 6px; padding: 0.6rem 1rem; cursor: pointer; font-size: 1.2rem; }
+  #lightbox-prev { left: 1rem; }
+  #lightbox-next { right: 1rem; }
+  #pricing { background: var(--dark); }
+  .cenik-grid { text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 3rem; }
+  @media(max-width:700px){ .cenik-grid { grid-template-columns: 1fr; } }
+  .cenik-card { background: var(--card); border-radius: 8px; overflow: hidden; }
+  .cenik-header { background: var(--border); padding: 1.2rem 1.8rem; display: flex; align-items: center; gap: 0.7rem; }
+  .cenik-header h3 { font-family: var(--font-display); font-size: 1.1rem; margin: 0; letter-spacing: 0.06em; }
+  .cenik-body { padding: 0.5rem 0; }
+  .price-row { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.8rem; border-bottom: 1px solid var(--border); }
+  .price-row:last-child { border-bottom: none; }
+  .price-name { font-size: 0.9rem; color: var(--text); }
+  .price-name small { display: block; font-size: 0.78rem; color: var(--muted); }
+  .price-val { font-family: var(--font-display); font-size: 1.15rem; color: var(--yellow); white-space: nowrap; margin-left: 1rem; }
+  .cenik-note { margin-top: 1.5rem; background: rgba(245,200,0,0.06); border-left: 3px solid var(--yellow); padding: 1rem 1.4rem; border-radius: 0 6px 6px 0; font-size: 0.87rem; color: var(--muted); text-align: left; }
+  .pujc-grid { text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+  @media(max-width:768px){ .pujc-grid { grid-template-columns: 1fr; } }
+  .pujc-prices { display: flex; flex-direction: column; gap: 2px; }
+  .pujc-row { background: var(--card); padding: 1.2rem 1.6rem; display: flex; justify-content: space-between; align-items: center; border-radius: 4px; transition: background 0.2s; }
+  .pujc-row:hover { background: #202020; }
+  .pujc-row.highlight { background: rgba(245,200,0,0.1); border: 1px solid rgba(245,200,0,0.2); }
+  .pujc-label { font-size: 0.95rem; font-weight: 500; }
+  .pujc-price { font-family: var(--font-display); font-size: 1.4rem; color: var(--yellow); }
+  .pujc-price.free { color: #4ADE80; }
+  .pujc-features { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .pujc-features li { display: flex; gap: 0.8rem; font-size: 0.92rem; color: var(--muted); }
+  .pujc-features li::before { content: '✓'; color: var(--yellow); font-weight: 700; flex-shrink: 0; }
+  .kauce-note { margin-top: 1rem; padding: 1rem 1.4rem; background: var(--card); border-radius: 6px; border: 1px solid var(--border); font-size: 0.87rem; color: var(--muted); }
+  .kauce-note strong { color: var(--text); }
+  .spec-table { margin-top: 2rem; width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+  .spec-table td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); color: var(--muted); }
+  .spec-table td:first-child { color: var(--text); font-weight: 500; width: 55%; }
+  .spec-table tr:last-child td { border-bottom: none; }
+  #reviews { background: var(--dark); }
+  .reviews-grid { text-align: left; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-top: 3rem; }
+  .review-card { background: var(--card); border-radius: 8px; padding: 1.5rem; border: 1px solid var(--border); transition: border-color 0.2s, transform 0.2s; }
+  .review-card:hover { border-color: rgba(245,200,0,0.3); transform: translateY(-2px); }
+  .review-stars { color: var(--yellow); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+  .review-text { font-size: 0.9rem; line-height: 1.65; color: var(--text); margin-bottom: 1.2rem; font-style: italic; }
+  .review-author { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+  .kontakt-inner { text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: stretch; }
+  .poptavka-form { height: 100%; }
+  @media(max-width:768px){ .kontakt-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; justify-content: space-between; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-icon { width: 42px; height: 42px; background: rgba(245,200,0,0.1); border: 1px solid rgba(245,200,0,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .contact-item a { color: var(--text); text-decoration: none; font-weight: 500; }
+  .contact-item a:hover { color: var(--yellow); }
+  .contact-item small { display: block; font-size: 0.78rem; color: var(--muted); margin-bottom: 0.2rem; }
+  .poptavka-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width:500px){ .form-row { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  input, select, textarea { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem 1rem; color: var(--text); font-family: var(--font-body); font-size: 0.95rem; transition: border-color 0.2s; outline: none; width: 100%; }
+  input:focus, select:focus, textarea:focus { border-color: var(--yellow); }
+  select option { background: var(--card); }
+  textarea { resize: vertical; min-height: 110px; }
+  .form-submit { background: var(--yellow); color: var(--black); border: none; padding: 0.9rem 2rem; border-radius: 6px; font-weight: 700; font-size: 0.95rem; font-family: var(--font-body); cursor: pointer; transition: opacity 0.2s, transform 0.2s; letter-spacing: 0.04em; }
+  .form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+  footer { border-top: 1px solid var(--border); padding: 2rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--yellow); }
+  .divider { height: 1px; background: var(--border); margin: 0 5%; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media(max-width:1080px){
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: var(--dark); padding: 1.5rem 5%; border-bottom: 1px solid var(--border); gap: 1.2rem; z-index: 99; }
+    .nav-links.open a { font-size: 1rem; }
+  }
+  @media(max-width:600px){ section { padding: 72px 5%; } h2 { font-size: 2rem; } .hero-stats { gap: 2rem; } }
+  @media(max-width:640px){ .gallery-item { flex: 0 1 100%; min-width: 0; } }
+  @media(max-width:768px){ .rezervace-grid { grid-template-columns: 1fr !important; } }
+  body { background: var(--black); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; cursor: url('../kurzor.png') 1 1, auto; }
+  * { cursor: url('../kurzor.png') 1 1, auto !important; }
+  select, select * { cursor: url('../kurzor.png') 1 1, auto !important; }
 </style>
 </head>
 <body>
+
 <nav>
   <a class="nav-logo" href="#hero">TEPOVAČE<span> JABLUNKOV</span></a>
   <ul class="nav-links" id="navLinks">
@@ -166,16 +187,18 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
     <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
     <li><a href="/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇨🇿 CZ</a></li><li><a href="/pl/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇵🇱 PL</a></li><li><a href="/sk/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇸🇰 SK</a></li>
   </ul>
-  <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
 
 <section id="hero">
   <div class="hero-bg"></div>
-  <div style="position:relative;z-index:1;max-width:800px;">
+  <div style="position:relative;z-index:1;max-width:800px;text-align:left;">
     <div class="hero-tag">Jablunkov · Trinec · up to 25 km</div>
     <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:1.5rem;animation:fadeUp 0.6s 0.05s ease both;">
       <img src="../icon_vacuum.png" alt="Tepovače Jablunkov" width="88" height="88" style="height:88px;width:auto;display:block;flex-shrink:0;">
-      <div style="line-height:1.1;">
+      <div style="line-height:1.1;text-align:left;">
         <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--yellow);letter-spacing:0.06em;">TEPOVAČE</div>
         <div style="font-family:var(--font-display);font-size:1.35rem;color:var(--text);letter-spacing:0.08em;">JABLUNKOV</div>
         <div style="font-size:0.72rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-top:0.2rem;">Rental & Cleaning</div>
@@ -188,9 +211,9 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
       <a href="tel:+420792374388" class="btn btn-outline">📞 +420 792 374 388</a>
     </div>
     <div class="hero-stats">
-      <div class="stat-item"><div class="stat-num">1 600+</div><div class="stat-label">m² cleaned</div></div>
-      <div class="stat-item"><div class="stat-num">70+</div><div class="stat-label">Sofas rescued</div></div>
-      <div class="stat-item"><div class="stat-num">180+</div><div class="stat-label">Happy clients</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="1600" data-suffix="+">0+</div><div class="stat-label">m² cleaned</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="70" data-suffix="+">0+</div><div class="stat-label">Sofas rescued</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="180" data-suffix="+">0+</div><div class="stat-label">Happy clients</div></div>
     </div>
   </div>
 </section>
@@ -214,7 +237,7 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
   <div class="section-label">Our work</div>
   <h2>BEFORE & AFTER</h2>
   <p style="color:var(--muted);max-width:560px;margin:0 auto 2rem;">Every job is different – sofas, carpets, car interiors. The results speak for themselves.</p>
-  <div class="gallery-grid" style="text-align:left;">
+  <div class="gallery-grid">
     <div class="gallery-item" onclick="openLightbox(0)">
       <img src="../foto1.jpg" alt="Corner sofa cleaning before and after – Tepovače Jablunkov" width="800" height="800" loading="lazy">
       <div class="overlay"><span>Corner sofa L</span></div>
@@ -232,7 +255,9 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
       <div class="overlay"><span>Cleaning result</span></div>
     </div>
   </div>
-  <div style="margin-top:2rem;"><a href="#contact" class="btn btn-primary">I want mine cleaned too →</a></div>
+  <div style="margin-top:2rem;">
+    <a href="#contact" class="btn btn-primary">I want mine cleaned too →</a>
+  </div>
 </section>
 
 <div id="lightbox">
@@ -251,9 +276,9 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
     <div class="cenik-card">
       <div class="cenik-header"><span>🏠</span><h3>Home / Apartment</h3></div>
       <div class="cenik-body">
-        <div class="price-row"><div class="price-name">Straight sofa</div><div class="price-val">od 700 Kč</div></div>
-        <div class="price-row"><div class="price-name">Corner sofa „L"</div><div class="price-val">od 1 000 Kč</div></div>
-        <div class="price-row"><div class="price-name">Large sofa „U"</div><div class="price-val">od 1 400 Kč</div></div>
+        <div class="price-row"><div class="price-name">Straight sofa</div><div class="price-val">from 700 Kč</div></div>
+        <div class="price-row"><div class="price-name">Corner sofa „L"</div><div class="price-val">from 1 000 Kč</div></div>
+        <div class="price-row"><div class="price-name">Large sofa „U"</div><div class="price-val">from 1 400 Kč</div></div>
         <div class="price-row"><div class="price-name">Armchair</div><div class="price-val">from 350 Kč</div></div>
         <div class="price-row"><div class="price-name">Mattress</div><div class="price-val">from 600 Kč</div></div>
         <div class="price-row"><div class="price-name">Carpet</div><div class="price-val">90 Kč/m²</div></div>
@@ -275,9 +300,11 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
       <h3 style="font-family:var(--font-display);font-size:1.4rem;letter-spacing:0.05em;color:var(--yellow);">COMPANIES, SCHOOLS, HOTELS &amp; OFFICES</h3>
     </div>
     <p style="font-size:0.92rem;color:var(--muted);line-height:1.75;max-width:680px;">We clean upholstery for <strong style="color:var(--text);">companies, offices, schools, kindergartens, hotels and guesthouses</strong>. Pricing is always individual – based on a site visit or photographs. Larger jobs automatically qualify for a discount.</p>
-    <div style="margin-top:1.2rem;"><a href="#contact" class="btn btn-primary" style="font-size:0.9rem;">Request a business quote →</a></div>
+    <div style="margin-top:1.2rem;text-align:left;">
+      <a href="#contact" class="btn btn-primary" style="font-size:0.9rem;">Request a business quote →</a>
+    </div>
   </div>
-  <div style="margin-top:2rem;text-align:center;"><a href="#contact" class="btn btn-outline">Get a quote →</a></div>
+  <div style="margin-top:2rem;text-align:left;"><a href="#contact" class="btn btn-outline">Get a quote →</a></div>
 </section>
 
 <div class="divider"></div>
@@ -294,7 +321,7 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
         <div class="pujc-row"><span class="pujc-label">Cleaning agent / dose</span><span class="pujc-price">30 Kč</span></div>
         <div class="pujc-row highlight"><span class="pujc-label">First dose of chemistry</span><span class="pujc-price free">FREE</span></div>
       </div>
-      <div class="kauce-note"><strong>Refundable deposit: 2 000 Kč</strong> in cash upon collection. Returned when the machine is handed back undamaged.</div>
+      <div class="kauce-note"><strong>Refundable deposit: 2 000 Kč</strong> in cash upon collection.</div>
       <div style="margin-top:1rem;background:linear-gradient(135deg,rgba(245,200,0,0.1),rgba(245,200,0,0.04));border:1px solid rgba(245,200,0,0.3);border-radius:10px;padding:1.4rem 1.6rem;">
         <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.8rem;">
           <span style="font-size:1.3rem;">🟡</span>
@@ -303,25 +330,30 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
         <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
           <li style="font-size:0.9rem;color:var(--text);display:flex;gap:0.6rem;"><span style="color:var(--yellow);font-weight:700;">✓</span> Every rental earns you a stamp.</li>
           <li style="font-size:0.9rem;color:var(--text);display:flex;gap:0.6rem;"><span style="color:var(--yellow);font-weight:700;">✓</span> <strong>2 stamps = third rental for only 100 Kč / 24 h.</strong></li>
-          <li style="font-size:0.9rem;color:var(--muted);display:flex;gap:0.6rem;"><span style="color:var(--yellow);font-weight:700;">✓</span> Card issued on your first rental. Valid for 24 months.</li>
+          <li style="font-size:0.9rem;color:var(--text);display:flex;gap:0.6rem;"><span style="color:var(--yellow);font-weight:700;">✓</span> Card issued on your first rental. Valid for 24 months.</li>
         </ul>
       </div>
       <div style="margin-top:1.5rem;"><a href="#contact" class="btn btn-primary">Book the rental →</a></div>
     </div>
     <div>
       <ul class="pujc-features">
-        <li>Kärcher Puzzi 10/1 – professional extractor, max. performance 20–25 m²/h</li><li>Always clean, sanitised and ready to use</li><li>Personal handover with a brief operating tutorial</li>
-        <li>Delivery to your address available (15 Kč/km)</li><li>Suitable for carpets, upholstery, mattresses and car seats</li><li>Ideal for allergy sufferers and pet owners</li><li>Payment by bank transfer or cash</li>
+        <li>Kärcher Puzzi 10/1 – professional extractor, max. performance 20–25 m²/h</li>
+        <li>Always clean, sanitised and ready to use</li>
+        <li>Personal handover with a brief operating tutorial</li>
+        <li>Delivery to your address available (15 Kč/km)</li>
+        <li>Suitable for carpets, upholstery, mattresses and car seats</li>
+        <li>Ideal for allergy sufferers and pet owners</li>
+        <li>Payment by bank transfer or cash</li>
       </ul>
       <div style="margin-top:2rem;">
         <div style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--yellow);margin-bottom:0.8rem;">Technical specification – Kärcher Puzzi 10/1</div>
         <table class="spec-table">
           <tr><td>Max. výkon / performance</td><td>20–25 m²/h</td></tr>
-          <tr><td>Průtok vzduchu / air flow</td><td>74 l/s</td></tr>
+          <tr><td>Prietok vzduchu / air flow</td><td>74 l/s</td></tr>
           <tr><td>Podtlak / vacuum</td><td>254 mbar</td></tr>
           <tr><td>Objem nádrže / tank volume</td><td>10 l / 9 l</td></tr>
           <tr><td>Výkon turbíny / turbine power</td><td>1 250 W</td></tr>
-          <tr><td>Hmotnost / weight</td><td>10,5 kg</td></tr>
+          <tr><td>Hmotnosť / weight</td><td>10,5 kg</td></tr>
         </table>
       </div>
     </div>
@@ -335,17 +367,17 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
   <h2>WHAT OUR<br>CLIENTS SAY</h2>
   <div class="reviews-grid">
     <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Complete satisfaction. Great machine, friendly approach, fast service. We will definitely use the service again."</p><div class="review-author">Tereza Lubowiecka · Google</div></div>
-<div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„100% professional approach and a perfect result. I highly recommend this company."</p><div class="review-author">Roman Kaleta · Google</div></div>
-<div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Speed, care and great service. Thanks to Jakub it was done – a sofa no one else wanted to clean."</p><div class="review-author">Leona Mikulová · Google</div></div>
-<div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Lightning-fast arrangement, machine clean as new. Professional attitude. Highly recommended."</p><div class="review-author">Eva Wolná · Seznam</div></div>
-<div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„The sofa in the living room looks brand new. After bad experiences with other companies, finally someone who really does the job properly."</p><div class="review-author">Marta Bojková · Google</div></div>
-<div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Perfect communication. Instant arrangement. Sofa like new again. I recommend to everyone."</p><div class="review-author">Marek Laboj · Google</div></div>
-<div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Arrangement, work, precision... everything perfect. Many thanks, we definitely recommend."</p><div class="review-author">Kateřina Martynková · Facebook</div></div>
-<div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Jakub cleaned the carpets and chairs with quality, speed and at a fair price. Great satisfaction."</p><div class="review-author">Dmatulova · Seznam</div></div>
-<div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„I used the machine rental – instant and smooth arrangement, an operating tutorial was offered. I recommend!"</p><div class="review-author">Nikol P. · Google</div></div>
-<div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Very helpful, quick arrangement, corner sofa cleaned to an excellent standard, precise and thorough."</p><div class="review-author">Miroslav Kolarczyk · Facebook</div></div>
-<div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„We used the machine rental – clean, sanitised, like new. Quick arrangement. Highly recommended."</p><div class="review-author">Eva Wolná · Seznam</div></div>
-<div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Very kind and helpful. The result is great and we are very pleased."</p><div class="review-author">Katka Bělicová · Facebook</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„100% professional approach and a perfect result. I highly recommend this company."</p><div class="review-author">Roman Kaleta · Google</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Speed, care and great service. Thanks to Jakub it was done – a sofa no one else wanted to clean."</p><div class="review-author">Leona Mikulová · Google</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Lightning-fast arrangement, machine clean as new. Professional attitude. Highly recommended."</p><div class="review-author">Eva Wolná · Seznam</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„The sofa in the living room looks brand new. After bad experiences with other companies, finally someone who really does the job properly."</p><div class="review-author">Marta Bojková · Google</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Perfect communication. Instant arrangement. Sofa like new again. I recommend to everyone."</p><div class="review-author">Marek Laboj · Google</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Arrangement, work, precision... everything perfect. Many thanks, we definitely recommend."</p><div class="review-author">Kateřina Martynková · Facebook</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Jakub cleaned the carpets and chairs with quality, speed and at a fair price. Great satisfaction."</p><div class="review-author">Dmatulova · Seznam</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„I used the machine rental – instant and smooth arrangement, an operating tutorial was offered. I recommend!"</p><div class="review-author">Nikol P. · Google</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Very helpful, quick arrangement, corner sofa cleaned to an excellent standard, precise and thorough."</p><div class="review-author">Miroslav Kolarczyk · Facebook</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„We used the machine rental – clean, sanitised, like new. Quick arrangement. Highly recommended."</p><div class="review-author">Eva Wolná · Seznam</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Very kind and helpful. The result is great and we are very pleased."</p><div class="review-author">Katka Bělicová · Facebook</div></div>
   </div>
   <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
     <a href="https://g.page/r/Ccqlu7ME2DP3EBM/review" target="_blank" rel="noopener noreferrer" class="btn btn-outline">⭐ Leave a Google review</a>
@@ -368,18 +400,18 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
 <div class="divider"></div>
 
 <section id="calendar">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:stretch;" class="rezervace-grid">
-    <div style="display:flex;flex-direction:column;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;" class="rezervace-grid">
+    <div style="display:flex;flex-direction:column;text-align:left;">
       <div class="section-label">Availability</div>
-      <h2>WHEN I'M<br>AVAILABLE</h2>
+      <h2 style="text-align:left;">WHEN I'M<br>AVAILABLE</h2>
       <p style="color:var(--muted);font-size:0.92rem;margin-bottom:1.5rem;">Current overview of booked slots. To book, please use the form below or call directly.</p>
       <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);flex:1;">
         <iframe src="https://calendar.google.com/calendar/embed?src=591510e6e3377f0a6db27db7f27a16ba01d727583519ac27be271afb64cefd65%40group.calendar.google.com&ctz=Europe%2FPrague&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&bgcolor=%231A1A1A&color=%23F5C800" style="border:0;width:100%;height:100%;min-height:420px;display:block;" frameborder="0" scrolling="no"></iframe>
       </div>
     </div>
-    <div style="display:flex;flex-direction:column;">
+    <div style="display:flex;flex-direction:column;text-align:left;">
       <div class="section-label">Where to find us</div>
-      <h2>OUR<br>LOCATION</h2>
+      <h2 style="text-align:left;">OUR<br>LOCATION</h2>
       <p style="color:var(--muted);font-size:0.92rem;margin-bottom:1rem;">Based in Návsí, we cover Jablunkov, Trinec and surroundings within 25 km.</p>
       <div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:1rem;">
         <span style="font-size:1.2rem;">📍</span>
@@ -398,21 +430,39 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
   <div class="section-label">Frequently asked questions</div>
   <h2>GOT QUESTIONS?<br>WE HAVE ANSWERS.</h2>
   <div style="max-width:720px;display:flex;flex-direction:column;gap:1rem;margin-top:2rem;text-align:left;margin-left:auto;margin-right:auto;">
-    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;"><div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">⏱ How long does upholstery take to dry after cleaning?</div><p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Usually 12–24 hours at room temperature. In summer or with good ventilation, it can be less. We recommend opening windows and not using the sofa until it is completely dry.</p></div>
-<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;"><div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🧹 Do I need to vacuum the sofa or carpet before cleaning?</div><p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Yes, thorough vacuuming is essential. Without it, optimal results cannot be achieved. When cleaning on-site, we can do this step together.</p></div>
-<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;"><div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🗺️ Do you travel to my area?</div><p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">We operate within approx. 25 km of Návsí – Jablunkov, Trinec, Mosty u Jablunkova, Hrádek, Bystřice and surroundings. Travel is free up to 15 km; above 15 km we charge 15 Kč/km.</p></div>
-<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;"><div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">⚠️ What if a stain cannot be fully removed?</div><p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Old or chemically fixed stains cannot always be removed 100%. We always inform you about realistic expectations upfront. The fresher the stain, the better the result.</p></div>
-<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;"><div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">💳 How can I pay?</div><p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">We accept cash or bank transfer (QR code). Payment is due after the service is completed or when the machine is handed over.</p></div>
-<div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;"><div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🔄 How quickly can I get an appointment?</div><p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">We usually respond within 24 hours and arrange a date for the nearest available day. We also work evenings after 5 PM and weekends by prior arrangement.</p></div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">⏱ How long does upholstery take to dry after cleaning?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Usually 12–24 hours at room temperature. In summer or with good ventilation, it can be less. We recommend opening windows and not using the sofa until it is completely dry.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🧹 Do I need to vacuum the sofa or carpet before cleaning?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Yes, thorough vacuuming is essential. Without it, optimal results cannot be achieved. When cleaning on-site, we can do this step together.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🗺️ Do you travel to my area?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">We operate within approx. 25 km of Návsí – Jablunkov, Trinec, Mosty u Jablunkova, Hrádek, Bystřice and surroundings. Travel is free up to 15 km; above 15 km we charge 15 Kč/km.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">⚠️ What if a stain cannot be fully removed?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Old or chemically fixed stains cannot always be removed 100%. We always inform you about realistic expectations upfront. The fresher the stain, the better the result.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">💳 How can I pay?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">We accept cash or bank transfer (QR code). Payment is due after the service is completed or when the machine is handed over.</p>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🔄 How quickly can I get an appointment?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">We usually respond within 24 hours and arrange a date for the nearest available day. We also work evenings after 5 PM and weekends by prior arrangement.</p>
+    </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
 <section id="contact">
-  <div class="section-label">Contact & Quote</div>
-  <h2>LET'S GET<br>IN TOUCH</h2>
-  <div class="kontakt-inner">
+  <div class="section-label" style="text-align:left;">Contact & Quote</div>
+  <h2 style="text-align:left;">LET'S GET<br>IN TOUCH</h2>
+  <div class="kontakt-inner" style="margin-top:3rem;">
     <div class="contact-info">
       <div class="contact-item">
         <div class="contact-icon">📞</div>
@@ -430,7 +480,7 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
         <div class="contact-icon">📍</div>
         <div><small>Address</small><span>Návsí 447, 739 92 Návsí (CZ)</span></div>
       </div>
-      <div style="margin-top:0.5rem;">
+      <div style="margin-top:0.5rem;font-size:0.85rem;color:var(--muted);line-height:1.7;">
         <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
           <img src="../jakub.png" alt="Jakub Nowicki – Tepovače Jablunkov" style="width:100px;height:100px;object-fit:cover;flex-shrink:0;">
           <div>
@@ -439,15 +489,15 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
           </div>
         </div>
       </div>
-      <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+      <div style="display:flex;gap:0.8rem;margin-top:0.5rem;flex-wrap:wrap;">
         <a href="https://www.instagram.com/tepovace_jablunkov/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.85rem;">Instagram</a>
         <a href="https://www.facebook.com/people/Tepova%C4%8De-Jablunkov/61565961033038/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.85rem;">Facebook</a>
         <a href="https://wa.me/420792374388" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.85rem;border-color:rgba(37,211,102,0.4);color:#25D366;">💬 WhatsApp</a>
       </div>
     </div>
-    <form class="poptavka-form" method="POST" action="https://formspree.io/f/xgopepqn">
+
+    <form class="poptavka-form" id="poptavkaForm">
       <input type="hidden" name="_subject" value="New enquiry – Tepovače Jablunkov (EN)">
-      <input type="hidden" name="_next" value="https://www.tepovacejablunkov.cz/thank-you.html">
       <div class="form-row">
         <div class="form-group"><label>Full name *</label><input type="text" name="jmeno" placeholder="Full name" required></div>
         <div class="form-group"><label>Phone *</label><input type="tel" name="telefon" placeholder="+420 / +421 / +48..." required></div>
@@ -458,14 +508,22 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
         <select name="sluzba" required>
           <option value="">Please select...</option>
           <optgroup label="── Cleaning – home ──">
-            <option>Straight sofa – from 700 Kč</option><option>Corner sofa „L" – from 1 000 Kč</option><option>Large sofa „U" – from 1 400 Kč</option>
-            <option>Armchair – from 350 Kč</option><option>Mattress – from 600 Kč</option><option>Carpet – 90 Kč/m²</option><option>Chair – from 150 Kč</option>
+            <option>Straight sofa – from 700 Kč</option>
+            <option>Corner sofa „L" – from 1 000 Kč</option>
+            <option>Large sofa „U" – from 1 400 Kč</option>
+            <option>Armchair – from 350 Kč</option>
+            <option>Mattress – from 600 Kč</option>
+            <option>Carpet – 90 Kč/m²</option>
+            <option>Chair – from 150 Kč</option>
           </optgroup>
           <optgroup label="── Cleaning – car ──">
-            <option>Car seats (5 seats) – from 800 Kč</option><option>Full TEXTILE pack – from 1 200 Kč</option>
+            <option>Car seats (5 seats) – from 800 Kč</option>
+            <option>Full TEXTILE pack – from 1 200 Kč</option>
           </optgroup>
           <optgroup label="── Kärcher Rental ──">
-            <option>Rental 24 h – 350 Kč</option><option>Rental 48 h – 500 Kč</option><option>Rental 72 h – 700 Kč</option>
+            <option>Rental 24 h – 350 Kč</option>
+            <option>Rental 48 h – 500 Kč</option>
+            <option>Rental 72 h – 700 Kč</option>
           </optgroup>
           <option value="Business order / larger volume">Business order / larger volume</option>
           <option value="Other / not sure">Other / not sure</option>
@@ -476,7 +534,7 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
         <input type="checkbox" name="gdpr" id="gdpr" required style="width:18px;height:18px;margin-top:3px;flex-shrink:0;accent-color:var(--yellow);">
         <label for="gdpr" style="font-size:0.8rem;text-transform:none;letter-spacing:0;color:var(--muted);line-height:1.5;font-weight:400;">I consent to the processing of my personal data for the purpose of handling this enquiry. Data will not be shared with third parties. Consent may be withdrawn at any time by writing to <a href="mailto:kubas5.nowicki@gmail.com" style="color:var(--yellow);">kubas5.nowicki@gmail.com</a>. *</label>
       </div>
-      <button type="submit" class="form-submit">Send enquiry →</button>
+      <button type="submit" class="form-submit" id="formBtn">Send enquiry →</button>
       <p style="font-size:0.78rem;color:var(--muted);">* Required field. We reply within 24 hours – usually much sooner.</p>
     </form>
   </div>
@@ -491,20 +549,109 @@ body{background:var(--black);color:var(--text);font-family:var(--font-body);font
   </div>
 </footer>
 
+<script>
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  const images = ['../foto1.jpg','../foto2.jpg','../foto3.jpg','../foto4.jpg'];
+  let current = 0;
+
+  function openLightbox(i) {
+    current = i;
+    document.getElementById('lightbox-img').src = images[i];
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function changeLightbox(dir) {
+    current = (current + dir + images.length) % images.length;
+    document.getElementById('lightbox-img').src = images[current];
+  }
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') changeLightbox(1);
+    if (e.key === 'ArrowLeft') changeLightbox(-1);
+  });
+
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 2800;
+    const steps = 60;
+    const stepTime = duration / steps;
+    let current = 0;
+    const increment = target / steps;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) { current = target; clearInterval(timer); }
+      const formatted = Math.floor(current) >= 1000
+        ? Math.floor(current).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+        : Math.floor(current);
+      el.textContent = formatted + suffix;
+    }, stepTime);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = '1';
+        animateCounter(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+    counterObserver.observe(el);
+  });
+
+  const form = document.getElementById('poptavkaForm');
+  if(form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('formBtn');
+      btn.textContent = '...';
+      btn.disabled = true;
+      try {
+        const data = new FormData(form);
+        const resp = await fetch('https://formspree.io/f/xgopepqn', {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if(resp.ok) {
+          window.location.href = 'https://www.tepovacejablunkov.cz/thank-you.html';
+        } else {
+          btn.textContent = 'Chyba – zkuste znovu';
+          btn.disabled = false;
+        }
+      } catch(err) {
+        btn.textContent = 'Chyba – zkuste znovu';
+        btn.disabled = false;
+      }
+    });
+  }
+
+  document.addEventListener('click', function(e) {
+    const ripple = document.createElement('div');
+    ripple.className = 'ripple';
+    const size = 40;
+    ripple.style.width = size + 'px';
+    ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - size / 2) + 'px';
+    ripple.style.top = (e.clientY - size / 2) + 'px';
+    document.body.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 500);
+  });
+</script>
+
 <a href="https://wa.me/420792374388" target="_blank" rel="noopener noreferrer" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;background:#25D366;color:white;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:transform 0.2s;-webkit-transform:translateZ(0);transform:translateZ(0);" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</a>
 
-<script>
-
-function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
-const images=['../foto1.jpg','../foto2.jpg','../foto3.jpg','../foto4.jpg'];
-let current=0;
-function openLightbox(i){current=i;document.getElementById('lightbox-img').src=images[i];document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden';}
-function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
-function changeLightbox(dir){current=(current+dir+images.length)%images.length;document.getElementById('lightbox-img').src=images[current];}
-document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();if(e.key==='ArrowRight')changeLightbox(1);if(e.key==='ArrowLeft')changeLightbox(-1);});
-document.addEventListener('click',function(e){const r=document.createElement('div');r.className='ripple';r.style.cssText='width:40px;height:40px;left:'+(e.clientX-20)+'px;top:'+(e.clientY-20)+'px';document.body.appendChild(r);setTimeout(()=>r.remove(),500);});
-
-</script>
 </body>
 </html>
