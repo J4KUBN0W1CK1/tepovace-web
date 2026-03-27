@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.tepovacejablunkov.cz/</loc>
-    <lastmod>2025-03-26</lastmod>
+    <lastmod>2026-03-27</lastmod>
     <priority>1.0</priority>
+    <changefreq>monthly</changefreq>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://www.tepovacejablunkov.cz/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://www.tepovacejablunkov.cz/pl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tepovacejablunkov.cz/en/"/>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.tepovacejablunkov.cz/sk/"/>
+  </url>
+  <url>
+    <loc>https://www.tepovacejablunkov.cz/pl/</loc>
+    <lastmod>2026-03-27</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tepovacejablunkov.cz/en/</loc>
+    <lastmod>2026-03-27</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.tepovacejablunkov.cz/sk/</loc>
+    <lastmod>2026-03-27</lastmod>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://www.tepovacejablunkov.cz/vop/</loc>
-    <lastmod>2025-03-26</lastmod>
+    <lastmod>2026-03-27</lastmod>
     <priority>0.4</priority>
+    <changefreq>yearly</changefreq>
   </url>
 </urlset>
