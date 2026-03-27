@@ -97,7 +97,7 @@
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 64px; background: rgba(13,13,13,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
   .nav-logo { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 0.05em; color: var(--yellow); text-decoration: none; }
   .nav-logo span { color: var(--text); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
   .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--yellow); }
   .nav-cta { background: var(--yellow); color: var(--black) !important; padding: 0.45rem 1.2rem; border-radius: 4px; font-weight: 600 !important; }
@@ -114,8 +114,8 @@
   .hero-sub { max-width: 520px; margin-top: 1.5rem; font-size: 1.05rem; color: var(--muted); line-height: 1.7; animation: fadeUp 0.6s 0.2s ease both; text-align: left; }
   .hero-actions { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; text-align: left; }
   .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.8rem; border-radius: 6px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.2s; text-decoration: none; border: none; font-family: var(--font-body); }
-  .btn-primary { background: var(--yellow); color: var(--black); }
-  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-primary { background: var(--yellow); color: var(--black); padding: 1rem 2.4rem; font-size: 1.02rem; letter-spacing: 0.03em; }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,200,0,0.3); }
   .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
   .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); }
   .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; animation: fadeUp 0.6s 0.4s ease both; flex-wrap: wrap; text-align: left; }
@@ -237,10 +237,10 @@
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-  @media(max-width:768px){
+  @media(max-width:1080px){
     .nav-links { display: none; }
     .hamburger { display: flex; }
-    .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: var(--dark); padding: 1.5rem 5%; border-bottom: 1px solid var(--border); gap: 1.2rem; }
+    .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: var(--dark); padding: 1.5rem 5%; border-bottom: 1px solid var(--border); gap: 1.2rem; z-index: 99; }
     .nav-links.open a { font-size: 1rem; }
   }
   @media(max-width:600px){ section { padding: 72px 5%; } h2 { font-size: 2rem; } .hero-stats { gap: 2rem; } }
@@ -272,11 +272,11 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <div style="position:relative;z-index:1;max-width:800px;">
+  <div style="position:relative;z-index:1;max-width:800px;text-align:left;">
     <div class="hero-tag">Jablunkov · Třinec · okolí 25 km</div>
     <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:1.5rem;animation:fadeUp 0.6s 0.05s ease both;">
       <img src="icon_vacuum.png" alt="Tepovače Jablunkov" width="88" height="88" style="height:88px;width:auto;display:block;flex-shrink:0;">
-      <div style="line-height:1.1;">
+      <div style="line-height:1.1;text-align:left;">
         <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--yellow);letter-spacing:0.06em;">TEPOVAČE</div>
         <div style="font-family:var(--font-display);font-size:1.35rem;color:var(--text);letter-spacing:0.08em;">JABLUNKOV</div>
         <div style="font-size:0.72rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-top:0.2rem;">Půjčovna a čištění</div>
@@ -564,9 +564,9 @@
 
 <!-- KONTAKT -->
 <section id="kontakt">
-  <div class="section-label">Kontakt &amp; Poptávka</div>
-  <h2>POJĎME SE<br>DOMLUVIT</h2>
-  <div class="kontakt-inner">
+  <div class="section-label" style="text-align:left;">Kontakt &amp; Poptávka</div>
+  <h2 style="text-align:left;">POJĎME SE<br>DOMLUVIT</h2>
+  <div class="kontakt-inner" style="margin-top:3rem;">
     <div class="contact-info">
       <div class="contact-item">
         <div class="contact-icon">📞</div>
@@ -692,7 +692,7 @@
   function animateCounter(el) {
     const target = parseInt(el.dataset.target);
     const suffix = el.dataset.suffix || '';
-    const duration = 1800;
+    const duration = 2800;
     const steps = 60;
     const stepTime = duration / steps;
     let current = 0;
