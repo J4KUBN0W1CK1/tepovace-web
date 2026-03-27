@@ -58,4 +58,8 @@
 </div>
 
 </body>
+<script>
+document.addEventListener('click',function(e){const r=document.createElement('div');r.className='ripple';r.style.cssText='position:fixed;border-radius:50%;background:rgba(245,200,0,0.35);transform:scale(0);animation:rippleAnim 0.5s ease-out forwards;pointer-events:none;z-index:9999;width:40px;height:40px;left:'+(e.clientX-20)+'px;top:'+(e.clientY-20)+'px';document.body.appendChild(r);setTimeout(()=>r.remove(),500);});
+</script>
+<style>@keyframes rippleAnim{to{transform:scale(4);opacity:0;}}</style>
 </html>
