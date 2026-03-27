@@ -660,6 +660,13 @@
     document.getElementById('navLinks').classList.toggle('open');
   }
 
+  // Zavřít menu po kliknutí na odkaz (mobil)
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
   // Lightbox
   const images = ['foto1.jpg','foto2.jpg','foto3.jpg'];
   let current = 0;
