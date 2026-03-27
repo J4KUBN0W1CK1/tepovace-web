@@ -108,7 +108,7 @@
   /* HERO */
   #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 5% 60px; position: relative; overflow: hidden; }
   .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(245,200,0,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 20% 80%, rgba(245,200,0,0.04) 0%, transparent 60%); }
-  .hero-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--yellow); background: rgba(245,200,0,0.1); border: 1px solid rgba(245,200,0,0.25); padding: 0.35rem 0.9rem; border-radius: 100px; margin-bottom: 1.5rem; width: fit-content; animation: fadeUp 0.6s ease both; }
+  .hero-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--yellow); background: rgba(245,200,0,0.1); border: 1px solid rgba(245,200,0,0.25); padding: 0.35rem 0.9rem; border-radius: 100px; margin-bottom: 1.5rem; width: fit-content; animation: fadeUp 0.6s ease both; align-self: flex-start; }
   h1 { font-family: var(--font-display); font-size: clamp(3.5rem, 9vw, 7rem); line-height: 0.95; letter-spacing: 0.02em; color: var(--text); animation: fadeUp 0.6s 0.1s ease both; text-align: left; }
   h1 em { color: var(--yellow); font-style: normal; }
   .hero-sub { max-width: 520px; margin-top: 1.5rem; font-size: 1.05rem; color: var(--muted); line-height: 1.7; animation: fadeUp 0.6s 0.2s ease both; text-align: left; }
@@ -123,13 +123,15 @@
   .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
 
   /* SECTIONS */
-  section { padding: 80px 5%; text-align: center; }
+  section { padding: 100px 5%; text-align: center; }
   .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.8rem; display: block; }
   h2 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.5rem); letter-spacing: 0.03em; line-height: 1.05; color: var(--text); margin-bottom: 1rem; }
 
   /* WHY */
   #proc { background: var(--dark); }
-  .why-grid { text-align: left; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5px; margin-top: 3rem; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .why-grid { text-align: left; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5px; margin-top: 3rem; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .why-card { flex: 1 1 220px; max-width: calc(50% - 0.75px); }
+  @media(max-width:500px){ .why-card { max-width: 100%; } }
   .why-card { background: var(--card); padding: 2rem; }
   .why-icon { font-size: 1.8rem; margin-bottom: 1rem; }
   .why-card h3 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
@@ -203,10 +205,10 @@
 
   /* KONTAKT */
   #kontakt { }
-  .kontakt-inner { text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .kontakt-inner { text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: stretch; }
   .poptavka-form { height: 100%; }
   @media(max-width:768px){ .kontakt-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
-  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; justify-content: space-between; }
   .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
   .contact-icon { width: 42px; height: 42px; background: rgba(245,200,0,0.1); border: 1px solid rgba(245,200,0,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
   .contact-item a { color: var(--text); text-decoration: none; font-weight: 500; }
@@ -241,7 +243,7 @@
     .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: var(--dark); padding: 1.5rem 5%; border-bottom: 1px solid var(--border); gap: 1.2rem; }
     .nav-links.open a { font-size: 1rem; }
   }
-  @media(max-width:600px){ section { padding: 60px 5%; } h2 { font-size: 2rem; } .hero-stats { gap: 2rem; } }
+  @media(max-width:600px){ section { padding: 72px 5%; } h2 { font-size: 2rem; } .hero-stats { gap: 2rem; } }
   @media(max-width:640px){ .gallery-item { flex: 0 1 100%; min-width: 0; } }
   @media(max-width:768px){ .rezervace-grid { grid-template-columns: 1fr !important; } }
 </style>
@@ -287,9 +289,9 @@
       <a href="tel:+420792374388" class="btn btn-outline">📞 +420 792 374 388</a>
     </div>
     <div class="hero-stats">
-      <div class="stat-item"><div class="stat-num">1 600+</div><div class="stat-label">Vyčištěných m²</div></div>
-      <div class="stat-item"><div class="stat-num">70+</div><div class="stat-label">Sedaček zachráněno</div></div>
-      <div class="stat-item"><div class="stat-num">180+</div><div class="stat-label">Spokojených klientů</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="1600" data-suffix="+">0+</div><div class="stat-label">Vyčištěných m²</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="70" data-suffix="+">0+</div><div class="stat-label">Sedaček zachráněno</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="180" data-suffix="+">0+</div><div class="stat-label">Spokojených klientů</div></div>
     </div>
   </div>
 </section>
@@ -384,12 +386,12 @@
       <h3 style="font-family:var(--font-display);font-size:1.4rem;letter-spacing:0.05em;color:var(--yellow);">FIRMY, ŠKOLY, UBYTOVNY &amp; KANCELÁŘE</h3>
     </div>
     <p style="font-size:0.92rem;color:var(--muted);line-height:1.75;max-width:680px;">Čistíme čalounění pro <strong style="color:var(--text);">firmy, úřady, školky, školy, ubytovny, penziony a kanceláře</strong> – kdekoliv je větší počet sedaček, koberců nebo matrací. Cena je vždy stanovena individuálně po nezávazné obhlídce nebo na základě fotografií. Při větším rozsahu zakázky automaticky počítejte s množstevní slevou.</p>
-    <div style="margin-top:1.2rem;">
+    <div style="margin-top:1.2rem;text-align:left;">
       <a href="#kontakt" class="btn btn-primary" style="font-size:0.9rem;">Poptat firemní čištění →</a>
     </div>
   </div>
 
-  <div style="margin-top:2rem;text-align:center;"><a href="#kontakt" class="btn btn-outline">Chci nacenit zakázku →</a></div>
+  <div style="margin-top:2rem;text-align:left;"><a href="#kontakt" class="btn btn-outline">Chci nacenit zakázku →</a></div>
 </section>
 
 <div class="divider"></div>
@@ -683,6 +685,44 @@
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowRight') changeLightbox(1);
     if (e.key === 'ArrowLeft') changeLightbox(-1);
+  });
+
+
+  // Counter animace při scrollu
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const steps = 60;
+    const stepTime = duration / steps;
+    let current = 0;
+    const increment = target / steps;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      // Formátování s mezerou pro tisíce
+      const formatted = Math.floor(current) >= 1000
+        ? Math.floor(current).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+        : Math.floor(current);
+      el.textContent = formatted + suffix;
+    }, stepTime);
+  }
+
+  // Spustit při prvním zobrazení elementu
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = '1';
+        animateCounter(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+    counterObserver.observe(el);
   });
 
   // Ripple efekt při kliknutí
