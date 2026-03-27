@@ -3,26 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Děkujeme – Tepovače Jablunkov</title>
-<meta name="robots" content="noindex">
+<title>Děkujeme za poptávku – Tepovače Jablunkov</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --yellow: #F5C800; --black: #0D0D0D; --dark: #141414; --border: #2A2A2A; --text: #E8E8E8; --muted: #888; }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--black); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
-  .icon { font-size: 3rem; margin-bottom: 1.5rem; }
-  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); letter-spacing: 0.03em; color: var(--yellow); margin-bottom: 1rem; }
-  p { font-size: 1.05rem; color: var(--muted); max-width: 420px; line-height: 1.7; margin-bottom: 2rem; }
-  a { display: inline-block; background: var(--yellow); color: var(--black); padding: 0.8rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: opacity 0.2s; }
-  a:hover { opacity: 0.85; }
+  :root{--yellow:#F5C800;--black:#0D0D0D;--dark:#141414;--card:#1A1A1A;--border:#2A2A2A;--text:#E8E8E8;--muted:#888;--font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--black);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 5%;text-align:center;}
+  .check{width:80px;height:80px;background:rgba(245,200,0,0.1);border:2px solid var(--yellow);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin:0 auto 2rem;animation:popIn 0.5s ease both;}
+  @keyframes popIn{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
+  h1{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4rem);letter-spacing:0.03em;color:var(--text);line-height:1;margin-bottom:1rem;}
+  h1 em{color:var(--yellow);font-style:normal;}
+  p{color:var(--muted);font-size:1.05rem;max-width:480px;margin:0 auto 2.5rem;line-height:1.7;}
+  .actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-bottom:3rem;}
+  .btn{display:inline-flex;align-items:center;gap:0.5rem;padding:1rem 2.4rem;border-radius:6px;font-weight:600;font-size:1.02rem;transition:all 0.2s;text-decoration:none;border:none;font-family:var(--font-body);letter-spacing:0.03em;}
+  .btn-primary{background:var(--yellow);color:var(--black);}
+  .btn-primary:hover{opacity:0.9;transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,200,0,0.3);}
+  .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+  .btn-outline:hover{border-color:var(--yellow);color:var(--yellow);}
+  .review-nudge{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;max-width:480px;margin:0 auto;}
+  .review-nudge p{color:var(--muted);font-size:0.92rem;margin-bottom:1.2rem;}
+  .stars{color:var(--yellow);font-size:1.4rem;letter-spacing:0.1em;margin-bottom:0.8rem;}
+  .review-links{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;}
+  .review-links a{font-size:0.85rem;color:var(--muted);text-decoration:none;padding:0.4rem 0.9rem;border:1px solid var(--border);border-radius:4px;transition:all 0.2s;}
+  .review-links a:hover{color:var(--yellow);border-color:rgba(245,200,0,0.4);}
 </style>
 </head>
 <body>
-  <div class="icon">✅</div>
-  <h1>DĚKUJEME!</h1>
-  <p>Vaše poptávka byla odeslána. Ozveme se Vám do 24 hodin – nejčastěji mnohem dříve.</p>
-  <a href="/">← Zpět na hlavní stránku</a>
+
+<div class="check">✓</div>
+
+<h1>POPTÁVKA<br><em>ODESLÁNA!</em></h1>
+
+<p>Děkujeme za zájem. Ozveme se vám do 24 hodin – nejčastěji mnohem dříve.</p>
+
+<div class="actions">
+  <a href="/" class="btn btn-primary">← Zpět na web</a>
+  <a href="tel:+420792374388" class="btn btn-outline">📞 Zavolat přímo</a>
+</div>
+
+<div class="review-nudge">
+  <div class="stars">★★★★★</div>
+  <p>Byli jste u nás už dříve? Budeme rádi za vaši recenzi – pomůže dalším zákazníkům.</p>
+  <div class="review-links">
+    <a href="https://g.page/r/Ccqlu7ME2DP3EBM/review" target="_blank" rel="noopener noreferrer">⭐ Google</a>
+    <a href="https://www.facebook.com/profile.php?id=61565961033038&sk=reviews" target="_blank" rel="noopener noreferrer">👍 Facebook</a>
+    <a href="https://www.firmy.cz/detail/13709759-tepovace-jablunkov-navsi.html#pridat-hodnoceni" target="_blank" rel="noopener noreferrer">📋 Firmy.cz</a>
+  </div>
+</div>
+
 </body>
 </html>
