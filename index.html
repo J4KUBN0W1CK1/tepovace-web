@@ -600,7 +600,7 @@
       </div>
     </div>
 
-    <form class="poptavka-form" method="POST" action="https://formspree.io/f/xgopepqn">
+    <form class="poptavka-form" id="poptavkaForm">
       <input type="hidden" name="_subject" value="Nová poptávka – Tepovače Jablunkov">
       <input type="hidden" name="_language" value="cs">
       <div class="form-row">
@@ -639,8 +639,7 @@
         <input type="checkbox" name="gdpr" id="gdpr" required style="width:18px;height:18px;margin-top:3px;flex-shrink:0;accent-color:var(--yellow);">
         <label for="gdpr" style="font-size:0.8rem;text-transform:none;letter-spacing:0;color:var(--muted);line-height:1.5;font-weight:400;">Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky. Údaje nebudou poskytnuty třetím stranám. Souhlas lze kdykoli odvolat na <a href="mailto:kubas5.nowicki@gmail.com" style="color:var(--yellow);">kubas5.nowicki@gmail.com</a>. *</label>
       </div>
-      <input type="hidden" name="_next" value="https://www.tepovacejablunkov.cz/thank-you.html">
-      <button type="submit" class="form-submit">Odeslat poptávku →</button>
+      <button type="submit" class="form-submit" id="formBtn">Odeslat poptávku →</button>
       <p style="font-size:0.78rem;color:var(--muted);">* Povinné pole. Ozveme se do 24 hodin – nejčastěji mnohem dříve.</p>
     </form>
   </div>
@@ -724,6 +723,34 @@
   document.querySelectorAll('.stat-num[data-target]').forEach(el => {
     counterObserver.observe(el);
   });
+
+  // Formulář – fetch odeslání s přesměrováním na thank-you
+  const form = document.getElementById('poptavkaForm');
+  if(form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('formBtn');
+      btn.textContent = 'Odesílám...';
+      btn.disabled = true;
+      try {
+        const data = new FormData(form);
+        const resp = await fetch('https://formspree.io/f/xgopepqn', {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if(resp.ok) {
+          window.location.href = 'https://www.tepovacejablunkov.cz/thank-you.html';
+        } else {
+          btn.textContent = 'Chyba – zkuste znovu';
+          btn.disabled = false;
+        }
+      } catch(err) {
+        btn.textContent = 'Chyba – zkuste znovu';
+        btn.disabled = false;
+      }
+    });
+  }
 
   // Ripple efekt při kliknutí
   document.addEventListener('click', function(e) {
