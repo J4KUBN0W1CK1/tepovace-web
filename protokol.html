@@ -682,12 +682,11 @@ const CENIK = {
 };
 
 // ── PIN ──
-if(sessionStorage.getItem('tj_auth')==='1') showApp();
 function autoPin(){
   if(document.getElementById('pin-input').value.length===PIN.length) checkPin();
 }
 function checkPin(){
-  if(document.getElementById('pin-input').value===PIN){ sessionStorage.setItem('tj_auth','1'); showApp(); }
+  if(document.getElementById('pin-input').value===PIN){ showApp(); }
   else{
     const inp=document.getElementById('pin-input');
     inp.classList.add('err');
