@@ -25,6 +25,9 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.tepovacejablunkov.cz/">
 <meta property="og:locale" content="cs_CZ">
+<meta property="og:image" content="https://www.tepovacejablunkov.cz/foto4.jpg">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1080">
 
 <!-- ══ Schema.org – LocalBusiness (klíč pro Google) ══ -->
 <script type="application/ld+json">
@@ -125,8 +128,7 @@
   /* WHY */
   #proc { background: var(--dark); }
   .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5px; margin-top: 3rem; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
-  .why-card { background: var(--card); padding: 2rem; transition: background 0.2s; }
-  .why-card:hover { background: #202020; }
+  .why-card { background: var(--card); padding: 2rem; }
   .why-icon { font-size: 1.8rem; margin-bottom: 1rem; }
   .why-card h3 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
   .why-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
@@ -199,6 +201,7 @@
   /* KONTAKT */
   #kontakt { }
   .kontakt-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .poptavka-form { height: 100%; }
   @media(max-width:768px){ .kontakt-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
   .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
   .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
@@ -265,8 +268,8 @@
   <div class="hero-bg"></div>
   <div style="position:relative;z-index:1;max-width:800px;">
     <div class="hero-tag">Jablunkov · Třinec · okolí 25 km</div>
-    <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:1.5rem;animation:fadeUp 0.6s 0.05s ease both;">
-      <img src="icon_vacuum.png" alt="Tepovače Jablunkov" style="height:72px;width:auto;display:block;flex-shrink:0;">
+    <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:1.5rem;animation:fadeUp 0.6s 0.05s ease both;">
+      <img src="icon_vacuum.png" alt="Tepovače Jablunkov" style="height:88px;width:auto;display:block;flex-shrink:0;">
       <div style="line-height:1.1;">
         <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--yellow);letter-spacing:0.06em;">TEPOVAČE</div>
         <div style="font-family:var(--font-display);font-size:1.35rem;color:var(--text);letter-spacing:0.08em;">JABLUNKOV</div>
@@ -322,7 +325,10 @@
       <img src="foto3.jpg" alt="Čištění velké rohové sedačky před a po" loading="lazy">
       <div class="overlay"><span>Rohová souprava</span></div>
     </div>
-
+    <div class="gallery-item" onclick="openLightbox(3)">
+      <img src="foto4.jpg" alt="Čištění sedačky před a po – výsledek čištění" loading="lazy">
+      <div class="overlay"><span>Výsledek čištění</span></div>
+    </div>
   </div>
 
   <div style="margin-top:2rem;text-align:center;">
@@ -351,17 +357,17 @@
         <div class="price-row"><div class="price-name">Sedací souprava rovná</div><div class="price-val">od 700 Kč</div></div>
         <div class="price-row"><div class="price-name">Souprava rohová „L"</div><div class="price-val">od 1 000 Kč</div></div>
         <div class="price-row"><div class="price-name">Souprava velká „U"</div><div class="price-val">od 1 400 Kč</div></div>
-        <div class="price-row"><div class="price-name">Křeslo / ušák</div><div class="price-val">250–350 Kč</div></div>
-        <div class="price-row"><div class="price-name">Matrace</div><div class="price-val">350–600 Kč</div></div>
+        <div class="price-row"><div class="price-name">Křeslo / ušák</div><div class="price-val">od 350 Kč</div></div>
+        <div class="price-row"><div class="price-name">Matrace</div><div class="price-val">od 600 Kč</div></div>
         <div class="price-row"><div class="price-name">Koberec</div><div class="price-val">90 Kč/m²</div></div>
-        <div class="price-row"><div class="price-name">Židle</div><div class="price-val">100–150 Kč</div></div>
+        <div class="price-row"><div class="price-name">Židle</div><div class="price-val">od 150 Kč</div></div>
       </div>
     </div>
     <div class="cenik-card">
       <div class="cenik-header"><span>🚗</span><h3>Čalounění auta</h3></div>
       <div class="cenik-body">
-        <div class="price-row"><div class="price-name">Sedačky (5 míst)</div><div class="price-val">600–800 Kč</div></div>
-        <div class="price-row"><div class="price-name">Komplet TEXTIL<small>sedačky + podlaha + kufr</small></div><div class="price-val">1 000–1 200 Kč</div></div>
+        <div class="price-row"><div class="price-name">Sedačky (5 míst)</div><div class="price-val">od 800 Kč</div></div>
+        <div class="price-row"><div class="price-name">Komplet TEXTIL<small>sedačky + podlaha + kufr</small></div><div class="price-val">od 1 200 Kč</div></div>
       </div>
     </div>
   </div>
@@ -574,7 +580,7 @@
       </div>
       <div style="margin-top:0.5rem;font-size:0.85rem;color:var(--muted);line-height:1.7;">
         <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
-          <img src="jakub.png" alt="Jakub Nowicki – Tepovače Jablunkov" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid rgba(245,200,0,0.4);flex-shrink:0;">
+          <img src="jakub.png" alt="Jakub Nowicki – Tepovače Jablunkov" style="width:100px;height:100px;object-fit:cover;flex-shrink:0;">
           <div>
             <div style="font-size:1rem;font-weight:600;color:var(--text);">Jakub Nowicki</div>
             <div style="font-size:0.8rem;color:var(--muted);">IČO: 09089977 · Návsí 447, 739 92</div>
@@ -604,14 +610,14 @@
             <option>Sedací souprava rovná – od 700 Kč</option>
             <option>Sedací souprava rohová „L" – od 1 000 Kč</option>
             <option>Sedací souprava velká „U" – od 1 400 Kč</option>
-            <option>Křeslo / ušák – 250–350 Kč</option>
-            <option>Matrace – 350–600 Kč</option>
+            <option>Křeslo / ušák – od 350 Kč</option>
+            <option>Matrace – od 600 Kč</option>
             <option>Koberec – 90 Kč/m²</option>
-            <option>Židle – 100–150 Kč</option>
+            <option>Židle – od 150 Kč</option>
           </optgroup>
           <optgroup label="── Čištění – auto ──">
-            <option>Sedačky (5 míst) – 600–800 Kč</option>
-            <option>Komplet TEXTIL – 1 000–1 200 Kč</option>
+            <option>Sedačky (5 míst) – od 800 Kč</option>
+            <option>Komplet TEXTIL – od 1 200 Kč</option>
           </optgroup>
           <optgroup label="── Půjčovna Kärcher ──">
             <option>Půjčovna 24 h – 350 Kč</option>
@@ -691,7 +697,7 @@
 </script>
 
 <!-- Floating WhatsApp -->
-<a href="https://wa.me/420792374388" target="_blank" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;background:#25D366;color:white;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</a>
+<a href="https://wa.me/420792374388" target="_blank" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;background:#25D366;color:white;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:transform 0.2s;-webkit-transform:translateZ(0);transform:translateZ(0);" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</a>
 
 </body>
 </html>
