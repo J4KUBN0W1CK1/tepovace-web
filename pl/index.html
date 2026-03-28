@@ -11,7 +11,6 @@
 <link rel="alternate" hreflang="cs" href="https://www.tepovacejablunkov.cz/">
 <link rel="alternate" hreflang="pl" href="https://www.tepovacejablunkov.cz/pl/">
 <link rel="alternate" hreflang="en" href="https://www.tepovacejablunkov.cz/en/">
-<link rel="alternate" hreflang="sk" href="https://www.tepovacejablunkov.cz/sk/">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
 <link rel="apple-touch-icon" href="../favicon-32.png">
@@ -169,9 +168,9 @@
   @media(max-width:600px){ section { padding: 72px 5%; } h2 { font-size: 2rem; } .hero-stats { gap: 2rem; } }
   @media(max-width:640px){ .gallery-item { flex: 0 1 100%; min-width: 0; } }
   @media(max-width:768px){ .rezervace-grid { grid-template-columns: 1fr !important; } }
-  body { background: var(--black); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; cursor: url('../kurzor.png') 1 1, auto; }
-  * { cursor: url('../kurzor.png') 1 1, auto !important; }
-  select, select * { cursor: url('../kurzor.png') 1 1, auto !important; }
+  body { background: var(--black); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23111' stroke='%23111' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23f5c400' stroke='none'/%3E%3C/svg%3E") 6 2, auto; }
+  * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23111' stroke='%23111' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23f5c400' stroke='none'/%3E%3C/svg%3E") 6 2, auto !important; }
+  select, select * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23111' stroke='%23111' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23f5c400' stroke='none'/%3E%3C/svg%3E") 6 2, auto !important; }
 </style>
 </head>
 <body>
@@ -185,7 +184,7 @@
     <li><a href="#reviews">Opinie</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact" class="nav-cta">Zapytanie</a></li>
-    <li><a href="/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇨🇿 CZ</a></li><li><a href="/en/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇬🇧 EN</a></li><li><a href="/sk/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇸🇰 SK</a></li>
+    <li><a href="/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇨🇿 CZ</a></li><li><a href="/en/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇬🇧 EN</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleNav()">
     <span></span><span></span><span></span>
@@ -395,6 +394,16 @@
   <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;max-width:800px;margin:0 auto;">
     <iframe src="https://www.youtube.com/embed/Xz3n7xGHmRM" title="Instrukcja obsługi odkurzacza piorącego Kärcher" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px;"></iframe>
   </div>
+  <div style="display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;">
+    <a href="/navod-karcher.pdf" target="_blank" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:0.5rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Pobierz instrukcję (PDF)
+    </a>
+    <a href="/navod-karcher.pdf" target="_blank" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:0.5rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      Wyświetl instrukcję online
+    </a>
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -485,6 +494,7 @@
           <img src="../jakub.png" alt="Jakub Nowicki – Tepovače Jablunkov" style="width:100px;height:100px;object-fit:cover;flex-shrink:0;">
           <div>
             <div style="font-size:1rem;font-weight:600;color:var(--text);">Jakub Nowicki</div>
+            <div style="font-size:0.75rem;color:var(--yellow);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px;">Właściciel</div>
             <div style="font-size:0.8rem;color:var(--muted);">IČO: 09089977 · Návsí 447, 739 92</div>
           </div>
         </div>
@@ -542,9 +552,10 @@
 
 <footer>
   <div>© 2025 Tepovače Jablunkov · Jakub Nowicki</div>
-  <div style="display:flex;gap:1.5rem;">
-    <a href="/">🇨🇿 Česky</a><a href="/en/">🇬🇧 English</a><a href="/sk/">🇸🇰 Slovensky</a>
+  <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+    <a href="/">🇨🇿 Česky</a><a href="/en/">🇬🇧 English</a>
     <a href="../vop/index.html">VOP</a>
+    <a href="/protokol">System wewnętrzny</a>
     <a href="tel:+420792374388">+420 792 374 388</a>
   </div>
 </footer>
@@ -553,6 +564,12 @@
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
+
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
 
   const images = ['../foto1.jpg','../foto2.jpg','../foto3.jpg','../foto4.jpg'];
   let current = 0;
@@ -638,17 +655,22 @@
     });
   }
 
-  document.addEventListener('click', function(e) {
+  function spawnRipple(x, y) {
     const ripple = document.createElement('div');
     ripple.className = 'ripple';
     const size = 40;
     ripple.style.width = size + 'px';
     ripple.style.height = size + 'px';
-    ripple.style.left = (e.clientX - size / 2) + 'px';
-    ripple.style.top = (e.clientY - size / 2) + 'px';
+    ripple.style.left = (x - size / 2) + 'px';
+    ripple.style.top = (y - size / 2) + 'px';
     document.body.appendChild(ripple);
     setTimeout(() => ripple.remove(), 500);
-  });
+  }
+  document.addEventListener('click', e => spawnRipple(e.clientX, e.clientY));
+  document.addEventListener('touchstart', e => {
+    const t = e.touches[0];
+    spawnRipple(t.clientX, t.clientY);
+  }, { passive: true });
 </script>
 
 <a href="https://wa.me/420792374388" target="_blank" rel="noopener noreferrer" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;background:#25D366;color:white;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:transform 0.2s;-webkit-transform:translateZ(0);transform:translateZ(0);" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</a>
