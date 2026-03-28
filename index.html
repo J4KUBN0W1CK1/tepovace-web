@@ -196,7 +196,7 @@
 
   /* RECENZE */
   #recenze { background: var(--dark); }
-  .reviews-grid { text-align: left; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-top: 3rem; }
+  .reviews-grid { text-align: left; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-top: 3rem; justify-items: center; justify-content: center; max-width: 1200px; margin-left: auto; margin-right: auto; }
   .review-card { background: var(--card); border-radius: 8px; padding: 1.5rem; border: 1px solid var(--border); transition: border-color 0.2s, transform 0.2s; }
   .review-card:hover { border-color: rgba(245,200,0,0.3); transform: translateY(-2px); }
   .review-stars { color: var(--yellow); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
@@ -258,6 +258,7 @@
     <li><a href="#cenik">Ceník</a></li>
     <li><a href="#pujcovna">Půjčovna</a></li>
     <li><a href="#recenze">Recenze</a></li>
+    <li><a href="#video">Návod</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#kontakt" class="nav-cta">Poptávka</a></li>
     <li><a href="/pl/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇵🇱 PL</a></li>
@@ -583,7 +584,7 @@
       </div>
       <div class="contact-item">
         <div class="contact-icon">✉️</div>
-        <div><small>E-mail</small><a href="/cdn-cgi/l/email-protection#88e3fdeae9fbbda6e6e7ffe1ebe3e1c8efe5e9e1e4a6ebe7e5"><span class="__cf_email__" data-cfemail="741f01161507415a1a1b031d171f1d341319151d185a171b19">[email&#160;protected]</span></a></div>
+        <div><small>E-mail</small><a href="mailto:kubas5.nowicki@gmail.com">kubas5.nowicki&#64;gmail.com</a></div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">🌐</div>
@@ -647,7 +648,7 @@
       <div class="form-group"><label>Zpráva</label><textarea name="zprava" placeholder="Popište co potřebujete (rozměry, stav, lokalita...)"></textarea></div>
       <div class="form-group" style="flex-direction:row;align-items:flex-start;gap:0.75rem;">
         <input type="checkbox" name="gdpr" id="gdpr" required style="width:18px;height:18px;margin-top:3px;flex-shrink:0;accent-color:var(--yellow);">
-        <label for="gdpr" style="font-size:0.8rem;text-transform:none;letter-spacing:0;color:var(--muted);line-height:1.5;font-weight:400;">Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky. Údaje nebudou poskytnuty třetím stranám. Souhlas lze kdykoli odvolat na <a href="/cdn-cgi/l/email-protection#a7ccd2c5c6d49289c9c8d0cec4cccee7c0cac6cecb89c4c8ca" style="color:var(--yellow);"><span class="__cf_email__" data-cfemail="98f3edfaf9ebadb6f6f7eff1fbf3f1d8fff5f9f1f4b6fbf7f5">[email&#160;protected]</span></a>. *</label>
+        <label for="gdpr" style="font-size:0.8rem;text-transform:none;letter-spacing:0;color:var(--muted);line-height:1.5;font-weight:400;">Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky. Údaje nebudou poskytnuty třetím stranám. Souhlas lze kdykoli odvolat na <a href="mailto:kubas5.nowicki@gmail.com" style="color:var(--yellow);">kubas5.nowicki&#64;gmail.com</a>. *</label>
       </div>
       <button type="submit" class="form-submit" id="formBtn">Odeslat poptávku →</button>
       <p style="font-size:0.78rem;color:var(--muted);">* Povinné pole. Ozveme se do 24 hodin – nejčastěji mnohem dříve.</p>
@@ -665,7 +666,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   function toggleNav() {
     document.getElementById('navLinks').classList.toggle('open');
   }
