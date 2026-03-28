@@ -3,948 +3,797 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interní systém – Tepovače Jablunkov</title>
+
+<!-- ══ SEO ══ -->
+<title>Tepovače Jablunkov – Hloubkové čištění sedaček, koberců a matrací | Půjčovna Kärcher</title>
+<meta name="description" content="Profesionální hloubkové čištění sedaček, koberců, matrací a čalounění aut. Půjčovna Kärcher Puzzi 10/1. Jablunkov, Třinec a okolí do 25 km. Volejte +420 792 374 388.">
+<meta name="keywords" content="čištění sedaček Jablunkov, čištění koberců Třinec, tepování čalounění, půjčovna tepovače Jablunkov, Kärcher půjčení, čištění matrací">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.tepovacejablunkov.cz/">
+<link rel="alternate" hreflang="cs" href="https://www.tepovacejablunkov.cz/">
+<link rel="alternate" hreflang="pl" href="https://www.tepovacejablunkov.cz/pl/">
+<link rel="alternate" hreflang="en" href="https://www.tepovacejablunkov.cz/en/">
+<link rel="alternate" hreflang="sk" href="https://www.tepovacejablunkov.cz/sk/">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="favicon-32.png">
+
+<!-- ══ Open Graph (FB / IG sdílení) ══ -->
+<meta property="og:title" content="Tepovače Jablunkov – Čištění a půjčovna">
+<meta property="og:description" content="Hloubkové čištění sedaček, koberců a matrací u vás doma. Půjčovna Kärcher. Jablunkov a okolí.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.tepovacejablunkov.cz/">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:image" content="https://www.tepovacejablunkov.cz/foto4.jpg">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1080">
+
+<!-- ══ Schema.org – LocalBusiness (klíč pro Google) ══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Tepovače Jablunkov",
+  "description": "Hloubkové čištění sedaček, koberců, matrací a čalounění aut. Půjčovna tepovače Kärcher Puzzi 10/1.",
+  "url": "https://www.tepovacejablunkov.cz",
+  "telephone": "+420792374388",
+  "email": "kubas5.nowicki@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Návsí 447",
+    "addressLocality": "Návsí",
+    "postalCode": "739 92",
+    "addressCountry": "CZ"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 49.5958,
+    "longitude": 18.7573
+  },
+  "areaServed": ["Jablunkov", "Třinec", "Návsí", "Mosty u Jablunkova", "Hrádek"],
+  "priceRange": "350–1500 Kč",
+  "openingHours": "Mo-Fr 08:00-20:00",
+  "sameAs": [
+    "https://www.facebook.com/people/Tepova%C4%8De-Jablunkov/61565961033038/",
+    "https://www.instagram.com/tepovace_jablunkov/"
+  ]
+}
+</script>
+
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600&display=swap" as="style">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#111;--card:#1c1c1c;--border:#2e2e2e;
-  --yellow:#f5c400;--yd:#c9a000;--white:#f0f0f0;
-  --muted:#777;--ok:#4caf50;--err:#e05050;--r:8px;
-}
-body{background:var(--bg);color:var(--white);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
-
-/* PIN */
-#pin-overlay{position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px}
-#pin-overlay.hidden{display:none}
-.pin-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--yellow);letter-spacing:2px}
-.pin-sub{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.pin-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:26px 22px;width:100%;max-width:300px;display:flex;flex-direction:column;gap:12px}
-.pin-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
-#pin-input{width:100%;background:#111;border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:'IBM Plex Sans',sans-serif;font-size:22px;padding:11px;outline:none;letter-spacing:6px;text-align:center;-webkit-appearance:none}
-#pin-input:focus{border-color:var(--yellow)}
-#pin-input.err{border-color:var(--err);animation:shake .3s}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.pin-err{color:var(--err);font-size:13px;min-height:16px}
-.pin-btn{background:var(--yellow);color:#000;border:none;border-radius:6px;font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:700;padding:12px;cursor:pointer}
-.pin-btn:hover{background:var(--yd)}
-
-/* HEADER */
-.hdr{background:#000;border-bottom:3px solid var(--yellow);padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.hdr-logo{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--yellow);letter-spacing:1px;line-height:1}
-.hdr-sub{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.hdr-sep{width:1px;height:32px;background:#333}
-.hdr-title{font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--white);letter-spacing:1px}
-
-.wrap{max-width:700px;margin:0 auto;padding:16px 12px 50px}
-
-/* TABS */
-.tabs{display:flex;gap:2px;border-bottom:2px solid var(--border);margin-bottom:16px}
-.t-btn{background:none;border:none;color:var(--muted);font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:9px 14px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color .15s}
-.t-btn.on{color:var(--yellow);border-bottom-color:var(--yellow)}
-.t-btn:hover:not(.on){color:var(--white)}
-.t-panel{display:none}
-.t-panel.on{display:block}
-
-/* SECTIONS */
-.sec{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:var(--yellow);margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
-
-/* INFO GRID */
-.ig{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.il-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:1px}
-.il-val{font-weight:500;font-size:13px}
-
-/* FORM */
-.fg{margin-bottom:12px}
-.fg:last-child{margin-bottom:0}
-label.lbl{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px}
-input[type=text],input[type=tel],input[type=email],input[type=datetime-local],
-input[type=number],textarea,select{
-  width:100%;background:#111;border:1px solid var(--border);border-radius:6px;
-  color:var(--white);font-family:'IBM Plex Sans',sans-serif;font-size:14px;
-  padding:9px 11px;outline:none;transition:border-color .15s;-webkit-appearance:none
-}
-input:focus,textarea:focus,select:focus{border-color:var(--yellow)}
-textarea{resize:vertical;min-height:64px}
-.fr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.fr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-
-/* CHECKBOXES */
-.chk-list{list-style:none;display:flex;flex-direction:column;gap:8px}
-.chk-item{display:flex;align-items:flex-start;gap:9px;cursor:pointer}
-.chk-item input[type=checkbox]{width:17px;height:17px;flex-shrink:0;margin-top:2px;accent-color:var(--yellow);cursor:pointer}
-.chk-item span{font-size:13px;line-height:1.4}
-
-/* PRICE BOX */
-.pbox{background:#0d0d0d;border:1px solid var(--border);border-radius:6px;padding:12px;margin-top:10px}
-.pr{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:13px}
-.pr.tot{border-top:1px solid var(--border);margin-top:6px;padding-top:8px;font-size:15px;font-weight:600;color:var(--yellow)}
-.pr-lbl{color:var(--muted)}
-.badge{background:var(--yellow);color:#000;font-weight:700;font-size:11px;padding:2px 7px;border-radius:4px}
-
-/* ANO / NE */
-.yn{display:flex;gap:8px}
-.yn-b{flex:1;padding:9px;border:2px solid var(--border);border-radius:6px;background:none;color:var(--muted);font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
-.yn-b.y{border-color:var(--ok);color:var(--ok);background:rgba(76,175,80,.1)}
-.yn-b.n{border-color:var(--err);color:var(--err);background:rgba(224,80,80,.1)}
-
-/* PROHLÁŠENÍ */
-.prol{font-size:12px;line-height:1.65;color:#ccc}
-.prol ol{padding-left:16px}
-.prol li{margin-bottom:2px}
-.prol a{color:var(--yellow)}
-.souhlas{margin-top:12px;display:flex;align-items:flex-start;gap:9px;cursor:pointer}
-.souhlas input{width:17px;height:17px;flex-shrink:0;margin-top:2px;accent-color:var(--yellow)}
-.souhlas span{font-size:12px}
-.souhlas a{color:var(--yellow)}
-
-/* ACTIONS */
-.acts{display:flex;gap:10px;margin-top:8px}
-.btn-p{flex:1;background:var(--yellow);color:#000;border:none;border-radius:var(--r);font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:700;padding:12px 18px;cursor:pointer;transition:background .15s}
-.btn-p:hover{background:var(--yd)}
-.btn-s{background:var(--card);color:var(--white);border:1px solid var(--border);border-radius:var(--r);font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;padding:12px 16px;cursor:pointer;transition:border-color .15s}
-.btn-s:hover{border-color:#555}
-
-/* NOTICE */
-.notice{background:rgba(245,196,0,.07);border:1px solid rgba(245,196,0,.2);border-radius:6px;padding:9px 13px;font-size:12px;color:#ccc;margin-bottom:12px}
-.notice strong{color:var(--yellow)}
-
-/* SUCCESS */
-.ok-msg{display:none;background:rgba(76,175,80,.1);border:1px solid var(--ok);border-radius:var(--r);padding:16px;text-align:center;color:var(--ok);font-weight:600;margin-top:12px;font-size:14px}
-
-/* CLEANING TABLE */
-.clean-table{width:100%;border-collapse:collapse;font-size:13px}
-.clean-table th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);padding:4px 6px 8px;border-bottom:1px solid var(--border)}
-.clean-table td{padding:4px 4px}
-.clean-table td input,.clean-table td select{font-size:13px;padding:7px 8px}
-.clean-table .td-del{width:32px;text-align:center}
-.del-row{background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:4px 6px;border-radius:4px}
-.del-row:hover{color:var(--err)}
-.add-row-btn{background:none;border:1px dashed var(--border);border-radius:6px;color:var(--muted);font-family:'IBM Plex Sans',sans-serif;font-size:12px;padding:8px 14px;cursor:pointer;margin-top:8px;transition:border-color .15s,color .15s;width:100%}
-.add-row-btn:hover{border-color:var(--yellow);color:var(--yellow)}
-
-/* PRINT SIGNATURES */
-.print-sigs{display:none}
-
-/* RESPONSIVE */
-@media(max-width:600px){
-  .fr{grid-template-columns:1fr}
-  .fr3{grid-template-columns:1fr}
-  .ig{grid-template-columns:1fr}
-  .acts{flex-direction:column}
-  .wrap{padding:10px 8px 40px}
-  .hdr{padding:10px 12px;gap:8px}
-  .hdr-logo{font-size:18px}
-  .hdr-title{font-size:13px}
-  .hdr-sep{display:none}
-  .tabs{flex-wrap:wrap;gap:3px;padding-bottom:2px}
-  .t-btn{font-size:10px;padding:7px 8px;flex:1;text-align:center;white-space:normal;line-height:1.3}
-  .sec{padding:10px}
-  .sec-title{font-size:14px}
-  input[type=text],input[type=tel],input[type=email],
-  input[type=datetime-local],input[type=number],textarea,select{
-    font-size:16px;width:100%!important;min-width:0!important;max-width:100%!important
+  :root {
+    --yellow: #F5C800;
+    --black: #0D0D0D;
+    --dark: #141414;
+    --card: #1A1A1A;
+    --border: #2A2A2A;
+    --text: #E8E8E8;
+    --muted: #888;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
   }
-  .yn-b{padding:11px 6px;font-size:13px}
-  .pr{font-size:13px}
-  .pr.tot{font-size:15px}
-  .btn-p,.btn-s{font-size:14px;padding:13px}
-  .pin-box{padding:20px 16px}
-  #pin-input{font-size:28px;padding:14px}
-  /* Tabulka čištění na mobilu – vertikální */
-  .clean-table thead{display:none}
-  .clean-table tbody tr{
-    display:flex;flex-direction:column;
-    background:var(--card);border:1px solid var(--border);
-    border-radius:6px;padding:8px;margin-bottom:8px;gap:6px
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--text); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23111' stroke='%23111' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23f5c400' stroke='none'/%3E%3C/svg%3E") 6 2, auto; }
+  * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23111' stroke='%23111' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23f5c400' stroke='none'/%3E%3C/svg%3E") 6 2, auto !important; }
+  select, select * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23111' stroke='%23111' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M6,2 L6,28 L11,21 L15,30 L18,29 L14,20 L22,20 Z' fill='%23f5c400' stroke='none'/%3E%3C/svg%3E") 6 2, auto !important; }
+
+  /* Ripple efekt */
+  .ripple { position: fixed; border-radius: 50%; background: rgba(245,200,0,0.35); transform: scale(0); animation: rippleAnim 0.5s ease-out forwards; pointer-events: none; z-index: 9999; }
+  @keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
+
+  /* Logo glow */
+  .hero-logo { filter: drop-shadow(0 0 18px rgba(245,200,0,0.5)) drop-shadow(0 0 40px rgba(245,200,0,0.2)); }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; height: 64px; background: rgba(13,13,13,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 0.05em; color: var(--yellow); text-decoration: none; }
+  .nav-logo span { color: var(--text); }
+  .nav-links { display: flex; gap: 1.2rem; list-style: none; align-items: center; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--yellow); }
+  .nav-cta { background: var(--yellow); color: var(--black) !important; padding: 0.45rem 1.2rem; border-radius: 4px; font-weight: 600 !important; }
+  .nav-cta:hover { opacity: 0.85; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 5% 60px; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(245,200,0,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 20% 80%, rgba(245,200,0,0.04) 0%, transparent 60%); }
+  .hero-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--yellow); background: rgba(245,200,0,0.1); border: 1px solid rgba(245,200,0,0.25); padding: 0.35rem 0.9rem; border-radius: 100px; margin-bottom: 1.5rem; width: fit-content; animation: fadeUp 0.6s ease both; align-self: flex-start; }
+  h1 { font-family: var(--font-display); font-size: clamp(3.5rem, 9vw, 7rem); line-height: 0.95; letter-spacing: 0.02em; color: var(--text); animation: fadeUp 0.6s 0.1s ease both; text-align: left; }
+  h1 em { color: var(--yellow); font-style: normal; }
+  .hero-sub { max-width: 520px; margin-top: 1.5rem; font-size: 1.05rem; color: var(--muted); line-height: 1.7; animation: fadeUp 0.6s 0.2s ease both; text-align: left; }
+  .hero-actions { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; text-align: left; }
+  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.8rem; border-radius: 6px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.2s; text-decoration: none; border: none; font-family: var(--font-body); }
+  .btn-primary { background: var(--yellow); color: var(--black); padding: 1rem 2.4rem; font-size: 1.02rem; letter-spacing: 0.03em; }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,200,0,0.3); }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); }
+  .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; animation: fadeUp 0.6s 0.4s ease both; flex-wrap: wrap; text-align: left; }
+  .stat-num { font-family: var(--font-display); font-size: 2.8rem; color: var(--yellow); line-height: 1; }
+  .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
+
+  /* SECTIONS */
+  section { padding: 100px 5%; text-align: center; }
+  .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--yellow); margin-bottom: 0.8rem; display: block; }
+  h2 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.5rem); letter-spacing: 0.03em; line-height: 1.05; color: var(--text); margin-bottom: 1rem; }
+
+  /* WHY */
+  #proc { background: var(--dark); }
+  .why-grid { text-align: left; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5px; margin-top: 3rem; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .why-card { flex: 1 1 220px; max-width: calc(50% - 0.75px); }
+  @media(max-width:500px){ .why-card { max-width: 100%; } }
+  .why-card { background: var(--card); padding: 2rem; }
+  .why-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .why-card h3 { font-size: 1rem; font-family: var(--font-body); font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+  .why-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  /* GALERIE */
+  #galerie { }
+  .gallery-intro { max-width: 560px; margin-bottom: 2.5rem; color: var(--muted); font-size: 1rem; }
+  .gallery-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  .gallery-item { flex: 0 1 calc(33.333% - 0.7rem); min-width: 280px; position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 1/1; background: var(--card); }
+
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+  .gallery-item:hover img { transform: scale(1.04); }
+  .gallery-item .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 1rem; }
+  .gallery-item:hover .overlay { opacity: 1; }
+  .gallery-item .overlay span { font-size: 0.8rem; font-weight: 600; color: var(--yellow); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* Lightbox */
+  #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 999; justify-content: center; align-items: center; padding: 2rem; }
+  #lightbox.open { display: flex; }
+  #lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px; }
+  #lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; background: var(--yellow); color: var(--black); border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.2rem; cursor: pointer; font-weight: 700; }
+  #lightbox-prev, #lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(245,200,0,0.15); border: 1px solid rgba(245,200,0,0.3); color: var(--yellow); border-radius: 6px; padding: 0.6rem 1rem; cursor: pointer; font-size: 1.2rem; }
+  #lightbox-prev { left: 1rem; }
+  #lightbox-next { right: 1rem; }
+
+  /* CENIK */
+  #cenik { background: var(--dark); }
+  .cenik-grid { text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 3rem; }
+  @media(max-width:700px){ .cenik-grid { grid-template-columns: 1fr; } }
+  .cenik-card { background: var(--card); border-radius: 8px; overflow: hidden; }
+  .cenik-header { background: var(--border); padding: 1.2rem 1.8rem; display: flex; align-items: center; gap: 0.7rem; }
+  .cenik-header h3 { font-family: var(--font-display); font-size: 1.1rem; margin: 0; letter-spacing: 0.06em; }
+  .cenik-body { padding: 0.5rem 0; }
+  .price-row { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1.8rem; border-bottom: 1px solid var(--border); }
+  .price-row:last-child { border-bottom: none; }
+  .price-name { font-size: 0.9rem; color: var(--text); }
+  .price-name small { display: block; font-size: 0.78rem; color: var(--muted); }
+  .price-val { font-family: var(--font-display); font-size: 1.15rem; color: var(--yellow); white-space: nowrap; margin-left: 1rem; }
+  .cenik-note { margin-top: 1.5rem; background: rgba(245,200,0,0.06); border-left: 3px solid var(--yellow); padding: 1rem 1.4rem; border-radius: 0 6px 6px 0; font-size: 0.87rem; color: var(--muted); text-align: left; }
+
+  /* PUJCOVNA */
+  #pujcovna { }
+  .pujc-grid { text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+  @media(max-width:768px){ .pujc-grid { grid-template-columns: 1fr; } }
+  .pujc-prices { display: flex; flex-direction: column; gap: 2px; }
+  .pujc-row { background: var(--card); padding: 1.2rem 1.6rem; display: flex; justify-content: space-between; align-items: center; border-radius: 4px; transition: background 0.2s; }
+  .pujc-row:hover { background: #202020; }
+  .pujc-row.highlight { background: rgba(245,200,0,0.1); border: 1px solid rgba(245,200,0,0.2); }
+  .pujc-label { font-size: 0.95rem; font-weight: 500; }
+  .pujc-price { font-family: var(--font-display); font-size: 1.4rem; color: var(--yellow); }
+  .pujc-price.free { color: #4ADE80; }
+  .pujc-features { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .pujc-features li { display: flex; gap: 0.8rem; font-size: 0.92rem; color: var(--muted); }
+  .pujc-features li::before { content: '✓'; color: var(--yellow); font-weight: 700; flex-shrink: 0; }
+  .kauce-note { margin-top: 1rem; padding: 1rem 1.4rem; background: var(--card); border-radius: 6px; border: 1px solid var(--border); font-size: 0.87rem; color: var(--muted); }
+  .kauce-note strong { color: var(--text); }
+  .spec-table { margin-top: 2rem; width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+  .spec-table td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); color: var(--muted); }
+  .spec-table td:first-child { color: var(--text); font-weight: 500; width: 55%; }
+  .spec-table tr:last-child td { border-bottom: none; }
+
+  /* RECENZE */
+  #recenze { background: var(--dark); }
+  .reviews-grid { text-align: left; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-top: 3rem; }
+  .review-card { background: var(--card); border-radius: 8px; padding: 1.5rem; border: 1px solid var(--border); transition: border-color 0.2s, transform 0.2s; }
+  .review-card:hover { border-color: rgba(245,200,0,0.3); transform: translateY(-2px); }
+  .review-stars { color: var(--yellow); font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 0.8rem; }
+  .review-text { font-size: 0.9rem; line-height: 1.65; color: var(--text); margin-bottom: 1.2rem; font-style: italic; }
+  .review-author { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+
+  /* KONTAKT */
+  #kontakt { }
+  .kontakt-inner { text-align: left; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: stretch; }
+  .poptavka-form { height: 100%; }
+  @media(max-width:768px){ .kontakt-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; justify-content: space-between; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-icon { width: 42px; height: 42px; background: rgba(245,200,0,0.1); border: 1px solid rgba(245,200,0,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .contact-item a { color: var(--text); text-decoration: none; font-weight: 500; }
+  .contact-item a:hover { color: var(--yellow); }
+  .contact-item small { display: block; font-size: 0.78rem; color: var(--muted); margin-bottom: 0.2rem; }
+
+  /* FORM */
+  .poptavka-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width:500px){ .form-row { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  input, select, textarea { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem 1rem; color: var(--text); font-family: var(--font-body); font-size: 0.95rem; transition: border-color 0.2s; outline: none; width: 100%; }
+  input:focus, select:focus, textarea:focus { border-color: var(--yellow); }
+  select option { background: var(--card); }
+  textarea { resize: vertical; min-height: 110px; }
+  .form-submit { background: var(--yellow); color: var(--black); border: none; padding: 0.9rem 2rem; border-radius: 6px; font-weight: 700; font-size: 0.95rem; font-family: var(--font-body); cursor: pointer; transition: opacity 0.2s, transform 0.2s; letter-spacing: 0.04em; }
+  .form-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 2rem 5%; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.82rem; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--yellow); }
+
+  .divider { height: 1px; background: var(--border); margin: 0 5%; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media(max-width:1080px){
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0; background: var(--dark); padding: 1.5rem 5%; border-bottom: 1px solid var(--border); gap: 1.2rem; z-index: 99; }
+    .nav-links.open a { font-size: 1rem; }
   }
-  .clean-table td{display:block;width:100%!important;padding:0}
-  .clean-table td::before{
-    display:block;font-size:10px;text-transform:uppercase;
-    letter-spacing:.5px;color:var(--muted);margin-bottom:3px
-  }
-  .clean-table tr td:nth-child(1)::before{content:'Položka'}
-  .clean-table tr td:nth-child(2)::before{content:'Množství / m²'}
-  .clean-table tr td:nth-child(3)::before{content:'Cena / j.'}
-  .clean-table tr td:nth-child(4)::before{content:'Celkem'}
-  .clean-table .td-del{text-align:right}
-  /* Selecty ve wrapperu */
-  div[style*="display:flex"][style*="gap:8px"]{flex-direction:column;align-items:stretch!important}
-  div[style*="width:200px"]{width:100%!important}
-  .pbox .pr span:last-child{text-align:right}
-}
-
-/* ═══ PRINT ═══ */
-@media print{
-  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  #pin-overlay{display:none!important}
-  body{background:#fff!important;color:#111!important;font-size:9.5pt;font-family:'IBM Plex Sans',Arial,sans-serif}
-  .hdr{background:#fff!important;border-bottom:2px solid #111!important;padding:6px 0 8px!important}
-  .hdr-logo{color:#111!important;font-size:17pt}
-  .hdr-title{color:#111!important;font-size:13pt}
-  .hdr-sub{color:#555!important}
-  .hdr-sep{background:#bbb!important}
-  .wrap{padding:4px 0!important;max-width:100%!important}
-  .tabs{display:none!important}
-
-  /* Tisk – každá záložka jen sama sebe */
-  .t-panel{display:none!important}
-  body.print-p  #tab-prevzeti{display:block!important}
-  body.print-v  #tab-vraceni{display:block!important}
-  body.print-c  #tab-cisteni{display:block!important}
-
-  .sec{background:#fff!important;border:1px solid #ccc!important;border-radius:3px!important;padding:6px 9px!important;margin-bottom:5px!important;break-inside:avoid}
-  .sec-title{color:#111!important;font-size:10pt!important;margin-bottom:7px!important}
-  .sec-title::after{background:#bbb!important}
-  .il-lbl,label.lbl{color:#666!important;font-size:8.5pt!important}
-  .il-val{font-size:9.5pt!important}
-  .ig{gap:5px!important}
-  .fg{margin-bottom:7px!important}
-  .fr,.fr3{gap:7px!important}
-  input,textarea,select{background:#fff!important;border:1px solid #ccc!important;color:#111!important;font-size:9pt!important;padding:4px 7px!important}
-  textarea{min-height:32px!important}
-  .pbox{background:#f5f5f5!important;border-color:#ccc!important;padding:7px 9px!important}
-  .pr{font-size:9pt!important;padding:2px 0!important}
-  .pr-lbl{color:#555!important}
-  .badge{background:#f5c400!important;color:#000!important;font-size:8pt!important}
-  .pr.tot{font-size:10.5pt!important;color:#111!important}
-  .prol{color:#333!important;font-size:8.5pt!important;line-height:1.45!important}
-  .prol a,.souhlas a{color:#111!important;text-decoration:underline}
-  .souhlas span{color:#111!important;font-size:8.5pt!important}
-  .yn-b{border-color:#bbb!important;color:#333!important;background:#fff!important;font-size:9pt!important;padding:5px!important}
-  .yn-b.y{border-color:#4caf50!important;background:#f0faf0!important;color:#2a7a2a!important}
-  .yn-b.n{border-color:#e05050!important;background:#fff5f5!important;color:#a02020!important}
-  .notice{background:#f9f9f9!important;border-color:#ccc!important;color:#555!important;font-size:8.5pt!important;padding:5px 9px!important}
-  .chk-list{gap:4px!important}
-  .chk-item span{font-size:9pt!important}
-  #dysko-box,#dysko-box-c,.acts,.ok-msg,.del-row,.add-row-btn{display:none!important}
-  .clean-table th{font-size:8pt!important;padding:3px 5px 5px!important}
-  .clean-table td{padding:2px 3px!important}
-  .clean-table td input,.clean-table td select{font-size:8.5pt!important;padding:4px 6px!important}
-  .print-sigs{display:grid!important;grid-template-columns:1fr 1fr;gap:36px;margin-top:16px;padding-top:10px;border-top:1px solid #bbb}
-  .sig-b{display:block!important}
-  .sig-line{border-bottom:1px solid #111;height:32px;margin-bottom:4px}
-  .sig-lbl{font-size:8.5pt;color:#555}
-
-  /* Čištění – ultra kompaktní pro 1 A4 */
-  body.print-c .sec{padding:4px 7px!important;margin-bottom:3px!important}
-  body.print-c .sec-title{font-size:8.5pt!important;margin-bottom:5px!important}
-  body.print-c .fg{margin-bottom:4px!important}
-  body.print-c .fr{gap:5px!important}
-  body.print-c input,body.print-c select,body.print-c textarea{font-size:8pt!important;padding:3px 5px!important}
-  body.print-c textarea{min-height:22px!important}
-  body.print-c label.lbl{font-size:7.5pt!important}
-  body.print-c .notice{padding:3px 7px!important;font-size:7.5pt!important}
-  body.print-c .clean-table th{font-size:7.5pt!important;padding:2px 4px 3px!important}
-  body.print-c .clean-table td{padding:1px 2px!important}
-  body.print-c .clean-table td input,body.print-c .clean-table td select{font-size:7.5pt!important;padding:2px 4px!important}
-  body.print-c .pbox{padding:5px 7px!important}
-  body.print-c .pr{font-size:8pt!important;padding:1px 0!important}
-  body.print-c .pr.tot{font-size:9.5pt!important}
-  body.print-c #faktura-box .fg{margin-bottom:3px!important}
-  body.print-c .chk-item span{font-size:8pt!important}
-}
+  @media(max-width:600px){ section { padding: 72px 5%; } h2 { font-size: 2rem; } .hero-stats { gap: 2rem; } }
+  @media(max-width:640px){ .gallery-item { flex: 0 1 100%; min-width: 0; } }
+  @media(max-width:768px){ .rezervace-grid { grid-template-columns: 1fr !important; } }
 </style>
 </head>
 <body>
 
-<!-- PIN -->
-<div id="pin-overlay">
-  <div class="pin-logo">Tepovače Jablunkov</div>
-  <div class="pin-sub">Interní systém · Protokol &amp; Zakázky</div>
-  <div class="pin-box">
-    <div class="pin-lbl">Zadejte PIN</div>
-    <input type="password" id="pin-input" inputmode="numeric" maxlength="4" placeholder="••••" autocomplete="off" autofocus oninput="autoPin()" onkeydown="if(event.key==='Enter')checkPin()">
-    <div class="pin-err" id="pin-err"></div>
-    <button class="pin-btn" onclick="checkPin()">Vstoupit</button>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">TEPOVAČE<span> JABLUNKOV</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#cenik">Ceník</a></li>
+    <li><a href="#pujcovna">Půjčovna</a></li>
+    <li><a href="#recenze">Recenze</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#kontakt" class="nav-cta">Poptávka</a></li>
+    <li><a href="/pl/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇵🇱 PL</a></li>
+    <li><a href="/en/" style="color:var(--muted);font-size:0.8rem;border:1px solid var(--border);padding:0.3rem 0.7rem;border-radius:4px;">🇬🇧 EN</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
   </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div style="position:relative;z-index:1;max-width:800px;text-align:left;">
+    <div class="hero-tag">Jablunkov · Třinec · okolí 25 km</div>
+    <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:1.5rem;animation:fadeUp 0.6s 0.05s ease both;">
+      <img src="icon_vacuum.png" alt="Tepovače Jablunkov" width="88" height="88" style="height:88px;width:auto;display:block;flex-shrink:0;">
+      <div style="line-height:1.1;text-align:left;">
+        <div style="font-family:var(--font-display);font-size:1.8rem;color:var(--yellow);letter-spacing:0.06em;">TEPOVAČE</div>
+        <div style="font-family:var(--font-display);font-size:1.35rem;color:var(--text);letter-spacing:0.08em;">JABLUNKOV</div>
+        <div style="font-size:0.72rem;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;margin-top:0.2rem;">Půjčovna a čištění</div>
+      </div>
+    </div>
+    <h1>HLOUBKOVÉ<br>ČIŠTĚNÍ<br><em>U VÁS DOMA.</em></h1>
+    <p class="hero-sub">Čistíme sedačky, koberce, matrace a čalounění aut. Nebo si tepovač Kärcher jednoduše půjčte a poradíte si sami.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn btn-primary">Nezávazná poptávka →</a>
+      <a href="tel:+420792374388" class="btn btn-outline">📞 +420 792 374 388</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-num" data-target="1600" data-suffix="+">0+</div><div class="stat-label">Vyčištěných m²</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="70" data-suffix="+">0+</div><div class="stat-label">Sedaček zachráněno</div></div>
+      <div class="stat-item"><div class="stat-num" data-target="180" data-suffix="+">0+</div><div class="stat-label">Spokojených klientů</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROC MY -->
+<section id="proc">
+  <div class="section-label">Proč si vybrat nás</div>
+  <h2>JEDNODUŠE<br>BEZ STAROSTÍ</h2>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">🧹</div><h3>Hloubkové čištění</h3><p>Odstraňujeme skvrny, pachy i alergeny. Vhodné pro domácnosti s dětmi a zvířaty.</p></div>
+    <div class="why-card"><div class="why-icon">⚡</div><h3>Rychlá domluva</h3><p>Napište nebo zavolejte – termín domluvíme operativně, včetně večerních hodin.</p></div>
+    <div class="why-card"><div class="why-icon">📍</div><h3>U vás doma</h3><p>Přijedeme přímo k vám do Jablunkova, Třince a okolí do 25 km.</p></div>
+    <div class="why-card"><div class="why-icon">💧</div><h3>Šetrné k materiálům</h3><p>Profesionální chemie Kärcher. Rychlé schnutí, bez poškození čalounění.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GALERIE -->
+<section id="galerie" style="text-align:center;">
+  <div class="section-label">Výsledky naší práce</div>
+  <h2>PŘED A PO</h2>
+  <p class="gallery-intro" style="margin-left:auto;margin-right:auto;">Každý případ je jiný – sedačky, koberce, čalounění aut. Výsledky mluví za sebe.</p>
+
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openLightbox(0)">
+      <img src="foto1.jpg" alt="Čištění rohové sedačky před a po – Tepovače Jablunkov" width="800" height="800" loading="lazy">
+      <div class="overlay"><span>Sedačka L</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(1)">
+      <img src="foto2.jpg" alt="Čištění sedačky před a po – Tepovače Jablunkov" width="800" height="800" loading="lazy">
+      <div class="overlay"><span>Sedačka</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(2)">
+      <img src="foto3.jpg" alt="Čištění velké rohové sedačky před a po" width="800" height="800" loading="lazy">
+      <div class="overlay"><span>Rohová souprava</span></div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(3)">
+      <img src="foto4.jpg" alt="Čištění sedačky před a po – výsledek čištění" width="800" height="800" loading="lazy">
+      <div class="overlay"><span>Výsledek čištění</span></div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;text-align:center;">
+    <a href="#kontakt" class="btn btn-primary">Chci taky takhle vyčistit →</a>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button id="lightbox-prev" onclick="changeLightbox(-1)">‹</button>
+  <img id="lightbox-img" src="" alt="">
+  <button id="lightbox-next" onclick="changeLightbox(1)">›</button>
 </div>
 
-<!-- HEADER -->
-<header class="hdr">
-  <div>
-    <div class="hdr-logo">Tepovače Jablunkov</div>
-    <div class="hdr-sub">Čištění čalounění · Půjčovna tepovačů</div>
+<div class="divider"></div>
+
+<!-- CENIK -->
+<section id="cenik">
+  <div class="section-label">Ceník čištění</div>
+  <h2>CO A ZA KOLIK<br>VYČISTÍME</h2>
+  <div class="cenik-grid">
+    <div class="cenik-card">
+      <div class="cenik-header"><span>🏠</span><h3>Domácnost</h3></div>
+      <div class="cenik-body">
+        <div class="price-row"><div class="price-name">Sedací souprava rovná</div><div class="price-val">od 700 Kč</div></div>
+        <div class="price-row"><div class="price-name">Souprava rohová „L"</div><div class="price-val">od 1 000 Kč</div></div>
+        <div class="price-row"><div class="price-name">Souprava velká „U"</div><div class="price-val">od 1 400 Kč</div></div>
+        <div class="price-row"><div class="price-name">Křeslo / ušák</div><div class="price-val">od 350 Kč</div></div>
+        <div class="price-row"><div class="price-name">Matrace</div><div class="price-val">od 600 Kč</div></div>
+        <div class="price-row"><div class="price-name">Koberec</div><div class="price-val">90 Kč/m²</div></div>
+        <div class="price-row"><div class="price-name">Židle</div><div class="price-val">od 150 Kč</div></div>
+      </div>
+    </div>
+    <div class="cenik-card">
+      <div class="cenik-header"><span>🚗</span><h3>Čalounění auta</h3></div>
+      <div class="cenik-body">
+        <div class="price-row"><div class="price-name">Sedačky (5 míst)</div><div class="price-val">od 800 Kč</div></div>
+        <div class="price-row"><div class="price-name">Komplet TEXTIL<small>sedačky + podlaha + kufr</small></div><div class="price-val">od 1 200 Kč</div></div>
+      </div>
+    </div>
   </div>
-  <div class="hdr-sep"></div>
-  <div class="hdr-title">Interní systém</div>
-</header>
+  <div class="cenik-note"><strong>Minimální výjezd: 500 Kč.</strong> Přesná cena závisí na stavu a velikosti – pošlete fotku nebo m² a rádi naceníme přesněji. <strong style="color:var(--text);">Větší objem? Rádi poskytneme množstevní slevu.</strong></div>
 
-<div class="wrap">
-  <div class="tabs">
-    <button class="t-btn on" onclick="tab('prevzeti',this)">Půjčovna – Převzetí</button>
-    <button class="t-btn" onclick="tab('vraceni',this)">Půjčovna – Vrácení</button>
-    <button class="t-btn" onclick="tab('cisteni',this)">Čištění – Zakázka</button>
+  <!-- FIREMNI ZAKAZKY -->
+  <div style="margin-top:1.5rem;background:linear-gradient(135deg,rgba(245,200,0,0.08),rgba(245,200,0,0.03));border:1px solid rgba(245,200,0,0.2);border-radius:10px;padding:1.8rem 2rem;">
+    <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;">
+      <span style="font-size:1.5rem;">🏢</span>
+      <h3 style="font-family:var(--font-display);font-size:1.4rem;letter-spacing:0.05em;color:var(--yellow);">FIRMY, ŠKOLY, UBYTOVNY &amp; KANCELÁŘE</h3>
+    </div>
+    <p style="font-size:0.92rem;color:var(--muted);line-height:1.75;max-width:680px;">Čistíme čalounění pro <strong style="color:var(--text);">firmy, úřady, školky, školy, ubytovny, penziony a kanceláře</strong> – kdekoliv je větší počet sedaček, koberců nebo matrací. Cena je vždy stanovena individuálně po nezávazné obhlídce nebo na základě fotografií. Při větším rozsahu zakázky automaticky počítejte s množstevní slevou.</p>
+    <div style="margin-top:1.2rem;text-align:left;">
+      <a href="#kontakt" class="btn btn-primary" style="font-size:0.9rem;">Poptat firemní čištění →</a>
+    </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       TAB 1 – PŘEVZETÍ
-  ══════════════════════════════════════ -->
-  <div id="tab-prevzeti" class="t-panel on">
+  <div style="margin-top:2rem;text-align:left;"><a href="#kontakt" class="btn btn-outline">Chci nacenit zakázku →</a></div>
+</section>
 
-    <div class="sec">
-      <div class="sec-title">Pronajímatel</div>
-      <div class="ig">
-        <div><div class="il-lbl">Jméno</div><div class="il-val">Jakub Nowicki</div></div>
-        <div><div class="il-lbl">IČO</div><div class="il-val">09089977</div></div>
-        <div><div class="il-lbl">Telefon</div><div class="il-val">+420 792 374 388</div></div>
-        <div><div class="il-lbl">Web</div><div class="il-val">tepovacejablunkov.cz</div></div>
-      </div>
-    </div>
+<div class="divider"></div>
 
-    <div class="sec">
-      <div class="sec-title">Nájemce</div>
-      <div class="fg">
-        <label class="lbl">Jméno a příjmení *</label>
-        <input type="text" id="jmeno" placeholder="Jana Nováková" required>
+<!-- PUJCOVNA -->
+<section id="pujcovna">
+  <div class="section-label">Půjčovna Kärcher</div>
+  <h2>PŮJČTE SI TO<br>SAMI DOMA</h2>
+  <div class="pujc-grid">
+    <div>
+      <div class="pujc-prices">
+        <div class="pujc-row"><span class="pujc-label">24 hodin</span><span class="pujc-price">350 Kč</span></div>
+        <div class="pujc-row"><span class="pujc-label">48 hodin</span><span class="pujc-price">500 Kč</span></div>
+        <div class="pujc-row"><span class="pujc-label">72 hodin</span><span class="pujc-price">700 Kč</span></div>
+        <div class="pujc-row"><span class="pujc-label">Čisticí přípravek / dávka</span><span class="pujc-price">30 Kč</span></div>
+        <div class="pujc-row highlight"><span class="pujc-label">První dávka chemie</span><span class="pujc-price free">ZDARMA</span></div>
       </div>
-      <div class="fr">
-        <div class="fg">
-          <label class="lbl">Telefon *</label>
-          <input type="tel" id="tel" placeholder="+420 xxx xxx xxx" required>
+      <div class="kauce-note"><strong>Vratná záloha: 2 000 Kč</strong> v hotovosti při převzetí.</div>
+
+      <!-- VĚRNOSTNÍ KARTA -->
+      <div style="margin-top:1rem;background:linear-gradient(135deg,rgba(245,200,0,0.1),rgba(245,200,0,0.04));border:1px solid rgba(245,200,0,0.3);border-radius:10px;padding:1.4rem 1.6rem;">
+        <div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.8rem;">
+          <span style="font-size:1.3rem;">🟡</span>
+          <span style="font-family:var(--font-display);font-size:1.1rem;letter-spacing:0.06em;color:var(--yellow);">VĚRNOSTNÍ KARTA</span>
         </div>
-        <div class="fg">
-          <label class="lbl">E-mail klienta (pro odpověď)</label>
-          <input type="email" id="email" placeholder="jana@email.cz">
-        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.45rem;">
+          <li style="font-size:0.9rem;color:var(--text);display:flex;gap:0.6rem;"><span style="color:var(--yellow);font-weight:700;">✓</span> Za každé půjčení dostanete razítko.</li>
+          <li style="font-size:0.9rem;color:var(--text);display:flex;gap:0.6rem;"><span style="color:var(--yellow);font-weight:700;">✓</span> <strong>2 razítka = třetí půjčení jen za 100 Kč / 24 h.</strong></li>
+          <li style="font-size:0.9rem;color:var(--muted);display:flex;gap:0.6rem;"><span style="color:var(--yellow);font-weight:700;">✓</span> Kartu dostanete hned při prvním půjčení. Platí 24 měsíců.</li>
+        </ul>
       </div>
-      <div class="fg">
-        <label class="lbl">Adresa (nepovinné)</label>
-        <input type="text" id="adresa" placeholder="Ulice 1, Město">
-      </div>
-    </div>
 
-    <div class="sec">
-      <div class="sec-title">Předmět pronájmu</div>
-      <div class="ig">
-        <div style="grid-column:1/-1"><div class="il-lbl">Přístroj</div><div class="il-val">Tepovač Kärcher Puzzi 10/1</div></div>
-        <div style="grid-column:1/-1"><div class="il-lbl">Sériové číslo</div><div class="il-val" style="font-size:12px">9011001300332363</div></div>
-      </div>
+      <div style="margin-top:1.5rem;"><a href="#kontakt" class="btn btn-primary">Rezervovat půjčovnu →</a></div>
     </div>
-
-    <div class="sec">
-      <div class="sec-title">Příslušenství – zkontrolujte</div>
-      <ul class="chk-list">
-        <li><label class="chk-item"><input type="checkbox" id="acc1" checked><span>Nástřiková hadice s integrovaným přívodem vody (2,5 m)</span></label></li>
-        <li><label class="chk-item"><input type="checkbox" id="acc2" checked><span>Podlahová hubice s trubicí a rukojetí</span></label></li>
-        <li><label class="chk-item"><input type="checkbox" id="acc3" checked><span>Hubice na čalounění s rukojetí</span></label></li>
+    <div>
+      <ul class="pujc-features">
+        <li>Kärcher Puzzi 10/1 – profesionální extraktor, max. výkon 20–25 m²/h</li>
+        <li>Vždy čistý, vydezinfikovaný a připravený k použití</li>
+        <li>Osobní předání s rychlou instruktáží</li>
+        <li>Možnost dovozu k vám domů (15 Kč/km)</li>
+        <li>Vhodný pro koberce, čalounění, matrace i autosedačky</li>
+        <li>Ideální pro alergiky a domácnosti se zvířaty</li>
+        <li>Platba převodem nebo hotově</li>
       </ul>
+      <details style="display:none;"><!-- hidden --></details>
+      <div style="margin-top:2rem;">
+        <div style="font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--yellow);margin-bottom:0.8rem;">Technická specifikace Kärcher Puzzi 10/1</div>
+        <table class="spec-table">
+          <tr><td>Max. plošný výkon</td><td>20–25 m²/h</td></tr>
+          <tr><td>Průtok vzduchu</td><td>74 l/s</td></tr>
+          <tr><td>Podtlak</td><td>254 mbar</td></tr>
+          <tr><td>Objem nádrže (čistá/špinavá)</td><td>10 l / 9 l</td></tr>
+          <tr><td>Výkon turbíny</td><td>1 250 W</td></tr>
+          <tr><td>Hmotnost</td><td>10,5 kg</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RECENZE -->
+<section id="recenze">
+  <div class="section-label">Recenze zákazníků</div>
+  <h2>CO ŘÍKAJÍ<br>KLIENTI</h2>
+  <div class="reviews-grid">
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Naprostá spokojenost. Kvalitní stroj, příjemný přístup, rychlost. Určitě znovu využijeme."</p><div class="review-author">Tereza Lubowiecka · Google</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„100% profesionální přístup a perfektní výsledek. Firmu doporučuji."</p><div class="review-author">Roman Kaleta · Google</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Rychlost, ochota, skvělá péče. Díky panu Jakubovi to šlo – sedačka, kterou nikdo jiný vyčistit nechtěl."</p><div class="review-author">Leona Mikulová · Google</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Blesková domluva, tepovač čistý jako nový. Profesionální přístup. Vřele doporučuji."</p><div class="review-author">Eva Wolná · Seznam</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Sedačka v obýváku je jako nová. Po zkušenostech s jinými firmami konečně někdo, kdo práci dělá pečlivě."</p><div class="review-author">Marta Bojková · Google</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Perfektní komunikace. Blesková domluva. Sedačka opět jak nová. Doporučuji všem."</p><div class="review-author">Marek Laboj · Google</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Domluva, práce, preciznost... vše na jedničku. Moc děkujeme, rozhodně doporučuji."</p><div class="review-author">Kateřina Martynková · Facebook</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Koberce a židle pan Nowicki vyčistil kvalitně, rychle a levně. Velká spokojenost."</p><div class="review-author">Dmatulova · Seznam</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Využila jsem zapůjčení tepovače – bleskový a bezproblémový – blesková a bezproblémová domluva, nabídnuta instruktáž. Doporučuji!"</p><div class="review-author">Nikol P. · Google</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Ochotný pán, rychlá domluva, sedací souprava vyčištěna na výbornou, precizně a kvalitně."</p><div class="review-author">Miroslav Kolarczyk · Facebook</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Využili jsme zapůjčení tepovače – čistý, vydezinfikovaný, jako nový. Rychlá domluva. Vřele doporučuji."</p><div class="review-author">Eva Wolná · Seznam</div></div>
+    <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">„Moc milý a ochotný pán. Výsledek je skvělý a my jsme moc spokojení."</p><div class="review-author">Katka Bělicová · Facebook</div></div>
+  </div>
+  <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+    <a href="https://g.page/r/Ccqlu7ME2DP3EBM/review" target="_blank" rel="noopener noreferrer" class="btn btn-outline">⭐ Zanechat Google recenzi</a>
+    <a href="https://www.facebook.com/profile.php?id=61565961033038&sk=reviews" target="_blank" rel="noopener noreferrer" class="btn btn-outline">👍 Recenze na Facebooku</a>
+    <a href="https://www.firmy.cz/detail/13709759-tepovace-jablunkov-navsi.html#pridat-hodnoceni" target="_blank" rel="noopener noreferrer" class="btn btn-outline">📋 Recenze na Firmy.cz</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VIDEO NAVOD -->
+<section id="video" style="background:var(--dark);text-align:center;">
+  <div class="section-label">Jak to funguje</div>
+  <h2>VIDEONÁVOD<br>K TEPOVAČI</h2>
+  <p style="color:var(--muted);max-width:560px;margin:0 auto 2rem;">Nikdy jste tepovač nepoužívali? Žádný strach – podívejte se na praktický návod jak stroj správně použít.</p>
+  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;max-width:800px;margin:0 auto;">
+    <iframe src="https://www.youtube.com/embed/Xz3n7xGHmRM" title="Návod k použití tepovače Kärcher" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px;"></iframe>
+  </div>
+  <div style="display:flex;gap:1rem;justify-content:center;margin-top:2rem;flex-wrap:wrap;">
+    <a href="/navod-karcher.pdf" target="_blank" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:0.5rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+      Stáhnout návod (PDF)
+    </a>
+    <a href="/navod-karcher.pdf" target="_blank" class="btn btn-outline" style="display:inline-flex;align-items:center;gap:0.5rem;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      Zobrazit návod online
+    </a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REZERVACE + MAPA -->
+<section id="rezervace">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;" class="rezervace-grid">
+    <div style="display:flex;flex-direction:column;text-align:left;">
+      <div class="section-label">Přehled rezervací</div>
+      <h2 style="text-align:left;">KDY JSEM<br>VOLNÝ</h2>
+      <p style="color:var(--muted);font-size:0.92rem;margin-bottom:1.5rem;">Aktuální přehled obsazených termínů. Pro rezervaci použijte formulář níže nebo volejte přímo.</p>
+      <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);flex:1;">
+        <iframe src="https://calendar.google.com/calendar/embed?src=591510e6e3377f0a6db27db7f27a16ba01d727583519ac27be271afb64cefd65%40group.calendar.google.com&ctz=Europe%2FPrague&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&bgcolor=%231A1A1A&color=%23F5C800" style="border:0;width:100%;height:100%;min-height:420px;display:block;" frameborder="0" scrolling="no"></iframe>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;text-align:left;">
+      <div class="section-label">Kde nás najdete</div>
+      <h2 style="text-align:left;">NAŠE<br>LOKALITA</h2>
+      <p style="color:var(--muted);font-size:0.92rem;margin-bottom:1rem;">Sídlíme v Návsí, obsloužíme celý Jablunkov, Třinec a okolí do 25 km.</p>
+      <div style="display:flex;align-items:center;gap:0.7rem;margin-bottom:1rem;">
+        <span style="font-size:1.2rem;">📍</span>
+        <span style="font-size:0.95rem;color:var(--text);font-weight:500;">Návsí 447, 739 92 Návsí</span>
+      </div>
+      <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);flex:1;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2582.8!2d18.757!3d49.596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sN%C3%A1vs%C3%AD+447%2C+739+92!5e0!3m2!1scs!2scz!4v1234567890" style="border:0;width:100%;height:100%;min-height:420px;display:block;" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--dark);">
+  <div class="section-label">Časté otázky</div>
+  <h2>MÁTE OTÁZKY?<br>MÁME ODPOVĚDI.</h2>
+  <div style="max-width:720px;display:flex;flex-direction:column;gap:1rem;margin-top:2rem;text-align:left;margin-left:auto;margin-right:auto;">
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">⏱ Jak dlouho schne čalounění po čištění?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Obvykle 12–24 hodin při pokojové teplotě. V létě nebo při větrání i méně. Doporučujeme otevřít okna a sedačku nevyužívat do úplného vyschnutí.</p>
     </div>
 
-    <div class="sec">
-      <div class="sec-title">Termín a platba</div>
-      <div class="fr">
-        <div class="fg">
-          <label class="lbl">Od</label>
-          <input type="datetime-local" id="datum-od" oninput="calcPrice()">
-        </div>
-        <div class="fg">
-          <label class="lbl">Do</label>
-          <input type="datetime-local" id="datum-do" oninput="calcPrice()">
-        </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🧹 Musím sedačku nebo koberec před čištěním vysát?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Ano, důkladné vysátí je základ. Pokud není čalounění předem vysáté, nelze dosáhnout optimálního výsledku. U čištění na místě to zvládneme společně.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🗺️ Jedete i do mé obce?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Působíme v okruhu cca 25 km od Návsí – Jablunkov, Třinec, Mosty u Jablunkova, Hrádek, Bystřice a okolí. Doprava ke klientovi je zdarma do 15 km, nad 15 km účtujeme 15 Kč/km.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">⚠️ Co když skvrna nejde úplně pryč?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">U starých nebo chemicky fixovaných skvrn nelze garantovat 100% odstranění. Vždy dopředu upozorníme na reálný výsledek. Čím čerstvější skvrna, tím lepší výsledek.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">💳 Jak mohu zaplatit?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Přijímáme platbu v hotovosti nebo převodem na účet (QR kód). Platba probíhá po dokončení služby nebo při předání tepovače.</p>
+    </div>
+
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;">
+      <div style="font-weight:600;color:var(--text);margin-bottom:0.5rem;">🔄 Jak rychle dostanu termín?</div>
+      <p style="font-size:0.9rem;color:var(--muted);line-height:1.7;">Obvykle se ozveme do 24 hodin a termín domluvíme na nejbližší volný den. Pracujeme i večer po 17. hodině a o víkendech po předchozí domluvě.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="section-label" style="text-align:left;">Kontakt &amp; Poptávka</div>
+  <h2 style="text-align:left;">POJĎME SE<br>DOMLUVIT</h2>
+  <div class="kontakt-inner" style="margin-top:3rem;">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div><small>Telefon</small><a href="tel:+420792374388">+420 792 374 388</a></div>
       </div>
-      <div class="pbox">
-        <div class="pr"><span class="pr-lbl">Délka pronájmu</span><span id="p-dur">–</span></div>
-        <div class="pr"><span class="pr-lbl">Orientační tarif</span><span id="p-tar" class="badge">–</span></div>
-        <div class="pr" style="font-size:11px;color:var(--muted)"><span>Nájem + chemie se platí při vrácení</span></div>
-        <div class="pr tot"><span>Kauce při převzetí</span><span>2 000 Kč (hotovost)</span></div>
-        <div class="pr" style="margin-top:8px">
-          <span class="pr-lbl">Kauce přijata?</span>
-          <div class="yn" style="max-width:200px">
-            <button class="yn-b" onclick="yn(this,'kauce-p','ano')">✓ ANO</button>
-            <button class="yn-b" onclick="yn(this,'kauce-p','ne')">✗ NE</button>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div><small>E-mail</small><a href="/cdn-cgi/l/email-protection#88e3fdeae9fbbda6e6e7ffe1ebe3e1c8efe5e9e1e4a6ebe7e5"><span class="__cf_email__" data-cfemail="741f01161507415a1a1b031d171f1d341319151d185a171b19">[email&#160;protected]</span></a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <div><small>Web</small><a href="https://www.tepovacejablunkov.cz">tepovacejablunkov.cz</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div><small>Adresa</small><span>Návsí 447, 739 92 Návsí</span></div>
+      </div>
+      <div style="margin-top:0.5rem;font-size:0.85rem;color:var(--muted);line-height:1.7;">
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+          <img src="jakub.png" alt="Jakub Nowicki – Tepovače Jablunkov" style="width:100px;height:100px;object-fit:cover;flex-shrink:0;">
+          <div>
+            <div style="font-size:1rem;font-weight:600;color:var(--text);">Jakub Nowicki</div>
+            <div style="font-size:0.75rem;color:var(--yellow);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px;">Majitel</div>
+            <div style="font-size:0.8rem;color:var(--muted);">IČO: 09089977 · Návsí 447, 739 92</div>
           </div>
         </div>
-        <input type="hidden" id="kauce-p" value="">
+      </div>
+      <div style="display:flex;gap:0.8rem;margin-top:0.5rem;flex-wrap:wrap;">
+        <a href="https://www.instagram.com/tepovace_jablunkov/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.85rem;">Instagram</a>
+        <a href="https://www.facebook.com/people/Tepova%C4%8De-Jablunkov/61565961033038/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.85rem;">Facebook</a>
+        <a href="https://wa.me/420792374388" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.5rem 1rem;font-size:0.85rem;border-color:rgba(37,211,102,0.4);color:#25D366;">💬 WhatsApp</a>
       </div>
     </div>
 
-    <div class="sec">
-      <div class="sec-title">Prohlášení nájemce</div>
-      <div class="prol">
-        <ol>
-          <li>Stroj přebírám čistý, funkční a bez viditelného poškození.</li>
-          <li>Byl/a jsem poučen/a o správné obsluze.</li>
-          <li>Zavazuji se stroj vrátit vyčištěný a vypláchnutý dle pokynů v návodu.</li>
-          <li>V opačném případě může být účtován poplatek za vyčištění.</li>
-          <li>Odpovídám za škody způsobené nešetrným zacházením. Běžné opotřebení se neřeší.</li>
-          <li>Beru na vědomí, že nelze garantovat 100% odstranění všech skvrn.</li>
-          <li>Souhlasím s <a href="/vop" target="_blank">VOP na tepovacejablunkov.cz/vop</a>.</li>
-          <li>Souhlasím se zpracováním osobních údajů pro účely této zápůjčky.</li>
-          <li>Při prodlení s vrácením se hradí nájemné za každých započatých 24 hodin dle ceníku.</li>
-        </ol>
+    <form class="poptavka-form" id="poptavkaForm">
+      <input type="hidden" name="_subject" value="Nová poptávka – Tepovače Jablunkov">
+      <input type="hidden" name="_language" value="cs">
+      <div class="form-row">
+        <div class="form-group"><label>Jméno *</label><input type="text" name="jmeno" placeholder="Vaše jméno" required></div>
+        <div class="form-group"><label>Telefon *</label><input type="tel" name="telefon" placeholder="+420 xxx xxx xxx" required></div>
       </div>
-      <label class="souhlas">
-        <input type="checkbox" id="souhlas">
-        <span>Souhlasím s výše uvedenými podmínkami a <a href="/vop" target="_blank">VOP</a>.</span>
-      </label>
-    </div>
-
-    <div class="sec">
-      <div class="sec-title">Poznámky</div>
-      <textarea id="pozn-p" placeholder="Viditelné poškození, zvláštní ujednání..."></textarea>
-    </div>
-
-    <div class="print-sigs">
-      <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Pronajímatel: Jakub Nowicki</div></div>
-      <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Nájemce: podpis</div></div>
-    </div>
-
-    <div class="acts">
-      <button class="btn-p" onclick="submitForm('p')">✓ Odeslat protokol</button>
-      <button class="btn-s" onclick="printTab('p')">Tisk / PDF</button>
-    </div>
-    <div id="ok-p" class="ok-msg">✓ Protokol odeslán. Kopie přijde na e-mail.</div>
-  </div>
-
-  <!-- ══════════════════════════════════════
-       TAB 2 – VRÁCENÍ
-  ══════════════════════════════════════ -->
-  <div id="tab-vraceni" class="t-panel">
-
-    <div class="notice"><strong>Vrácení stroje</strong> – vyplňte při předání zpět pronajímateli.</div>
-
-    <div class="sec">
-      <div class="sec-title">Nájemce</div>
-      <div class="fr">
-        <div class="fg">
-          <label class="lbl">Jméno a příjmení</label>
-          <input type="text" id="vr-jmeno" placeholder="Jana Nováková">
-        </div>
-        <div class="fg">
-          <label class="lbl">Datum vrácení</label>
-          <input type="datetime-local" id="vr-datum">
-        </div>
-      </div>
-    </div>
-
-    <div class="sec">
-      <div class="sec-title">Stav při vrácení</div>
-      <div class="fg">
-        <label class="lbl">Stroj v pořádku?</label>
-        <div class="yn">
-          <button class="yn-b" onclick="yn(this,'stav','ano')">✓ ANO</button>
-          <button class="yn-b" onclick="yn(this,'stav','ne')">✗ NE</button>
-        </div>
-        <input type="hidden" id="stav" value="">
-      </div>
-      <div class="fg">
-        <label class="lbl">Vyčištěn a vypláchnut?</label>
-        <div class="yn">
-          <button class="yn-b" onclick="yn(this,'vycist','ano')">✓ ANO</button>
-          <button class="yn-b" onclick="yn(this,'vycist','ne')">✗ NE</button>
-        </div>
-        <input type="hidden" id="vycist" value="">
-      </div>
-    </div>
-
-    <div class="sec">
-      <div class="sec-title">Vyúčtování</div>
-
-      <div class="fg">
-        <label class="lbl">Cena nájmu</label>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-          <select id="vr-najem-sel" onchange="selNajem()" style="flex:1;min-width:0">
-            <option value="">– vybrat –</option>
-            <option value="0">0 Kč (zdarma)</option>
-            <option value="100">100 Kč</option>
-            <option value="350">350 Kč (24 h)</option>
-            <option value="500">500 Kč (48 h)</option>
-            <option value="700">700 Kč (72 h)</option>
-            <option value="custom">Jiná částka…</option>
-          </select>
-          <input type="number" id="vr-najem" min="0" placeholder="Kč" oninput="calcReturn()" style="width:90px;display:none">
-        </div>
-      </div>
-
-      <div class="fg">
-        <label class="lbl">Celkový počet dávek chemie (1. v ceně)</label>
-        <select id="vr-chem-sel" onchange="calcReturn()">
-          <option value="0">0 dávek</option>
-          <option value="1" selected>1 dávka (v ceně)</option>
-          <option value="2">2 dávky</option><option value="3">3 dávky</option>
-          <option value="4">4 dávky</option><option value="5">5 dávek</option>
-          <option value="6">6 dávek</option><option value="7">7 dávek</option>
-          <option value="8">8 dávek</option><option value="9">9 dávek</option>
-          <option value="10">10 dávek</option>
-        </select>
-        <div style="font-size:11px;color:var(--muted);margin-top:3px">1. dávka v ceně · každá další 30 Kč</div>
-      </div>
-
-      <div class="fg">
-        <label class="lbl">Sleva</label>
-        <select id="vr-sleva" onchange="calcReturn()" style="max-width:180px">
-          <option value="0">Bez slevy</option>
-          <option value="5">5 %</option><option value="10">10 %</option>
-          <option value="15">15 %</option><option value="20">20 %</option>
-          <option value="25">25 %</option><option value="30">30 %</option>
-          <option value="35">35 %</option><option value="40">40 %</option>
-          <option value="45">45 %</option><option value="50">50 %</option>
+      <div class="form-group"><label>E-mail *</label><input type="email" name="email" placeholder="vas@email.cz" required></div>
+      <div class="form-group">
+        <label>Typ služby *</label>
+        <select name="sluzba" required>
+          <option value="">Vyberte...</option>
+          <optgroup label="── Čištění – domácnost ──">
+            <option>Sedací souprava rovná – od 700 Kč</option>
+            <option>Sedací souprava rohová „L" – od 1 000 Kč</option>
+            <option>Sedací souprava velká „U" – od 1 400 Kč</option>
+            <option>Křeslo / ušák – od 350 Kč</option>
+            <option>Matrace – od 600 Kč</option>
+            <option>Koberec – 90 Kč/m²</option>
+            <option>Židle – od 150 Kč</option>
+          </optgroup>
+          <optgroup label="── Čištění – auto ──">
+            <option>Sedačky (5 míst) – od 800 Kč</option>
+            <option>Komplet TEXTIL – od 1 200 Kč</option>
+          </optgroup>
+          <optgroup label="── Půjčovna Kärcher ──">
+            <option>Půjčovna 24 h – 350 Kč</option>
+            <option>Půjčovna 48 h – 500 Kč</option>
+            <option>Půjčovna 72 h – 700 Kč</option>
+          </optgroup>
+          <option value="Firemní zakázka">Firemní zakázka / větší objem</option>
+          <option value="Jiné">Jiné / nevím</option>
         </select>
       </div>
-
-      <div class="pbox">
-        <div class="pr"><span class="pr-lbl">Nájem</span><span id="vr-p-najem">–</span></div>
-        <div class="pr"><span class="pr-lbl">Chemie navíc</span><span id="vr-p-chem">0 Kč</span></div>
-        <div class="pr" id="vr-sleva-row" style="display:none"><span class="pr-lbl" id="vr-sleva-lbl">Sleva</span><span id="vr-p-sleva" style="color:var(--ok)">–</span></div>
-        <div class="pr tot"><span>Celkem k úhradě <span style="font-size:10px;font-weight:400;color:var(--muted)">bez DPH</span></span><span id="vr-p-tot">–</span></div>
+      <div class="form-group"><label>Zpráva</label><textarea name="zprava" placeholder="Popište co potřebujete (rozměry, stav, lokalita...)"></textarea></div>
+      <div class="form-group" style="flex-direction:row;align-items:flex-start;gap:0.75rem;">
+        <input type="checkbox" name="gdpr" id="gdpr" required style="width:18px;height:18px;margin-top:3px;flex-shrink:0;accent-color:var(--yellow);">
+        <label for="gdpr" style="font-size:0.8rem;text-transform:none;letter-spacing:0;color:var(--muted);line-height:1.5;font-weight:400;">Souhlasím se zpracováním osobních údajů za účelem vyřízení poptávky. Údaje nebudou poskytnuty třetím stranám. Souhlas lze kdykoli odvolat na <a href="/cdn-cgi/l/email-protection#a7ccd2c5c6d49289c9c8d0cec4cccee7c0cac6cecb89c4c8ca" style="color:var(--yellow);"><span class="__cf_email__" data-cfemail="98f3edfaf9ebadb6f6f7eff1fbf3f1d8fff5f9f1f4b6fbf7f5">[email&#160;protected]</span></a>. *</label>
       </div>
-
-      <div class="fg" style="margin-top:12px">
-        <label class="lbl">Přijatá částka od klienta (Kč)</label>
-        <input type="number" id="vr-prijato" min="0" placeholder="kolik jsem dostal" oninput="calcReturn()">
-      </div>
-      <div id="dysko-box" class="pbox" style="display:none;margin-top:6px">
-        <div class="pr"><span class="pr-lbl">K úhradě</span><span id="dy-celkem">–</span></div>
-        <div class="pr"><span class="pr-lbl">Přijato</span><span id="dy-prijato">–</span></div>
-        <div class="pr tot"><span>🎉 Dýško</span><span id="dy-dysko">–</span></div>
-      </div>
-
-      <div class="fg" style="margin-top:12px">
-        <label class="lbl">Kauce vrácena?</label>
-        <div class="yn">
-          <button class="yn-b" onclick="yn(this,'kauce','ano')">✓ ANO</button>
-          <button class="yn-b" onclick="yn(this,'kauce','ne')">✗ NE</button>
-        </div>
-        <input type="hidden" id="kauce" value="">
-      </div>
-    </div>
-
-    <div class="sec">
-      <div class="sec-title">Poznámky</div>
-      <textarea id="pozn-v" placeholder="Poškození, znečištění, jiné odchylky..."></textarea>
-    </div>
-
-    <div class="print-sigs">
-      <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Pronajímatel: Jakub Nowicki</div></div>
-      <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Nájemce: podpis při vrácení</div></div>
-    </div>
-
-    <div class="acts">
-      <button class="btn-p" onclick="submitForm('v')">✓ Odeslat protokol vrácení</button>
-      <button class="btn-s" onclick="printTab('v')">Tisk / PDF</button>
-    </div>
-    <div id="ok-v" class="ok-msg">✓ Protokol vrácení odeslán.</div>
+      <button type="submit" class="form-submit" id="formBtn">Odeslat poptávku →</button>
+      <p style="font-size:0.78rem;color:var(--muted);">* Povinné pole. Ozveme se do 24 hodin – nejčastěji mnohem dříve.</p>
+    </form>
   </div>
+</section>
 
-  <!-- ══════════════════════════════════════
-       TAB 3 – ČIŠTĚNÍ / ZAKÁZKA
-  ══════════════════════════════════════ -->
-  <div id="tab-cisteni" class="t-panel">
-
-    <div class="sec">
-      <div class="sec-title">Zákazník</div>
-      <div class="fg">
-        <label class="lbl">Jméno a příjmení</label>
-        <input type="text" id="c-jmeno" placeholder="Jana Nováková">
-      </div>
-      <div class="fr">
-        <div class="fg">
-          <label class="lbl">Telefon</label>
-          <input type="tel" id="c-tel" placeholder="+420 xxx xxx xxx">
-        </div>
-        <div class="fg">
-          <label class="lbl">E-mail</label>
-          <input type="email" id="c-email" placeholder="jana@email.cz">
-        </div>
-      </div>
-      <div class="fr">
-        <div class="fg">
-          <label class="lbl">Datum zakázky</label>
-          <input type="datetime-local" id="c-datum">
-        </div>
-        <div class="fg">
-          <label class="lbl">Adresa čištění</label>
-          <input type="text" id="c-adresa" placeholder="Ulice 1, Město">
-        </div>
-      </div>
-    </div>
-
-    <div class="sec">
-      <div class="sec-title">Položky zakázky</div>
-      <table class="clean-table" id="clean-tbl">
-        <thead>
-          <tr>
-            <th style="width:38%">Položka</th>
-            <th style="width:15%">Množství / m²</th>
-            <th style="width:18%">Cena / j.</th>
-            <th style="width:18%">Celkem</th>
-            <th class="td-del"></th>
-          </tr>
-        </thead>
-        <tbody id="clean-rows"></tbody>
-      </table>
-      <button class="add-row-btn" onclick="addRow()">+ Přidat položku</button>
-    </div>
-
-    <div class="sec">
-      <div class="sec-title">Vyúčtování</div>
-
-      <div class="fg">
-        <label class="lbl">Sleva</label>
-        <select id="c-sleva" onchange="calcClean()" style="max-width:180px">
-          <option value="0">Bez slevy</option>
-          <option value="5">5 %</option><option value="10">10 %</option>
-          <option value="15">15 %</option><option value="20">20 %</option>
-          <option value="25">25 %</option><option value="30">30 %</option>
-          <option value="35">35 %</option><option value="40">40 %</option>
-          <option value="45">45 %</option><option value="50">50 %</option>
-        </select>
-      </div>
-
-      <div class="pbox">
-        <div class="pr"><span class="pr-lbl">Mezisoučet</span><span id="c-subtot">0 Kč</span></div>
-        <div class="pr" id="c-sleva-row" style="display:none"><span class="pr-lbl" id="c-sleva-lbl">Sleva</span><span id="c-p-sleva" style="color:var(--ok)">–</span></div>
-        <div class="pr tot"><span>Celkem k úhradě <span style="font-size:10px;font-weight:400;color:var(--muted)">bez DPH</span></span><span id="c-celkem">0 Kč</span></div>
-      </div>
-
-      <div class="fg" style="margin-top:12px">
-        <label class="lbl">Přijatá částka od klienta (Kč)</label>
-        <input type="number" id="c-prijato" min="0" placeholder="kolik jsem dostal" oninput="calcClean()">
-      </div>
-      <div id="dysko-box-c" class="pbox" style="display:none;margin-top:6px">
-        <div class="pr"><span class="pr-lbl">K úhradě</span><span id="dc-celkem">–</span></div>
-        <div class="pr"><span class="pr-lbl">Přijato</span><span id="dc-prijato">–</span></div>
-        <div class="pr tot"><span>🎉 Dýško</span><span id="dc-dysko">–</span></div>
-      </div>
-    </div>
-
-    <div class="sec">
-      <div class="sec-title">Faktura</div>
-      <label class="chk-item" style="margin-bottom:10px">
-        <input type="checkbox" id="c-faktura" onchange="toggleFaktura()">
-        <span>Zákazník požaduje fakturu</span>
-      </label>
-      <div id="faktura-box" style="display:none">
-        <div class="notice" style="margin-bottom:10px"><strong>Upozornění:</strong> Nejsem plátce DPH. Ceny jsou uváděny bez DPH.</div>
-        <div class="fr">
-          <div class="fg">
-            <label class="lbl">Jméno / firma</label>
-            <input type="text" id="f-firma" placeholder="Jan Novák / Firma s.r.o.">
-          </div>
-          <div class="fg">
-            <label class="lbl">IČO</label>
-            <input type="text" id="f-ico" placeholder="12345678">
-          </div>
-        </div>
-        <div class="fg">
-          <label class="lbl">Fakturační adresa</label>
-          <input type="text" id="f-adresa" placeholder="Ulice 1, PSČ Město">
-        </div>
-        <div class="fg">
-          <label class="lbl">E-mail pro zaslání faktury</label>
-          <input type="email" id="f-email" placeholder="faktura@email.cz">
-        </div>
-      </div>
-    </div>
-
-    <div class="sec">
-      <div class="sec-title">Poznámky</div>
-      <textarea id="c-pozn" placeholder="Stav čalounění, speciální skvrny, poznámky k zakázce..."></textarea>
-    </div>
-
-    <div class="print-sigs">
-      <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Provozovatel: Jakub Nowicki</div></div>
-      <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Zákazník: podpis</div></div>
-    </div>
-
-    <div class="acts">
-      <button class="btn-p" onclick="submitForm('c')">✓ Odeslat zakázku</button>
-      <button class="btn-s" onclick="printTab('c')">Tisk / PDF</button>
-    </div>
-    <div id="ok-c" class="ok-msg">✓ Zakázka odeslána.</div>
+<!-- FOOTER -->
+<footer>
+  <div>© 2025 Tepovače Jablunkov · Jakub Nowicki</div>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="/vop/index.html">VOP</a>
+    <a href="/protokol">Interní systém</a>
+    <a href="tel:+420792374388">+420 792 374 388</a>
   </div>
+</footer>
 
-</div><!-- /wrap -->
-
-<script>
-// ═══ KONFIGURACE ═══
-const PIN   = '2402';
-const FS    = 'https://api.web3forms.com/submit';
-const W3KEY = '318459f3-ebd2-4195-b959-23a85fc42729';
-
-// Ceník čištění (auto-fill)
-const CENIK = {
-  'Sedačka přímá':       700,
-  'Sedačka rohová L':   1000,
-  'Sedačka rohová U':   1400,
-  'Fotel / ušák':        300,
-  'Křeslo':              150,
-  'Matrace jednolůžko':  350,
-  'Matrace dvoulůžko':   500,
-  'Koberec (m²)':         90,
-  'Auto – sedadla (5 míst)': 700,
-  'Auto – komplet textil':  1100,
-  'Jiné':                  0,
-};
-
-// ── PIN ──
-function autoPin(){
-  if(document.getElementById('pin-input').value.length===PIN.length) checkPin();
-}
-function checkPin(){
-  if(document.getElementById('pin-input').value===PIN){ showApp(); }
-  else{
-    const inp=document.getElementById('pin-input');
-    inp.classList.add('err');
-    document.getElementById('pin-err').textContent='Nesprávný PIN.';
-    setTimeout(()=>inp.classList.remove('err'),400);
-    inp.value='';
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
   }
-}
-function showApp(){
-  document.getElementById('pin-overlay').classList.add('hidden');
-  initDates();
-  addRow(); addRow(); // 2 řádky předvyplněny
-}
 
-// ── TABS ──
-function tab(name,btn){
-  document.querySelectorAll('.t-panel').forEach(p=>p.classList.remove('on'));
-  document.querySelectorAll('.t-btn').forEach(b=>b.classList.remove('on'));
-  document.getElementById('tab-'+name).classList.add('on');
-  btn.classList.add('on');
-}
-
-// ── PRINT – tisk jen aktivní záložky ──
-function printTab(t){
-  document.body.className='print-'+t;
-  window.print();
-  document.body.className='';
-}
-
-// ── CENÍK PŮJČOVNY ──
-function tarif(h){
-  const b=Math.ceil(h/24);
-  if(b<=0)return null;
-  if(b===1)return{lbl:'24 h – 350 Kč'};
-  if(b===2)return{lbl:'48 h – 500 Kč'};
-  if(b===3)return{lbl:'72 h – 700 Kč'};
-  return{lbl:b+'× 24 h'};
-}
-function calcPrice(){
-  const od=document.getElementById('datum-od').value;
-  const doo=document.getElementById('datum-do').value;
-  if(!od||!doo)return;
-  const ms=new Date(doo)-new Date(od);
-  if(ms<=0){document.getElementById('p-dur').textContent='⚠ Neplatný termín';return;}
-  const h=ms/36e5, t=tarif(h);
-  if(!t)return;
-  const hh=Math.floor(h),mm=Math.round((h-hh)*60);
-  document.getElementById('p-dur').textContent=hh+' h'+(mm?' '+mm+' min':'');
-  document.getElementById('p-tar').textContent=t.lbl;
-}
-
-// ── VYÚČTOVÁNÍ VRÁCENÍ ──
-function selNajem(){
-  const sel=document.getElementById('vr-najem-sel').value;
-  const inp=document.getElementById('vr-najem');
-  if(sel==='custom'){inp.style.display='block';inp.focus();}
-  else{inp.style.display='none';inp.value=sel;}
-  calcReturn();
-}
-function calcReturn(){
-  const sel=document.getElementById('vr-najem-sel').value;
-  const najem=sel==='custom'?(parseInt(document.getElementById('vr-najem').value)||0):(parseInt(sel)||0);
-  const chemC=parseInt(document.getElementById('vr-chem-sel').value)||0;
-  const chemExtra=Math.max(0,chemC-1), chemKc=chemExtra*30;
-  const slevaP=parseInt(document.getElementById('vr-sleva').value)||0;
-  const zaklad=najem+chemKc;
-  const slevaKc=Math.round(zaklad*slevaP/100);
-  const celkem=zaklad-slevaKc;
-
-  document.getElementById('vr-p-najem').textContent=najem>0?najem+' Kč':'–';
-  document.getElementById('vr-p-chem').textContent=chemKc>0?chemKc+' Kč ('+chemExtra+'× 30 Kč)':'0 Kč';
-
-  const sr=document.getElementById('vr-sleva-row');
-  if(slevaP>0&&zaklad>0){
-    sr.style.display='';
-    document.getElementById('vr-sleva-lbl').textContent='Sleva '+slevaP+' %';
-    document.getElementById('vr-p-sleva').textContent='−'+slevaKc+' Kč';
-  }else sr.style.display='none';
-
-  document.getElementById('vr-p-tot').textContent=zaklad>0?celkem+' Kč':'–';
-
-  const prijato=parseInt(document.getElementById('vr-prijato').value);
-  const db=document.getElementById('dysko-box');
-  if(!isNaN(prijato)&&prijato>0&&zaklad>0){
-    const dy=prijato-celkem;
-    db.style.display='';
-    document.getElementById('dy-celkem').textContent=celkem+' Kč';
-    document.getElementById('dy-prijato').textContent=prijato+' Kč';
-    document.getElementById('dy-dysko').textContent=(dy>=0?'+':'')+dy+' Kč';
-    document.getElementById('dy-dysko').style.color=dy>=0?'var(--yellow)':'var(--err)';
-  }else db.style.display='none';
-}
-
-// ── ČIŠTĚNÍ – ŘÁDKY ──
-let rowId=0;
-function addRow(){
-  rowId++;
-  const id=rowId;
-  const opts=Object.keys(CENIK).map(k=>`<option value="${k}">${k}</option>`).join('');
-  const tr=document.createElement('tr');
-  tr.id='row-'+id;
-  tr.innerHTML=`
-    <td><select onchange="rowType(${id})" id="rt-${id}" style="width:100%"><option value="">– vybrat –</option>${opts}</select></td>
-    <td><input type="number" id="rq-${id}" min="0" step="0.1" value="1" oninput="calcRow(${id})" style="width:100%"></td>
-    <td><input type="number" id="rp-${id}" min="0" value="0" oninput="calcRow(${id})" style="width:100%"></td>
-    <td><input type="number" id="rc-${id}" readonly style="width:100%;background:#0a0a0a;border-color:#222;color:var(--yellow)"></td>
-    <td class="td-del"><button class="del-row" onclick="delRow(${id})" title="Smazat">✕</button></td>`;
-  document.getElementById('clean-rows').appendChild(tr);
-}
-function rowType(id){
-  const typ=document.getElementById('rt-'+id).value;
-  document.getElementById('rp-'+id).value=CENIK[typ]||0;
-  calcRow(id);
-}
-function calcRow(id){
-  const q=parseFloat(document.getElementById('rq-'+id).value)||0;
-  const p=parseFloat(document.getElementById('rp-'+id).value)||0;
-  document.getElementById('rc-'+id).value=Math.round(q*p);
-  calcClean();
-}
-function delRow(id){
-  document.getElementById('row-'+id).remove();
-  calcClean();
-}
-function calcClean(){
-  let sub=0;
-  document.querySelectorAll('[id^="rc-"]').forEach(el=>{sub+=parseFloat(el.value)||0;});
-  const slevaP=parseInt(document.getElementById('c-sleva').value)||0;
-  const slevaKc=Math.round(sub*slevaP/100);
-  const celkem=sub-slevaKc;
-
-  document.getElementById('c-subtot').textContent=sub+' Kč';
-  const sr=document.getElementById('c-sleva-row');
-  if(slevaP>0&&sub>0){
-    sr.style.display='';
-    document.getElementById('c-sleva-lbl').textContent='Sleva '+slevaP+' %';
-    document.getElementById('c-p-sleva').textContent='−'+slevaKc+' Kč';
-  }else sr.style.display='none';
-  document.getElementById('c-celkem').textContent=celkem+' Kč';
-
-  const prijato=parseInt(document.getElementById('c-prijato').value);
-  const db=document.getElementById('dysko-box-c');
-  if(!isNaN(prijato)&&prijato>0&&sub>0){
-    const dy=prijato-celkem;
-    db.style.display='';
-    document.getElementById('dc-celkem').textContent=celkem+' Kč';
-    document.getElementById('dc-prijato').textContent=prijato+' Kč';
-    document.getElementById('dc-dysko').textContent=(dy>=0?'+':'')+dy+' Kč';
-    document.getElementById('dc-dysko').style.color=dy>=0?'var(--yellow)':'var(--err)';
-  }else db.style.display='none';
-}
-
-// ── ANO / NE ──
-function yn(btn,id,val){
-  btn.parentElement.querySelectorAll('.yn-b').forEach(b=>b.classList.remove('y','n'));
-  btn.classList.add(val==='ano'?'y':'n');
-  document.getElementById(id).value=val;
-}
-
-// ── ODESLÁNÍ ──
-async function submitForm(typ){
-  let data;
-  if(typ==='p'){
-    if(!document.getElementById('souhlas').checked){alert('Potvrďte souhlas s podmínkami.');return;}
-    const jm=document.getElementById('jmeno').value.trim();
-    const tl=document.getElementById('tel').value.trim();
-    if(!jm||!tl){alert('Vyplňte jméno a telefon nájemce.');return;}
-    const em=document.getElementById('email').value.trim();
-    data={
-      access_key:W3KEY, subject:'Protokol PŘEVZETÍ – '+jm, from_name:'Tepovače Jablunkov',
-      replyto:em||'kubas5.nowicki@gmail.com', typ:'PŘEVZETÍ',
-      najemce:jm, telefon:tl, email:em||'–', adresa:document.getElementById('adresa').value||'–',
-      od:document.getElementById('datum-od').value, do:document.getElementById('datum-do').value,
-      tarif:document.getElementById('p-tar').textContent,
-      kauce_prijata:document.getElementById('kauce-p').value||'–',
-      prislusenstvi:[
-        document.getElementById('acc1').checked?'✓ Hadice':'✗ Hadice',
-        document.getElementById('acc2').checked?'✓ Podlahová hubice':'✗ Podlahová hubice',
-        document.getElementById('acc3').checked?'✓ Hubice čalounění':'✗ Hubice čalounění',
-      ].join(' | '),
-      souhlas:'ANO – odsouhlaseno odesláním formuláře',
-      poznamky:document.getElementById('pozn-p').value||'–',
-    };
-  } else if(typ==='v'){
-    const sel=document.getElementById('vr-najem-sel').value;
-    data={
-      access_key:W3KEY, subject:'Protokol VRÁCENÍ – '+(document.getElementById('vr-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
-      typ:'VRÁCENÍ', najemce:document.getElementById('vr-jmeno').value||'–',
-      datum_vraceni:document.getElementById('vr-datum').value,
-      stav_stroje:document.getElementById('stav').value||'–',
-      vycisten:document.getElementById('vycist').value||'–',
-      najem:document.getElementById('vr-p-najem').textContent,
-      chemie:document.getElementById('vr-chem-sel').value+' dávek → '+document.getElementById('vr-p-chem').textContent,
-      sleva:document.getElementById('vr-sleva').value+' %',
-      celkem:document.getElementById('vr-p-tot').textContent,
-      prijato:(document.getElementById('vr-prijato').value||'–')+' Kč',
-      dysko:document.getElementById('dy-dysko').textContent||'–',
-      kauce_vracena:document.getElementById('kauce').value||'–',
-      poznamky:document.getElementById('pozn-v').value||'–',
-    };
-  } else {
-    // čištění
-    const rows=[];
-    document.querySelectorAll('#clean-rows tr').forEach(tr=>{
-      const id=tr.id.replace('row-','');
-      const typ2=document.getElementById('rt-'+id)?.value||'';
-      const q=document.getElementById('rq-'+id)?.value||'';
-      const p=document.getElementById('rp-'+id)?.value||'';
-      const c=document.getElementById('rc-'+id)?.value||'';
-      if(typ2) rows.push(typ2+' × '+q+' = '+c+' Kč ('+p+' Kč/j.)');
+  // Zavřít menu po kliknutí na odkaz (mobil)
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
     });
-    data={
-      access_key:W3KEY, subject:'Zakázka ČIŠTĚNÍ – '+(document.getElementById('c-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
-      typ:'ČIŠTĚNÍ', zakaznik:document.getElementById('c-jmeno').value||'–',
-      telefon:document.getElementById('c-tel').value||'–',
-      email:document.getElementById('c-email').value||'–',
-      datum:document.getElementById('c-datum').value,
-      adresa:document.getElementById('c-adresa').value||'–',
-      polozky:rows.join(' | '),
-      sleva:document.getElementById('c-sleva').value+' %',
-      celkem:document.getElementById('c-celkem').textContent,
-      prijato:(document.getElementById('c-prijato').value||'–')+' Kč',
-      dysko:document.getElementById('dc-dysko').textContent||'–',
-      faktura: document.getElementById('c-faktura').checked ? 'ANO' : 'NE',
-      faktura_firma: document.getElementById('c-faktura').checked ? (document.getElementById('f-firma').value||'–') : '–',
-      faktura_ico: document.getElementById('c-faktura').checked ? (document.getElementById('f-ico').value||'–') : '–',
-      faktura_adresa: document.getElementById('c-faktura').checked ? (document.getElementById('f-adresa').value||'–') : '–',
-      faktura_email: document.getElementById('c-faktura').checked ? (document.getElementById('f-email').value||'–') : '–',
-      poznamky:document.getElementById('c-pozn').value||'–',
-    };
+  });
+
+  // Lightbox
+  const images = ['foto1.jpg','foto2.jpg','foto3.jpg','foto4.jpg'];
+  let current = 0;
+
+  function openLightbox(i) {
+    current = i;
+    document.getElementById('lightbox-img').src = images[i];
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function changeLightbox(dir) {
+    current = (current + dir + images.length) % images.length;
+    document.getElementById('lightbox-img').src = images[current];
+  }
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') changeLightbox(1);
+    if (e.key === 'ArrowLeft') changeLightbox(-1);
+  });
+
+
+  // Counter animace při scrollu
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const duration = 2800;
+    const steps = 60;
+    const stepTime = duration / steps;
+    let current = 0;
+    const increment = target / steps;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      // Formátování s mezerou pro tisíce
+      const formatted = Math.floor(current) >= 1000
+        ? Math.floor(current).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+        : Math.floor(current);
+      el.textContent = formatted + suffix;
+    }, stepTime);
   }
 
-  try{
-    const r=await fetch(FS,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
-    if(r.ok){
-      const okId=typ==='p'?'ok-p':typ==='v'?'ok-v':'ok-c';
-      document.getElementById(okId).style.display='block';
-      window.scrollTo({top:9999,behavior:'smooth'});
-    }else alert('Chyba při odesílání. Zkus to znovu nebo vytiskni.');
-  }catch{alert('Chyba připojení. Vytiskni protokol nebo zavolej: +420 792 374 388');}
-}
+  // Spustit při prvním zobrazení elementu
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = '1';
+        animateCounter(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
 
-// ── FAKTURA ──
-function toggleFaktura(){
-  document.getElementById('faktura-box').style.display=
-    document.getElementById('c-faktura').checked?'block':'none';
-}
+  document.querySelectorAll('.stat-num[data-target]').forEach(el => {
+    counterObserver.observe(el);
+  });
 
+  // Formulář – fetch odeslání s přesměrováním na thank-you
+  const form = document.getElementById('poptavkaForm');
+  if(form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('formBtn');
+      btn.textContent = 'Odesílám...';
+      btn.disabled = true;
+      try {
+        const data = new FormData(form);
+        const resp = await fetch('https://formspree.io/f/xgopepqn', {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if(resp.ok) {
+          window.location.href = 'https://www.tepovacejablunkov.cz/thank-you.html';
+        } else {
+          btn.textContent = 'Chyba – zkuste znovu';
+          btn.disabled = false;
+        }
+      } catch(err) {
+        btn.textContent = 'Chyba – zkuste znovu';
+        btn.disabled = false;
+      }
+    });
+  }
 
-function initDates(){
-  const now=new Date(), p=n=>String(n).padStart(2,'0');
-  const fmt=d=>`${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
-  document.getElementById('datum-od').value=fmt(now);
-  document.getElementById('datum-do').value=fmt(new Date(now.getTime()+864e5));
-  document.getElementById('vr-datum').value=fmt(now);
-  document.getElementById('c-datum').value=fmt(now);
-  calcPrice();
-}
+  // Ripple efekt při kliknutí (myš i dotyk)
+  function spawnRipple(x, y) {
+    const ripple = document.createElement('div');
+    ripple.className = 'ripple';
+    const size = 40;
+    ripple.style.width = size + 'px';
+    ripple.style.height = size + 'px';
+    ripple.style.left = (x - size / 2) + 'px';
+    ripple.style.top = (y - size / 2) + 'px';
+    document.body.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 500);
+  }
+  document.addEventListener('click', e => spawnRipple(e.clientX, e.clientY));
+  document.addEventListener('touchstart', e => {
+    const t = e.touches[0];
+    spawnRipple(t.clientX, t.clientY);
+  }, { passive: true });
+
 </script>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/420792374388" target="_blank" rel="noopener noreferrer" style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;background:#25D366;color:#fff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.3);text-decoration:none;font-size:26px;transition:transform .2s,box-shadow .2s;" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 20px rgba(0,0,0,0.4)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.3)'">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 </body>
 </html>
