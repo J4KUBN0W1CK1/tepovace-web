@@ -899,39 +899,42 @@ async function submitForm(typ){
       const id=tr.id.replace('row-','');
       const typ2=document.getElementById('rt-'+id)?.value||'';
       const q=document.getElementById('rq-'+id)?.value||'';
-      const p=document.getElementById('rp-'+id)?.value||'';
-      const c=document.getElementById('rc-'+id)?.value||'';
-      if(typ2) rows.push(typ2+' × '+q+' = '+c+' Kč ('+p+' Kč/j.)');
+      const rc=document.getElementById('rc-'+id)?.value||'';
+      if(typ2) rows.push(typ2+' x'+q+' = '+rc+' Kc');
     });
+    const cFak=document.getElementById('c-faktura').checked;
     data={
-      access_key:W3KEY, subject:'Zakázka ČIŠTĚNÍ – '+(document.getElementById('c-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
-      typ:'ČIŠTĚNÍ', zakaznik:document.getElementById('c-jmeno').value||'–',
+      access_key:W3KEY,
+      subject:'Zakázka čištění – '+(document.getElementById('c-jmeno').value||'?'),
+      from_name:'Tepovace Jablunkov',
+      zakaznik:document.getElementById('c-jmeno').value||'–',
       telefon:document.getElementById('c-tel').value||'–',
-      email:document.getElementById('c-email').value||'–',
+      email_klienta:document.getElementById('c-email').value||'–',
       datum:document.getElementById('c-datum').value,
       adresa:document.getElementById('c-adresa').value||'–',
-      polozky:rows.join(' | '),
-      sleva:document.getElementById('c-sleva').value+' %',
+      polozky:rows.join('; ').substring(0,400),
+      sleva:document.getElementById('c-sleva').value+'%',
       celkem:document.getElementById('c-celkem').textContent,
-      prijato:(document.getElementById('c-prijato').value||'–')+' Kč',
-      dysko:document.getElementById('dc-dysko').textContent||'–',
-      faktura: document.getElementById('c-faktura').checked ? 'ANO' : 'NE',
-      faktura_firma: document.getElementById('c-faktura').checked ? (document.getElementById('f-firma').value||'–') : '–',
-      faktura_ico: document.getElementById('c-faktura').checked ? (document.getElementById('f-ico').value||'–') : '–',
-      faktura_adresa: document.getElementById('c-faktura').checked ? (document.getElementById('f-adresa').value||'–') : '–',
-      faktura_email: document.getElementById('c-faktura').checked ? (document.getElementById('f-email').value||'–') : '–',
-      poznamky:document.getElementById('c-pozn').value||'–',
+      prijato:(document.getElementById('c-prijato').value||'–')+' Kc',
+      rozdil:document.getElementById('dc-dysko').textContent||'–',
+      faktura:cFak?'ANO':'NE',
+      faktura_udaje:cFak?(document.getElementById('f-firma').value+' | '+document.getElementById('f-ico').value+' | '+document.getElementById('f-adresa').value+' | '+document.getElementById('f-email').value):'–',
+      poznamky:(document.getElementById('c-pozn').value||'–').substring(0,400),
     };
   }
 
   try{
     const r=await fetch(FS,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
-    if(r.ok){
+    const json=await r.json().catch(()=>({}));
+    if(r.ok && json.success!==false){
       const okId=typ==='p'?'ok-p':typ==='v'?'ok-v':'ok-c';
       document.getElementById(okId).style.display='block';
       window.scrollTo({top:9999,behavior:'smooth'});
-    }else alert('Chyba při odesílání. Zkus to znovu nebo vytiskni.');
-  }catch{alert('Chyba připojení. Vytiskni protokol nebo zavolej: +420 792 374 388');}
+    }else{
+      console.error('W3F error:',r.status,json);
+      alert('Chyba při odesílání ('+r.status+'). Zkus to znovu nebo vytiskni.');
+    }
+  }catch(e){console.error(e);alert('Chyba připojení. Vytiskni protokol nebo zavolej: +420 792 374 388');}
 }
 
 // ── FAKTURA ──
