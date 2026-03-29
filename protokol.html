@@ -8,12 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:#111}
 :root{
   --bg:#111;--card:#1c1c1c;--border:#2e2e2e;
   --yellow:#f5c400;--yd:#c9a000;--white:#f0f0f0;
   --muted:#777;--ok:#4caf50;--err:#e05050;--r:8px;
 }
-body{background:var(--bg);color:var(--white);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
+body{background:var(--bg);color:var(--white);font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh}
 
 /* PIN */
 #pin-overlay{position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px}
@@ -31,13 +32,13 @@ body{background:var(--bg);color:var(--white);font-family:'IBM Plex Sans',sans-se
 .pin-btn:hover{background:var(--yd)}
 
 /* HEADER */
-.hdr{background:#000;border-bottom:3px solid var(--yellow);padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hdr{background:#000;border-bottom:3px solid var(--yellow);padding:16px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .hdr-logo{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--yellow);letter-spacing:1px;line-height:1}
 .hdr-sub{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
 .hdr-sep{width:1px;height:32px;background:#333}
 .hdr-title{font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--white);letter-spacing:1px}
 
-.wrap{max-width:700px;margin:0 auto;padding:16px 12px 50px}
+.wrap{max-width:700px;margin:0 auto;padding:24px 16px 60px;background:#111}
 
 /* TABS */
 .tabs{display:flex;gap:2px;border-bottom:2px solid var(--border);margin-bottom:16px}
@@ -49,7 +50,7 @@ body{background:var(--bg);color:var(--white);font-family:'IBM Plex Sans',sans-se
 
 /* SECTIONS */
 .sec{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px;margin-bottom:10px}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:var(--yellow);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;color:var(--yellow);margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
 
 /* INFO GRID */
@@ -135,14 +136,15 @@ textarea{resize:vertical;min-height:64px}
   .fr3{grid-template-columns:1fr}
   .ig{grid-template-columns:1fr}
   .acts{flex-direction:column}
-  .wrap{padding:10px 8px 40px}
-  .hdr{padding:10px 12px;gap:8px}
-  .hdr-logo{font-size:18px}
-  .hdr-title{font-size:13px}
+  .wrap{padding:24px 14px 60px;background:#111}
+  .hdr{padding:16px 14px 14px;gap:6px;flex-wrap:wrap}
+  .hdr-logo{font-size:21px}
+  .hdr-title{font-size:13px;order:3;width:100%;padding-top:4px;border-top:1px solid #222}
   .hdr-sep{display:none}
-  .tabs{flex-wrap:wrap;gap:3px;padding-bottom:2px}
-  .t-btn{font-size:10px;padding:7px 8px;flex:1;text-align:center;white-space:normal;line-height:1.3}
-  .sec{padding:10px}
+  .hdr a[href="/"]{ margin-left:auto}
+  .tabs{flex-wrap:wrap;gap:4px;padding-bottom:4px;margin-bottom:24px;margin-top:8px}
+  .t-btn{font-size:11px;padding:13px 10px;flex:1;text-align:center;white-space:normal;line-height:1.4}
+  .sec{padding:20px 16px;margin-bottom:16px}
   .sec-title{font-size:14px}
   input[type=text],input[type=tel],input[type=email],
   input[type=datetime-local],input[type=number],textarea,select{
@@ -202,7 +204,7 @@ textarea{resize:vertical;min-height:64px}
   .il-lbl,label.lbl{color:#666!important;font-size:8.5pt!important}
   .il-val{font-size:9.5pt!important}
   .ig{gap:5px!important}
-  .fg{margin-bottom:7px!important}
+  .fg{margin-bottom:14px!important}
   .fr,.fr3{gap:7px!important}
   input,textarea,select{background:#fff!important;border:1px solid #ccc!important;color:#111!important;font-size:9pt!important;padding:4px 7px!important}
   textarea{min-height:32px!important}
@@ -503,7 +505,7 @@ textarea{resize:vertical;min-height:64px}
       <div id="dysko-box" class="pbox" style="display:none;margin-top:6px">
         <div class="pr"><span class="pr-lbl">K úhradě</span><span id="dy-celkem">–</span></div>
         <div class="pr"><span class="pr-lbl">Přijato</span><span id="dy-prijato">–</span></div>
-        <div class="pr tot"><span>🎉 Dýško</span><span id="dy-dysko">–</span></div>
+        <div class="pr tot"><span>Rozdíl</span><span id="dy-dysko">–</span></div>
       </div>
 
       <div class="fg" style="margin-top:12px">
@@ -611,7 +613,7 @@ textarea{resize:vertical;min-height:64px}
       <div id="dysko-box-c" class="pbox" style="display:none;margin-top:6px">
         <div class="pr"><span class="pr-lbl">K úhradě</span><span id="dc-celkem">–</span></div>
         <div class="pr"><span class="pr-lbl">Přijato</span><span id="dc-prijato">–</span></div>
-        <div class="pr tot"><span>🎉 Dýško</span><span id="dc-dysko">–</span></div>
+        <div class="pr tot"><span>Rozdíl</span><span id="dc-dysko">–</span></div>
       </div>
     </div>
 
@@ -859,7 +861,7 @@ async function submitForm(typ){
     if(!jm||!tl){alert('Vyplňte jméno a telefon nájemce.');return;}
     const em=document.getElementById('email').value.trim();
     data={
-      access_key:W3KEY, subject:'Protokol PŘEVZETÍ – '+jm, from_name:'Tepovače Jablunkov',
+      access_key:W3KEY, redirect:'https://tepovacejablunkov.cz/protokol', subject:'Protokol PŘEVZETÍ – '+jm, from_name:'Tepovače Jablunkov',
       replyto:em||'kubas5.nowicki@gmail.com', typ:'PŘEVZETÍ',
       najemce:jm, telefon:tl, email:em||'–', adresa:document.getElementById('adresa').value||'–',
       od:document.getElementById('datum-od').value, do:document.getElementById('datum-do').value,
@@ -876,7 +878,7 @@ async function submitForm(typ){
   } else if(typ==='v'){
     const sel=document.getElementById('vr-najem-sel').value;
     data={
-      access_key:W3KEY, subject:'Protokol VRÁCENÍ – '+(document.getElementById('vr-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
+      access_key:W3KEY, redirect:'https://tepovacejablunkov.cz/protokol', subject:'Protokol VRÁCENÍ – '+(document.getElementById('vr-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
       typ:'VRÁCENÍ', najemce:document.getElementById('vr-jmeno').value||'–',
       datum_vraceni:document.getElementById('vr-datum').value,
       stav_stroje:document.getElementById('stav').value||'–',
@@ -902,7 +904,7 @@ async function submitForm(typ){
       if(typ2) rows.push(typ2+' × '+q+' = '+c+' Kč ('+p+' Kč/j.)');
     });
     data={
-      access_key:W3KEY, subject:'Zakázka ČIŠTĚNÍ – '+(document.getElementById('c-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
+      access_key:W3KEY, redirect:'https://tepovacejablunkov.cz/protokol', subject:'Zakázka ČIŠTĚNÍ – '+(document.getElementById('c-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
       typ:'ČIŠTĚNÍ', zakaznik:document.getElementById('c-jmeno').value||'–',
       telefon:document.getElementById('c-tel').value||'–',
       email:document.getElementById('c-email').value||'–',
