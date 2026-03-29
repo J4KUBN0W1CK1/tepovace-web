@@ -861,7 +861,7 @@ async function submitForm(typ){
     if(!jm||!tl){alert('Vyplňte jméno a telefon nájemce.');return;}
     const em=document.getElementById('email').value.trim();
     data={
-      access_key:W3KEY, redirect:'https://tepovacejablunkov.cz/protokol', subject:'Protokol PŘEVZETÍ – '+jm, from_name:'Tepovače Jablunkov',
+      access_key:W3KEY, subject:'Protokol PŘEVZETÍ – '+jm, from_name:'Tepovače Jablunkov',
       replyto:em||'kubas5.nowicki@gmail.com', typ:'PŘEVZETÍ',
       najemce:jm, telefon:tl, email:em||'–', adresa:document.getElementById('adresa').value||'–',
       od:document.getElementById('datum-od').value, do:document.getElementById('datum-do').value,
@@ -878,7 +878,7 @@ async function submitForm(typ){
   } else if(typ==='v'){
     const sel=document.getElementById('vr-najem-sel').value;
     data={
-      access_key:W3KEY, redirect:'https://tepovacejablunkov.cz/protokol', subject:'Protokol VRÁCENÍ – '+(document.getElementById('vr-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
+      access_key:W3KEY, subject:'Protokol VRÁCENÍ – '+(document.getElementById('vr-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
       typ:'VRÁCENÍ', najemce:document.getElementById('vr-jmeno').value||'–',
       datum_vraceni:document.getElementById('vr-datum').value,
       stav_stroje:document.getElementById('stav').value||'–',
@@ -904,7 +904,7 @@ async function submitForm(typ){
       if(typ2) rows.push(typ2+' × '+q+' = '+c+' Kč ('+p+' Kč/j.)');
     });
     data={
-      access_key:W3KEY, redirect:'https://tepovacejablunkov.cz/protokol', subject:'Zakázka ČIŠTĚNÍ – '+(document.getElementById('c-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
+      access_key:W3KEY, subject:'Zakázka ČIŠTĚNÍ – '+(document.getElementById('c-jmeno').value||'?'), from_name:'Tepovače Jablunkov',
       typ:'ČIŠTĚNÍ', zakaznik:document.getElementById('c-jmeno').value||'–',
       telefon:document.getElementById('c-tel').value||'–',
       email:document.getElementById('c-email').value||'–',
