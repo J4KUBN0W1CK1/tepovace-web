@@ -386,6 +386,16 @@ textarea{resize:vertical;min-height:64px}
         <input type="checkbox" id="souhlas">
         <span>Souhlasím s výše uvedenými podmínkami a <a href="/vop" target="_blank">VOP</a>.</span>
       </label>
+      <div class="fg" style="margin-top:14px">
+        <label class="lbl">Podpis nájemce *</label>
+        <div style="border:1px solid var(--border);border-radius:6px;overflow:hidden;background:#fff;touch-action:none;">
+          <canvas id="sig-canvas" width="600" height="120" style="width:100%;height:120px;display:block;cursor:crosshair;touch-action:none;"></canvas>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:6px;align-items:center;">
+          <button type="button" onclick="clearSig()" style="background:none;border:1px solid var(--border);border-radius:4px;color:var(--muted);font-family:'IBM Plex Sans',sans-serif;font-size:11px;padding:4px 10px;cursor:pointer;">✕ Smazat</button>
+          <span style="font-size:11px;color:var(--muted);">Podepište se prstem nebo myší. Slouží jako elektronické potvrzení souhlasu.</span>
+        </div>
+      </div>
     </div>
 
     <div class="sec">
@@ -398,6 +408,7 @@ textarea{resize:vertical;min-height:64px}
       <div class="sig-b"><div class="sig-line"></div><div class="sig-lbl">Nájemce: podpis</div></div>
     </div>
 
+    <div id="err-p" style="display:none;color:var(--err);background:rgba(224,80,80,0.1);border:1px solid rgba(224,80,80,0.4);border-radius:6px;padding:10px 14px;font-size:13px;margin-bottom:8px;"></div>
     <div class="acts">
       <button class="btn-p" onclick="submitForm('p')">✓ Odeslat protokol</button>
       <button class="btn-s" onclick="printTab('p')">Tisk / PDF</button>
@@ -851,19 +862,59 @@ function yn(btn,id,val){
   document.getElementById(id).value=val;
 }
 
+// ── CANVAS PODPIS ──
+(function(){
+  let canvas, ctx, drawing=false, hasSig=false;
+  function init(){
+    canvas=document.getElementById('sig-canvas');
+    if(!canvas)return;
+    ctx=canvas.getContext('2d');
+    ctx.strokeStyle='#111';ctx.lineWidth=2.5;ctx.lineCap='round';ctx.lineJoin='round';
+    function pos(e){
+      const r=canvas.getBoundingClientRect();
+      const scaleX=canvas.width/r.width, scaleY=canvas.height/r.height;
+      if(e.touches){return{x:(e.touches[0].clientX-r.left)*scaleX,y:(e.touches[0].clientY-r.top)*scaleY};}
+      return{x:(e.clientX-r.left)*scaleX,y:(e.clientY-r.top)*scaleY};
+    }
+    function start(e){e.preventDefault();drawing=true;const p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);}
+    function move(e){e.preventDefault();if(!drawing)return;const p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke();hasSig=true;}
+    function end(){drawing=false;}
+    canvas.addEventListener('mousedown',start);canvas.addEventListener('mousemove',move);
+    canvas.addEventListener('mouseup',end);canvas.addEventListener('mouseleave',end);
+    canvas.addEventListener('touchstart',start,{passive:false});
+    canvas.addEventListener('touchmove',move,{passive:false});
+    canvas.addEventListener('touchend',end);
+  }
+  window.clearSig=function(){if(ctx)ctx.clearRect(0,0,canvas.width,canvas.height);hasSig=false;};
+  window.getSigData=function(){return hasSig?canvas.toDataURL('image/png'):null;};
+  window.hasSigData=function(){return hasSig;};
+  document.addEventListener('DOMContentLoaded',init);
+})();
+
+// ── INLINE CHYBY ──
+function showErr(id, msg){
+  const el=document.getElementById(id);
+  el.textContent='⚠ '+msg;
+  el.style.display='block';
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(()=>{ el.style.display='none'; },6000);
+}
+
 // ── ODESLÁNÍ ──
 async function submitForm(typ){
   let data;
   if(typ==='p'){
-    if(!document.getElementById('souhlas').checked){alert('Potvrďte souhlas s podmínkami.');return;}
     const jm=document.getElementById('jmeno').value.trim();
     const tl=document.getElementById('tel').value.trim();
-    if(!jm||!tl){alert('Vyplňte jméno a telefon nájemce.');return;}
+    if(!jm||!tl){showErr('err-p','Vyplňte jméno a telefon nájemce.');return;}
+    if(!document.getElementById('souhlas').checked){showErr('err-p','Nájemce musí zaškrtnout souhlas s podmínkami.');return;}
+    if(!window.hasSigData()){showErr('err-p','Chybí podpis nájemce – nechte klienta podepsat se prstem.');return;}
     const em=document.getElementById('email').value.trim();
     data={
       access_key:W3KEY, subject:'Protokol PŘEVZETÍ – '+jm, from_name:'Tepovače Jablunkov',
       replyto:em||'kubas5.nowicki@gmail.com', typ:'PŘEVZETÍ',
       najemce:jm, telefon:tl, email:em||'–', adresa:document.getElementById('adresa').value||'–',
+
       od:document.getElementById('datum-od').value, do:document.getElementById('datum-do').value,
       tarif:document.getElementById('p-tar').textContent,
       kauce_prijata:document.getElementById('kauce-p').value||'–',
@@ -872,7 +923,8 @@ async function submitForm(typ){
         document.getElementById('acc2').checked?'✓ Podlahová hubice':'✗ Podlahová hubice',
         document.getElementById('acc3').checked?'✓ Hubice čalounění':'✗ Hubice čalounění',
       ].join(' | '),
-      souhlas:'ANO – odsouhlaseno odesláním formuláře',
+      souhlas:'ANO',
+      podpis_najemce:'Vlastnoruční podpis zachycen elektronicky při převzetí ('+new Date().toLocaleString('cs-CZ')+')',
       poznamky:document.getElementById('pozn-p').value||'–',
     };
   } else if(typ==='v'){
